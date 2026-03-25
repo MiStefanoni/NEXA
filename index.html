@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexa | Professional Directory for Women Professionals</title>
+    <meta
+      name="description"
+      content="Nexa is a professional directory that connects women professionals to clients through trusted visibility, polished profiles, and structured inquiries."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#F7F6F4",
+              charcoal: "#2B2B2B",
+              clay: "#C56A6A",
+              teal: "#2FA4A9",
+              sand: "#EEE7E1",
+              mist: "#E8F4F4",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["DM Sans", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-ivory font-sans text-charcoal antialiased">
+    <header class="border-b border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+        <a href="#top" class="font-display text-2xl font-bold tracking-tight">Nexa</a>
+        <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
+          <a href="#categories" class="transition-colors hover:text-teal">Categories</a>
+          <a href="#professionals" class="transition-colors hover:text-teal">Professionals</a>
+          <a href="#how-it-works" class="transition-colors hover:text-teal">How it works</a>
+          <a href="#join" class="transition-colors hover:text-teal">Join</a>
+        </nav>
+        <a
+          href="#join"
+          class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90"
+          >Apply now</a
+        >
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="max-w-2xl">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal">
+              Professional visibility, thoughtfully designed
+            </p>
+            <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+              Connecting women professionals to opportunity
+            </h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-charcoal/75">
+              Nexa is a curated professional directory that helps women showcase their work, share
+              expertise, and receive structured client inquiries in a safer, more professional
+              environment.
+            </p>
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#professionals"
+                class="rounded-2xl bg-clay px-6 py-4 text-center text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
+                >Browse professionals</a
+              >
+              <a
+                href="#join"
+                class="rounded-2xl border border-charcoal/15 bg-white px-6 py-4 text-center text-sm font-semibold text-charcoal shadow-soft hover:border-teal hover:text-teal"
+                >Join as a professional</a
+              >
+            </div>
+          </div>
+
+          <aside class="rounded-3xl bg-white p-6 shadow-soft sm:p-8" aria-label="Featured directory card">
+            <div class="rounded-3xl bg-sand p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="font-display text-2xl font-bold">Amara Lewis</p>
+                  <p class="mt-2 text-sm font-medium text-teal">Business &amp; Professional</p>
+                </div>
+                <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-charcoal"
+                  >Verified</span
+                >
+              </div>
+              <p class="mt-6 text-sm leading-7 text-charcoal/75">
+                Operations consultant helping founders improve systems, documentation, and client
+                delivery workflows.
+              </p>
+              <dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2">
+                <div class="rounded-2xl bg-white p-4">
+                  <dt class="text-charcoal/55">Location</dt>
+                  <dd class="mt-1 font-semibold">Remote, New York</dd>
+                </div>
+                <div class="rounded-2xl bg-white p-4">
+                  <dt class="text-charcoal/55">Inquiry type</dt>
+                  <dd class="mt-1 font-semibold">Structured form</dd>
+                </div>
+              </dl>
+              <div class="mt-6 flex flex-wrap gap-2 text-xs font-medium text-charcoal/70">
+                <span class="rounded-full bg-white px-3 py-2">Strategy</span>
+                <span class="rounded-full bg-white px-3 py-2">Remote-friendly</span>
+                <span class="rounded-full bg-white px-3 py-2">B2B Services</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-12">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">How it works</p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            A directory experience built around clarity and trust
+          </h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold text-clay">Step 1</p>
+            <h3 class="mt-4 font-display text-2xl font-bold">Apply to join</h3>
+            <p class="mt-4 leading-7 text-charcoal/75">
+              Submit your details for review so the directory remains professional, credible, and
+              aligned with Nexa’s standards.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold text-clay">Step 2</p>
+            <h3 class="mt-4 font-display text-2xl font-bold">Build profile</h3>
+            <p class="mt-4 leading-7 text-charcoal/75">
+              Present your services, background, and portfolio with a polished profile designed for
+              discovery rather than social posting.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold text-clay">Step 3</p>
+            <h3 class="mt-4 font-display text-2xl font-bold">Receive structured inquiries</h3>
+            <p class="mt-4 leading-7 text-charcoal/75">
+              Clients reach out through guided contact flows, helping you assess fit without open
+              direct messaging.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="categories" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-2xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Categories</p>
+            <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+              Explore professionals across trusted service categories
+            </h2>
+          </div>
+          <p class="max-w-md text-sm leading-7 text-charcoal/70">
+            Each category is designed to make expertise easy to browse, compare, and contact with
+            confidence.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Creative &amp; Digital</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Designers, developers, photographers, writers, and digital creators with polished
+              professional profiles.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Business &amp; Professional</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Consultants, legal professionals, accountants, operations specialists, and executive
+              service providers.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Education &amp; Coaching</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Tutors, trainers, mentors, and coaches offering structured learning and personal
+              development services.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Wellness &amp; Care</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Practitioners and service providers focused on wellbeing, support, care, and
+              holistic client experiences.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Marketing &amp; Communication</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Brand strategists, publicists, copywriters, and communication specialists helping
+              businesses grow clearly.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
+            <h3 class="font-display text-2xl font-bold">Events &amp; Lifestyle</h3>
+            <p class="mt-3 leading-7 text-charcoal/75">
+              Planners, stylists, hosts, and experience-focused professionals supporting memorable
+              personal and business moments.
+            </p>
+          </article>
+          <article class="rounded-3xl bg-white p-7 shadow-soft md:col-span-2 xl:col-span-3">
+            <h3 class="font-display text-2xl font-bold">Home &amp; Skilled Trade Services</h3>
+            <p class="mt-3 max-w-3xl leading-7 text-charcoal/75">
+              Trusted professionals offering hands-on services, technical expertise, and in-home
+              support with credibility and clear service descriptions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="professionals" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">
+            Featured professionals
+          </p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            Discover standout profiles on Nexa
+          </h2>
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Leila Ahmad</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative &amp; Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal"
+                >Remote</span
+              >
+            </div>
+            <p class="mt-5 leading-7 text-charcoal/75">
+              Brand designer crafting visual systems and editorial identities for founders, studios,
+              and purpose-driven teams.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
+              <span class="rounded-full bg-sand px-3 py-2">Branding</span>
+              <span class="rounded-full bg-sand px-3 py-2">Editorial</span>
+              <span class="rounded-full bg-sand px-3 py-2">Identity Systems</span>
+            </div>
+            <a href="#profile-detail" class="mt-6 inline-block text-sm font-semibold text-teal"
+              >View profile</a
+            >
+          </article>
+
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Sofia Turner</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education &amp; Coaching</p>
+              </div>
+              <span class="rounded-full bg-sand px-3 py-1 text-xs font-semibold text-charcoal"
+                >Chicago</span
+              >
+            </div>
+            <p class="mt-5 leading-7 text-charcoal/75">
+              Career coach supporting mid-career transitions with practical frameworks, interview
+              preparation, and confidence-building.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
+              <span class="rounded-full bg-sand px-3 py-2">Coaching</span>
+              <span class="rounded-full bg-sand px-3 py-2">Career Strategy</span>
+              <span class="rounded-full bg-sand px-3 py-2">Workshops</span>
+            </div>
+            <a href="#profile-detail" class="mt-6 inline-block text-sm font-semibold text-teal"
+              >View profile</a
+            >
+          </article>
+
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Nadia Brooks</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing &amp; Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal"
+                >Remote</span
+              >
+            </div>
+            <p class="mt-5 leading-7 text-charcoal/75">
+              Messaging strategist helping service brands refine positioning, launch offers, and
+              communicate with clarity.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
+              <span class="rounded-full bg-sand px-3 py-2">Positioning</span>
+              <span class="rounded-full bg-sand px-3 py-2">Copy Strategy</span>
+              <span class="rounded-full bg-sand px-3 py-2">Launch Support</span>
+            </div>
+            <a href="#profile-detail" class="mt-6 inline-block text-sm font-semibold text-teal"
+              >View profile</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section id="profile-detail" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="mb-8 max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Profile detail</p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+            Professional profile example
+          </h2>
+        </div>
+
+        <div class="grid gap-8 xl:grid-cols-[1.35fr_0.65fr]">
+          <div class="space-y-8">
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                <div>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 class="font-display text-3xl font-bold">Leila Ahmad</h3>
+                    <span class="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal"
+                      >Verified</span
+                    >
+                  </div>
+                  <p class="mt-3 text-lg font-medium text-clay">Creative &amp; Digital</p>
+                </div>
+                <dl class="grid gap-3 text-sm sm:grid-cols-3 lg:text-right">
+                  <div>
+                    <dt class="text-charcoal/55">Location</dt>
+                    <dd class="mt-1 font-semibold">Remote, London</dd>
+                  </div>
+                  <div>
+                    <dt class="text-charcoal/55">Languages</dt>
+                    <dd class="mt-1 font-semibold">English, Arabic</dd>
+                  </div>
+                  <div>
+                    <dt class="text-charcoal/55">Profile type</dt>
+                    <dd class="mt-1 font-semibold">Independent consultant</dd>
+                  </div>
+                </dl>
+              </div>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <h3 class="font-display text-2xl font-bold">About</h3>
+              <p class="mt-5 leading-8 text-charcoal/75">
+                Leila is a brand designer and digital art director who helps service businesses and
+                creative founders translate their expertise into confident, high-trust visual
+                identities. Her work focuses on clarity, editorial refinement, and flexible systems
+                that support both online presence and client-facing materials.
+              </p>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <h3 class="font-display text-2xl font-bold">Services</h3>
+              <div class="mt-6 space-y-5">
+                <article class="rounded-3xl border border-charcoal/10 p-6">
+                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <h4 class="text-lg font-semibold">Brand Identity Design</h4>
+                      <p class="mt-3 leading-7 text-charcoal/75">
+                        Full visual identity development including logo system, typography,
+                        color strategy, and brand application guidance.
+                      </p>
+                    </div>
+                    <dl class="min-w-48 space-y-3 text-sm">
+                      <div>
+                        <dt class="text-charcoal/55">Delivery</dt>
+                        <dd class="font-semibold">Remote</dd>
+                      </div>
+                      <div>
+                        <dt class="text-charcoal/55">Engagement</dt>
+                        <dd class="font-semibold">Project-based</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </article>
+                <article class="rounded-3xl border border-charcoal/10 p-6">
+                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <h4 class="text-lg font-semibold">Creative Direction Intensives</h4>
+                      <p class="mt-3 leading-7 text-charcoal/75">
+                        Strategic advisory sessions for founders refining campaigns, launches, or
+                        creative systems before implementation.
+                      </p>
+                    </div>
+                    <dl class="min-w-48 space-y-3 text-sm">
+                      <div>
+                        <dt class="text-charcoal/55">Delivery</dt>
+                        <dd class="font-semibold">Remote</dd>
+                      </div>
+                      <div>
+                        <dt class="text-charcoal/55">Engagement</dt>
+                        <dd class="font-semibold">Hourly or retainer</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </article>
+                <article class="rounded-3xl border border-charcoal/10 p-6">
+                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <h4 class="text-lg font-semibold">Brand Collateral Systems</h4>
+                      <p class="mt-3 leading-7 text-charcoal/75">
+                        Presentation decks, proposals, and digital brand assets aligned to an
+                        established identity system.
+                      </p>
+                    </div>
+                    <dl class="min-w-48 space-y-3 text-sm">
+                      <div>
+                        <dt class="text-charcoal/55">Delivery</dt>
+                        <dd class="font-semibold">Remote / On-site</dd>
+                      </div>
+                      <div>
+                        <dt class="text-charcoal/55">Engagement</dt>
+                        <dd class="font-semibold">Project-based</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <h3 class="font-display text-2xl font-bold">Experience</h3>
+              <div class="mt-6 grid gap-4 md:grid-cols-3">
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm text-charcoal/60">Experience</p>
+                  <p class="mt-2 font-display text-3xl font-bold">9 years</p>
+                </article>
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm text-charcoal/60">Client focus</p>
+                  <p class="mt-2 font-display text-3xl font-bold">Startups</p>
+                </article>
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm text-charcoal/60">Projects delivered</p>
+                  <p class="mt-2 font-display text-3xl font-bold">70+</p>
+                </article>
+              </div>
+              <p class="mt-6 leading-8 text-charcoal/75">
+                Previously led brand work for boutique agencies and independent founders across
+                technology, editorial, hospitality, and service-based businesses.
+              </p>
+            </section>
+
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <h3 class="font-display text-2xl font-bold">Portfolio</h3>
+              <div class="mt-6 grid gap-5 md:grid-cols-3">
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm font-semibold text-clay">Case Study 01</p>
+                  <h4 class="mt-3 text-lg font-semibold">Editorial rebrand for advisory studio</h4>
+                  <p class="mt-3 text-sm leading-7 text-charcoal/75">
+                    Visual identity and proposal system for a remote consulting firm.
+                  </p>
+                </article>
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm font-semibold text-clay">Case Study 02</p>
+                  <h4 class="mt-3 text-lg font-semibold">Launch identity for wellness founder</h4>
+                  <p class="mt-3 text-sm leading-7 text-charcoal/75">
+                    Brand direction and digital assets for a premium coaching offer.
+                  </p>
+                </article>
+                <article class="rounded-3xl bg-sand p-6">
+                  <p class="text-sm font-semibold text-clay">Case Study 03</p>
+                  <h4 class="mt-3 text-lg font-semibold">Presentation system for venture partner</h4>
+                  <p class="mt-3 text-sm leading-7 text-charcoal/75">
+                    Custom deck templates and branded client-facing communication tools.
+                  </p>
+                </article>
+              </div>
+            </section>
+          </div>
+
+          <aside class="space-y-6">
+            <section class="rounded-3xl bg-white p-8 shadow-soft">
+              <h3 class="font-display text-2xl font-bold">Contact</h3>
+              <ul class="mt-6 space-y-4 text-sm">
+                <li>
+                  <span class="block text-charcoal/55">Email</span>
+                  <a href="mailto:leila@nexa.example" class="mt-1 inline-block font-semibold text-teal"
+                    >leila@nexa.example</a
+                  >
+                </li>
+                <li>
+                  <span class="block text-charcoal/55">Website</span>
+                  <a href="https://example.com" class="mt-1 inline-block font-semibold text-teal"
+                    >www.leilaahmadstudio.com</a
+                  >
+                </li>
+                <li>
+                  <span class="block text-charcoal/55">Social</span>
+                  <a href="https://example.com" class="mt-1 inline-block font-semibold text-teal"
+                    >LinkedIn profile</a
+                  >
+                </li>
+              </ul>
+              <a
+                href="#join"
+                class="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
+                >Contact via Nexa form</a
+              >
+            </section>
+
+            <section class="rounded-3xl bg-mist p-8 shadow-soft">
+              <h3 class="font-display text-xl font-bold">Safety note</h3>
+              <p class="mt-4 leading-7 text-charcoal/75">
+                Nexa does not offer open direct messaging. Client outreach is routed through
+                structured contact options to support clarity, professionalism, and safer
+                interactions.
+              </p>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section id="join" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Join Nexa</p>
+            <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
+              Build a professional presence clients can trust
+            </h2>
+            <p class="mt-5 leading-8 text-charcoal/75">
+              Nexa is designed for women professionals who want visibility without the noise of a
+              social platform or the pressure of a transactional marketplace.
+            </p>
+            <ul class="mt-6 space-y-4 text-sm leading-7 text-charcoal/75">
+              <li>Curated directory placement for stronger credibility and fit.</li>
+              <li>Structured profile layouts that highlight expertise and services clearly.</li>
+              <li>Safer contact pathways without open direct messaging.</li>
+            </ul>
+          </div>
+
+          <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="application-form-title">
+            <h3 id="application-form-title" class="font-display text-2xl font-bold">
+              Professional application
+            </h3>
+            <form class="mt-6 grid gap-5">
+              <div>
+                <label for="name" class="mb-2 block text-sm font-medium">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal"
+                  placeholder="Your full name"
+                />
+              </div>
+              <div>
+                <label for="email" class="mb-2 block text-sm font-medium">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal"
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div>
+                <label for="category" class="mb-2 block text-sm font-medium">Category</label>
+                <select
+                  id="category"
+                  name="category"
+                  class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal"
+                >
+                  <option>Select a category</option>
+                  <option>Creative &amp; Digital</option>
+                  <option>Business &amp; Professional</option>
+                  <option>Education &amp; Coaching</option>
+                  <option>Wellness &amp; Care</option>
+                  <option>Marketing &amp; Communication</option>
+                  <option>Events &amp; Lifestyle</option>
+                  <option>Home &amp; Skilled Trade Services</option>
+                </select>
+              </div>
+              <div>
+                <label for="description" class="mb-2 block text-sm font-medium">Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                  placeholder="Tell us about your work, services, and ideal clients."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
+              >
+                Submit application
+              </button>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="#top" class="font-display text-2xl font-bold tracking-tight">Nexa</a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
+          <a href="#top" class="hover:text-teal">About</a>
+          <a href="#categories" class="hover:text-teal">Categories</a>
+          <a href="#join" class="hover:text-teal">Apply</a>
+          <a href="#how-it-works" class="hover:text-teal">Code of conduct</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
