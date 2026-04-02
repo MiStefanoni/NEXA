@@ -125,7 +125,7 @@
 
     <main id="top">
       <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
-        <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="grid items-end gap-12 lg:grid-cols-[1fr_minmax(0,40vw)] lg:gap-16">
           <div class="max-w-2xl">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal">
               Professional visibility, thoughtfully designed
@@ -152,38 +152,13 @@
             </div>
           </div>
 
-          <aside class="rounded-3xl bg-white p-6 shadow-soft sm:p-8" aria-label="Featured directory card">
-            <div class="rounded-3xl bg-white p-6">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="font-display text-2xl font-bold">Amara Lewis</p>
-                  <p class="mt-2 text-sm font-medium text-teal">Business &amp; Professional</p>
-                </div>
-                <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-charcoal"
-                  >Verified</span
-                >
-              </div>
-              <p class="mt-6 text-sm leading-7 text-charcoal/75">
-                Operations consultant helping founders improve systems, documentation, and client
-                delivery workflows.
-              </p>
-              <dl class="mt-6 grid gap-4 text-sm sm:grid-cols-2">
-                <div class="rounded-2xl bg-white p-4">
-                  <dt class="text-charcoal/55">Location</dt>
-                  <dd class="mt-1 font-semibold">Remote, New York</dd>
-                </div>
-                <div class="rounded-2xl bg-white p-4">
-                  <dt class="text-charcoal/55">Inquiry type</dt>
-                  <dd class="mt-1 font-semibold">Structured form</dd>
-                </div>
-              </dl>
-              <div class="mt-6 flex flex-wrap gap-2 text-xs font-medium text-charcoal/70">
-                <span class="rounded-full bg-white px-3 py-2">Strategy</span>
-                <span class="rounded-full bg-white px-3 py-2">Remote-friendly</span>
-                <span class="rounded-full bg-white px-3 py-2">B2B Services</span>
-              </div>
-            </div>
-          </aside>
+          <div class="flex items-end justify-center lg:justify-end">
+            <img
+              src="./Women.png"
+              alt="Woman using the Nexa platform"
+              class="w-full max-w-md self-end object-contain lg:max-w-none"
+            />
+          </div>
         </div>
       </section>
 
@@ -223,17 +198,11 @@
       </section>
 
       <section id="categories" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div class="max-w-2xl">
+        <div class="max-w-2xl">
             <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Categories</p>
             <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">
               Explore professionals across trusted service categories
             </h2>
-          </div>
-          <p class="max-w-md text-sm leading-7 text-charcoal/70">
-            Each category is designed to make expertise easy to browse, compare, and contact with
-            confidence.
-          </p>
         </div>
 
         <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -279,13 +248,19 @@
               personal and business moments.
             </p>
           </article>
-          <article class="rounded-3xl bg-white p-7 shadow-soft md:col-span-2 xl:col-span-3">
+          <article class="rounded-3xl bg-white p-7 shadow-soft">
             <h3 class="font-display text-2xl font-bold">Home &amp; Skilled Trade Services</h3>
-            <p class="mt-3 max-w-3xl leading-7 text-charcoal/75">
+            <p class="mt-3 leading-7 text-charcoal/75">
               Trusted professionals offering hands-on services, technical expertise, and in-home
               support with credibility and clear service descriptions.
             </p>
           </article>
+          <div class="p-7 md:col-span-1 xl:col-span-2">
+            <p class="font-display text-2xl italic leading-tight text-charcoal/70">
+              Each category is designed to make expertise easy to browse, compare, and contact
+              with confidence.
+            </p>
+          </div>
         </div>
       </section>
 
