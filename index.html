@@ -37,24 +37,89 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .nav-link-active {
+        color: #e47e4a;
+      }
+
+      .nav-link-active::after {
+        width: 100%;
+      }
+    </style>
   </head>
   <body class="bg-ivory font-sans text-charcoal antialiased">
-    <header class="border-b border-charcoal/10">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+    <header id="site-header" class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
         <a href="#top" class="inline-flex items-center" aria-label="Nexa home">
           <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
         </a>
         <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
-          <a href="#categories" class="transition-colors hover:text-teal">Categories</a>
-          <a href="#professionals" class="transition-colors hover:text-teal">Professionals</a>
-          <a href="#how-it-works" class="transition-colors hover:text-teal">How it works</a>
-          <a href="#join" class="transition-colors hover:text-teal">Join</a>
+          <a
+            href="#categories"
+            data-nav-link
+            class="relative pb-1 transition-colors hover:text-teal after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-teal after:transition-all"
+            >Browse</a
+          >
+          <a
+            href="#how-it-works"
+            data-nav-link
+            class="relative pb-1 transition-colors hover:text-teal after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-teal after:transition-all"
+            >How it works</a
+          >
+          <a
+            href="#professionals"
+            data-nav-link
+            class="relative pb-1 transition-colors hover:text-teal after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-teal after:transition-all"
+            >For clients</a
+          >
+          <a
+            href="#join"
+            data-nav-link
+            class="relative pb-1 transition-colors hover:text-teal after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-teal after:transition-all"
+            >For professionals</a
+          >
         </nav>
-        <a
-          href="#join"
-          class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90"
-          >Apply now</a
-        >
+        <div class="hidden items-center gap-3 md:flex">
+          <a
+            href="#categories"
+            class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal"
+            >Browse categories</a
+          >
+          <a
+            href="#join"
+            class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90"
+            >Apply now</a
+          >
+        </div>
+        <div class="flex items-center gap-3 md:hidden">
+          <a
+            href="#categories"
+            class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal"
+            >Browse</a
+          >
+          <button
+            id="mobile-menu-button"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
+        <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
+          <a href="#categories" data-nav-link class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
+          <a href="#how-it-works" data-nav-link class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">How it works</a>
+          <a href="#professionals" data-nav-link class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For clients</a>
+          <a href="#join" data-nav-link class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For professionals</a>
+          <a href="#join" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">Apply now</a>
+        </nav>
       </div>
     </header>
 
@@ -317,6 +382,16 @@
           </h2>
         </div>
 
+        <div class="mb-8 rounded-3xl border border-charcoal/10 bg-white/80 p-3 shadow-soft backdrop-blur">
+          <nav aria-label="Profile sections" class="flex flex-wrap gap-2 text-sm font-semibold">
+            <a href="#profile-about" data-profile-link class="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">About</a>
+            <a href="#profile-services" data-profile-link class="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">Services</a>
+            <a href="#profile-experience" data-profile-link class="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">Experience</a>
+            <a href="#profile-portfolio" data-profile-link class="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">Portfolio</a>
+            <a href="#profile-contact" data-profile-link class="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">Contact</a>
+          </nav>
+        </div>
+
         <div class="grid gap-8 xl:grid-cols-[1.35fr_0.65fr]">
           <div class="space-y-8">
             <section class="rounded-3xl bg-white p-8 shadow-soft">
@@ -347,7 +422,7 @@
               </div>
             </section>
 
-            <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <section id="profile-about" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">About</h3>
               <p class="mt-5 leading-8 text-charcoal/75">
                 Leila is a brand designer and digital art director who helps service businesses and
@@ -357,7 +432,7 @@
               </p>
             </section>
 
-            <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <section id="profile-services" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">Services</h3>
               <div class="mt-6 space-y-5">
                 <article class="rounded-3xl border border-charcoal/10 p-6">
@@ -426,7 +501,7 @@
               </div>
             </section>
 
-            <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <section id="profile-experience" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">Experience</h3>
               <div class="mt-6 grid gap-4 md:grid-cols-3">
                 <article class="rounded-3xl bg-mist p-6">
@@ -448,7 +523,7 @@
               </p>
             </section>
 
-            <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <section id="profile-portfolio" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">Portfolio</h3>
               <div class="mt-6 grid gap-5 md:grid-cols-3">
                 <article class="rounded-3xl bg-mist p-6">
@@ -477,7 +552,7 @@
           </div>
 
           <aside class="space-y-6">
-            <section class="rounded-3xl bg-white p-8 shadow-soft">
+            <section id="profile-contact" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft xl:sticky xl:top-28">
               <h3 class="font-display text-2xl font-bold">Contact</h3>
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
@@ -606,12 +681,72 @@
           <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
         </a>
         <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
-          <a href="#top" class="hover:text-teal">About</a>
-          <a href="#categories" class="hover:text-teal">Categories</a>
-          <a href="#join" class="hover:text-teal">Apply</a>
-          <a href="#how-it-works" class="hover:text-teal">Code of conduct</a>
+          <a href="#categories" class="hover:text-teal">Browse categories</a>
+          <a href="#how-it-works" class="hover:text-teal">How it works</a>
+          <a href="#professionals" class="hover:text-teal">Featured professionals</a>
+          <a href="#profile-detail" class="hover:text-teal">Profile example</a>
+          <a href="#join" class="hover:text-teal">Apply now</a>
         </nav>
       </div>
     </footer>
+    <script>
+      const header = document.getElementById("site-header");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+      const profileLinks = Array.from(document.querySelectorAll("[data-profile-link]"));
+      const navSections = ["categories", "how-it-works", "professionals", "join"]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const profileSections = [
+        "profile-about",
+        "profile-services",
+        "profile-experience",
+        "profile-portfolio",
+        "profile-contact",
+      ]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      const setActiveLink = (links, id) => {
+        links.forEach((link) => {
+          const isActive = link.getAttribute("href") === "#" + id;
+          link.classList.toggle("nav-link-active", isActive);
+          link.classList.toggle("bg-mist", isActive && link.hasAttribute("data-profile-link"));
+        });
+      };
+
+      const updateActiveSection = () => {
+        const offset = (header?.offsetHeight || 0) + 32;
+        let currentNav = navSections[0]?.id;
+        navSections.forEach((section) => {
+          if (window.scrollY + offset >= section.offsetTop) currentNav = section.id;
+        });
+        if (currentNav) setActiveLink(navLinks, currentNav);
+
+        let currentProfile = profileSections[0]?.id;
+        profileSections.forEach((section) => {
+          if (window.scrollY + offset >= section.offsetTop) currentProfile = section.id;
+        });
+        if (currentProfile) setActiveLink(profileLinks, currentProfile);
+      };
+
+      mobileMenuButton?.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      });
+
+      navLinks.forEach((link) =>
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenuButton?.setAttribute("aria-expanded", "false");
+        })
+      );
+
+      window.addEventListener("scroll", updateActiveSection, { passive: true });
+      window.addEventListener("resize", updateActiveSection);
+      updateActiveSection();
+    </script>
   </body>
 </html>
