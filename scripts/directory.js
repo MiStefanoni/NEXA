@@ -66,6 +66,9 @@ const getRootPath = (relativePath) => new URL(`../${relativePath}`, DIRECTORY_SC
 
 const normalizeBoolean = (value) => String(value).toLowerCase() === "true";
 
+const getLocationMode = (profile) =>
+  (profile.remote_or_local || "").trim().toLowerCase() === "remote" ? "remote" : "local";
+
 const escapeHtml = (value) =>
   String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -102,7 +105,7 @@ function getProfileUrl(slug) {
 }
 
 function getBadgeLabel(profile) {
-  if ((profile.remote_or_local || "").toLowerCase() === "remote") {
+  if (getLocationMode(profile) === "remote") {
     return "Remote";
   }
   return (profile.location || "").split(",")[0] || profile.remote_or_local || "Local";
@@ -143,15 +146,53 @@ function setupMobileMenu() {
   });
 }
 
-async function renderFeaturedProfessionals(containerId, limit = 3) {
+function syncDirectoryFilterUi(filterContainer, activeFilter) {
+  if (!filterContainer) return;
+  const buttons = filterContainer.querySelectorAll("[data-directory-filter]");
+  buttons.forEach((button) => {
+    const isActive = button.dataset.directoryFilter === activeFilter;
+    button.classList.toggle("border-teal", isActive);
+    button.classList.toggle("bg-mist", isActive);
+    button.classList.toggle("text-teal", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+async function renderFeaturedProfessionals(containerId, options = {}) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  const { limit = 3, filterContainerId } =
+    typeof options === "number" ? { limit: options } : options;
   const profiles = await loadProfessionals();
-  const featured = profiles.filter((profile) => profile.featured).slice(0, limit);
-  const fallback = profiles.slice(0, limit);
-  const selected = featured.length ? featured : fallback;
-  container.innerHTML = selected.map(renderProfessionalCard).join("");
+  const filterContainer = filterContainerId ? document.getElementById(filterContainerId) : null;
+  let activeFilter = "all";
+
+  const getSelectedProfiles = () => {
+    const matchesFilter = (profile) =>
+      activeFilter === "all" || getLocationMode(profile) === activeFilter;
+    const featured = profiles.filter((profile) => profile.featured && matchesFilter(profile)).slice(0, limit);
+    const fallback = profiles.filter(matchesFilter).slice(0, limit);
+    return featured.length ? featured : fallback;
+  };
+
+  const renderProfiles = () => {
+    const selected = getSelectedProfiles();
+    container.innerHTML =
+      selected.map(renderProfessionalCard).join("") ||
+      '<div class="rounded-3xl bg-white p-8 text-base text-charcoal/75 shadow-soft lg:col-span-3">No featured professionals match this filter yet.</div>';
+  };
+
+  filterContainer?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-directory-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.directoryFilter || "all";
+    syncDirectoryFilterUi(filterContainer, activeFilter);
+    renderProfiles();
+  });
+
+  syncDirectoryFilterUi(filterContainer, activeFilter);
+  renderProfiles();
 }
 
 async function renderProfessionalsDirectory(containerId) {
@@ -159,29 +200,49 @@ async function renderProfessionalsDirectory(containerId) {
   if (!container) return;
 
   const profiles = await loadProfessionals();
-  const sections = NEXA_CATEGORY_ORDER.map((slug) => {
-    const meta = NEXA_CATEGORY_META[slug];
-    const categoryProfiles = profiles.filter((profile) => profile.category_slug === slug);
-    if (!categoryProfiles.length) {
-      return "";
-    }
-    return `
-      <section id="${escapeHtml(slug)}" class="mt-14 first:mt-0">
-        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
+  const filterContainer = document.getElementById("directory-location-filter");
+  let activeFilter = "all";
+
+  const renderSections = () => {
+    const sections = NEXA_CATEGORY_ORDER.map((slug) => {
+      const meta = NEXA_CATEGORY_META[slug];
+      const categoryProfiles = profiles.filter((profile) => {
+        if (profile.category_slug !== slug) return false;
+        return activeFilter === "all" || getLocationMode(profile) === activeFilter;
+      });
+
+      if (!categoryProfiles.length) {
+        return "";
+      }
+
+      return `
+        <section id="${escapeHtml(slug)}" class="mt-14 first:mt-0">
+          <div class="mb-6 max-w-3xl">
             <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">${escapeHtml(meta.title)}</p>
             <h2 class="mt-2 font-display text-3xl font-bold">${escapeHtml(meta.description)}</h2>
           </div>
-          <a href="${escapeHtml(getRootPath(meta.categoryPage))}" class="text-sm font-semibold text-teal">View category page</a>
-        </div>
-        <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          ${categoryProfiles.map(renderProfessionalCard).join("")}
-        </div>
-      </section>
-    `;
-  }).join("");
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+            ${categoryProfiles.map(renderProfessionalCard).join("")}
+          </div>
+        </section>
+      `;
+    }).join("");
 
-  container.innerHTML = sections;
+    container.innerHTML =
+      sections ||
+      '<div class="rounded-3xl bg-white p-8 text-base text-charcoal/75 shadow-soft">No professionals match this filter yet.</div>';
+  };
+
+  filterContainer?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-directory-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.directoryFilter || "all";
+    syncDirectoryFilterUi(filterContainer, activeFilter);
+    renderSections();
+  });
+
+  syncDirectoryFilterUi(filterContainer, activeFilter);
+  renderSections();
 }
 
 async function renderCategoryDirectory(containerId, categorySlug) {

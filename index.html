@@ -163,6 +163,14 @@
           <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Featured professionals</p>
           <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Discover standout profiles on Nexa</h2>
         </div>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Availability</p>
+          <div id="featured-location-filter" class="flex flex-wrap gap-3 text-sm font-semibold" aria-label="Filter featured professionals by availability">
+            <button type="button" data-directory-filter="all" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">All</button>
+            <button type="button" data-directory-filter="remote" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Remote</button>
+            <button type="button" data-directory-filter="local" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Local</button>
+          </div>
+        </div>
         <div id="featured-profiles" class="mt-10 grid gap-6 lg:grid-cols-3"></div>
       </section>
 
@@ -230,7 +238,9 @@
     <script src="./scripts/directory.js"></script>
     <script>
       NexaDirectory.setupMobileMenu();
-      NexaDirectory.renderFeaturedProfessionals("featured-profiles");
+      NexaDirectory.renderFeaturedProfessionals("featured-profiles", {
+        filterContainerId: "featured-location-filter",
+      });
     </script>
   </body>
 </html>
