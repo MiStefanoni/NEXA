@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wellness &amp; Care | Nexa</title>
+    <meta name="description" content="Browse Wellness &amp; Care professionals on Nexa." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#F7F6F4",
+              charcoal: "#2B2B2B",
+              clay: "#843088",
+              teal: "#E47E4A",
+              mist: "#F9E1CF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["DM Sans", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-ivory font-sans text-charcoal antialiased">
+    <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
+          <a href="browse-categories.html" class="relative pb-1 transition-colors hover:text-teal text-teal">Browse categories</a>
+          <a href="professionals.html" class="relative pb-1 transition-colors hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal">How it works</a>
+          <a href="apply.html" class="relative pb-1 transition-colors hover:text-teal">Apply</a>
+        </nav>
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse categories</a>
+          <a href="apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">Apply now</a>
+        </div>
+        <div class="flex items-center gap-3 md:hidden">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse</a>
+          <button id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft">Menu</button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
+        <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
+          <a href="browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">How it works</a>
+          <a href="apply.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For professionals</a>
+          <a href="apply.html" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">Apply now</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Category</p>
+            <h1 class="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">Wellness & Care</h1>
+            <p class="mt-6 text-lg leading-8 text-charcoal/75">Connect with women-led wellness and care professionals offering grounded, client-centered support across health and wellbeing services.</p>
+          </div>
+          <div class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa note</p>
+            <p class="mt-4 font-display text-2xl italic leading-tight text-charcoal/70">Care-led services with professionalism and trust.</p>
+            <a href="professionals.html" class="mt-6 inline-flex text-sm font-semibold text-teal">Browse all professionals</a>
+          </div>
+        </div>
+        <div class="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Dr. Laila Morgan</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Licensed Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Therapist offering virtual support for anxiety, burnout, and life transitions with a calm, practical approach.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Therapy</span><span class="rounded-full bg-mist px-3 py-2">Burnout Support</span><span class="rounded-full bg-mist px-3 py-2">Virtual Care</span></div>
+            <a href="profile-dr-laila-morgan.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Yasmin Rahal</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Nutritionist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Nutritionist creating sustainable meal and wellness plans for busy professionals and families.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Nutrition Plans</span><span class="rounded-full bg-mist px-3 py-2">Wellness Coaching</span><span class="rounded-full bg-mist px-3 py-2">Family Support</span></div>
+            <a href="profile-yasmin-rahal.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Serena Blake</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Baltimore</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Doula</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Birth and postpartum doula providing education, preparation, and in-home support for new parents.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Birth Support</span><span class="rounded-full bg-mist px-3 py-2">Postpartum Care</span><span class="rounded-full bg-mist px-3 py-2">Education</span></div>
+            <a href="profile-serena-blake.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Mina Park</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Seattle</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Physical Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Physical therapist focused on mobility recovery and strength planning for active adults.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Mobility</span><span class="rounded-full bg-mist px-3 py-2">Recovery Plans</span><span class="rounded-full bg-mist px-3 py-2">Strength Support</span></div>
+            <a href="profile-mina-park.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Alina Cruz</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Phoenix</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Massage Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Massage therapist offering restorative sessions for clients managing chronic tension and stress.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Massage Therapy</span><span class="rounded-full bg-mist px-3 py-2">Stress Relief</span><span class="rounded-full bg-mist px-3 py-2">Bodywork</span></div>
+            <a href="profile-alina-cruz.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Meera Singh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Occupational Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Occupational therapist helping children and families build supportive routines and daily skills.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Pediatric OT</span><span class="rounded-full bg-mist px-3 py-2">Family Coaching</span><span class="rounded-full bg-mist px-3 py-2">Routine Planning</span></div>
+            <a href="profile-meera-singh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Jenna Wallace</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Sleep Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Sleep consultant helping families establish realistic routines and restful transitions.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Sleep Plans</span><span class="rounded-full bg-mist px-3 py-2">Infant Support</span><span class="rounded-full bg-mist px-3 py-2">Family Guidance</span></div>
+            <a href="profile-jenna-wallace.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Ruqayyah Ali</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Yoga Instructor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Yoga instructor offering private therapeutic sessions centered on mobility, breath, and grounding.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Private Yoga</span><span class="rounded-full bg-mist px-3 py-2">Breathwork</span><span class="rounded-full bg-mist px-3 py-2">Mobility</span></div>
+            <a href="profile-ruqayyah-ali.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Kara Simmons</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Cleveland</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Care Coordinator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Care coordinator helping families organize appointments, records, and next-step planning.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Care Planning</span><span class="rounded-full bg-mist px-3 py-2">Scheduling</span><span class="rounded-full bg-mist px-3 py-2">Advocacy</span></div>
+            <a href="profile-kara-simmons.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Fatima Noor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Lactation Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Lactation consultant offering compassionate virtual and in-home feeding support.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Lactation</span><span class="rounded-full bg-mist px-3 py-2">Feeding Support</span><span class="rounded-full bg-mist px-3 py-2">Parent Education</span></div>
+            <a href="profile-fatima-noor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="border-t border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
+          <a href="browse-categories.html" class="hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="hover:text-teal">How it works</a>
+          <a href="apply.html" class="hover:text-teal">Apply now</a>
+        </nav>
+      </div>
+    </footer>
+    <script>
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      mobileMenuButton?.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      });
+    </script>
+  </body>
+</html>

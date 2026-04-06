@@ -1,0 +1,4 @@
+.pycache/
+telegram_local_bot/
+telegram_relay/
+.DS_Store

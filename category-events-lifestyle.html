@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Events &amp; Lifestyle | Nexa</title>
+    <meta name="description" content="Browse Events &amp; Lifestyle professionals on Nexa." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#F7F6F4",
+              charcoal: "#2B2B2B",
+              clay: "#843088",
+              teal: "#E47E4A",
+              mist: "#F9E1CF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["DM Sans", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-ivory font-sans text-charcoal antialiased">
+    <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
+          <a href="browse-categories.html" class="relative pb-1 transition-colors hover:text-teal text-teal">Browse categories</a>
+          <a href="professionals.html" class="relative pb-1 transition-colors hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal">How it works</a>
+          <a href="apply.html" class="relative pb-1 transition-colors hover:text-teal">Apply</a>
+        </nav>
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse categories</a>
+          <a href="apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">Apply now</a>
+        </div>
+        <div class="flex items-center gap-3 md:hidden">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse</a>
+          <button id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft">Menu</button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
+        <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
+          <a href="browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">How it works</a>
+          <a href="apply.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For professionals</a>
+          <a href="apply.html" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">Apply now</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+          <div class="max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Category</p>
+            <h1 class="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">Events & Lifestyle</h1>
+            <p class="mt-6 text-lg leading-8 text-charcoal/75">Find planners, stylists, hosts, and coordinators who bring thoughtful detail to events, hospitality, and lifestyle services.</p>
+          </div>
+          <div class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa note</p>
+            <p class="mt-4 font-display text-2xl italic leading-tight text-charcoal/70">Experiences designed with intention and detail.</p>
+            <a href="professionals.html" class="mt-6 inline-flex text-sm font-semibold text-teal">Browse all professionals</a>
+          </div>
+        </div>
+        <div class="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Elena Rossi</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Miami</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Event Planner</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Event planner producing elegant corporate dinners, launch gatherings, and private celebrations.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Event Planning</span><span class="rounded-full bg-mist px-3 py-2">Vendor Coordination</span><span class="rounded-full bg-mist px-3 py-2">Guest Experience</span></div>
+            <a href="profile-elena-rossi.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Monique Taylor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Charleston</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Wedding Coordinator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Wedding coordinator known for calm logistics, refined timelines, and polished day-of execution.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Weddings</span><span class="rounded-full bg-mist px-3 py-2">Coordination</span><span class="rounded-full bg-mist px-3 py-2">Timeline Design</span></div>
+            <a href="profile-monique-taylor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Sahar Nabil</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Personal Stylist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Personal stylist helping professionals build practical wardrobes with polish and personality.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Wardrobe Editing</span><span class="rounded-full bg-mist px-3 py-2">Personal Styling</span><span class="rounded-full bg-mist px-3 py-2">Shopping Support</span></div>
+            <a href="profile-sahar-nabil.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Danica Holmes</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Travel Planner</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Travel planner designing seamless itineraries for group retreats, executive trips, and family travel.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Travel Design</span><span class="rounded-full bg-mist px-3 py-2">Retreat Planning</span><span class="rounded-full bg-mist px-3 py-2">Concierge Support</span></div>
+            <a href="profile-danica-holmes.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Priyanka Rao</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Austin</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Floral Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Floral designer creating modern installations for intimate celebrations and branded events.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Floral Design</span><span class="rounded-full bg-mist px-3 py-2">Installations</span><span class="rounded-full bg-mist px-3 py-2">Event Styling</span></div>
+            <a href="profile-priyanka-rao.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Harper James</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Dallas</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Home Organizer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Home organizer bringing structure and calm to closets, kitchens, and family systems.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Home Organizing</span><span class="rounded-full bg-mist px-3 py-2">Systems</span><span class="rounded-full bg-mist px-3 py-2">Move Support</span></div>
+            <a href="profile-harper-james.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Yumna Sheikh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Host & MC</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Host and MC leading community gatherings and business events with warmth and confidence.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Hosting</span><span class="rounded-full bg-mist px-3 py-2">Moderation</span><span class="rounded-full bg-mist px-3 py-2">Live Events</span></div>
+            <a href="profile-yumna-sheikh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Celia Grant</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Sedona</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Retreat Curator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Retreat curator combining logistics, guest care, and thoughtful programming for women-led experiences.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Retreats</span><span class="rounded-full bg-mist px-3 py-2">Programming</span><span class="rounded-full bg-mist px-3 py-2">Guest Care</span></div>
+            <a href="profile-celia-grant.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Imani Scott</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">New Orleans</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Tablescape Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Tablescape designer styling intimate dinners, editorial events, and hospitality moments.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Tablescapes</span><span class="rounded-full bg-mist px-3 py-2">Event Styling</span><span class="rounded-full bg-mist px-3 py-2">Hospitality</span></div>
+            <a href="profile-imani-scott.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Noa Bernstein</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Concierge Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Concierge specialist arranging local recommendations, bookings, and detail-driven guest support.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Concierge</span><span class="rounded-full bg-mist px-3 py-2">Guest Support</span><span class="rounded-full bg-mist px-3 py-2">Local Planning</span></div>
+            <a href="profile-noa-bernstein.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="border-t border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
+          <a href="browse-categories.html" class="hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="hover:text-teal">How it works</a>
+          <a href="apply.html" class="hover:text-teal">Apply now</a>
+        </nav>
+      </div>
+    </footer>
+    <script>
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      mobileMenuButton?.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      });
+    </script>
+  </body>
+</html>

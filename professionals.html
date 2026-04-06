@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Professionals | Nexa</title>
+    <meta name="description" content="Browse all listed professionals across Nexa categories." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#F7F6F4",
+              charcoal: "#2B2B2B",
+              clay: "#843088",
+              teal: "#E47E4A",
+              mist: "#F9E1CF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["DM Sans", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-ivory font-sans text-charcoal antialiased">
+    <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
+          <a href="browse-categories.html" class="relative pb-1 transition-colors hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="relative pb-1 transition-colors hover:text-teal text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal">How it works</a>
+          <a href="apply.html" class="relative pb-1 transition-colors hover:text-teal">Apply</a>
+        </nav>
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse categories</a>
+          <a href="apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">Apply now</a>
+        </div>
+        <div class="flex items-center gap-3 md:hidden">
+          <a href="browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse</a>
+          <button id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft">Menu</button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
+        <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
+          <a href="browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">How it works</a>
+          <a href="apply.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For professionals</a>
+          <a href="apply.html" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">Apply now</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Professionals</p>
+          <h1 class="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">Browse the full Nexa directory</h1>
+          <p class="mt-6 text-lg leading-8 text-charcoal/75">Explore women professionals across every active Nexa category. This static directory groups profiles by service area for straightforward browsing.</p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3 text-sm font-semibold">
+          <a href="#creative-digital" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Creative & Digital</a><a href="#business-professional" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Business & Professional</a><a href="#education-coaching" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Education & Coaching</a><a href="#wellness-care" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Wellness & Care</a><a href="#marketing-communication" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Marketing & Communication</a><a href="#events-lifestyle" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Events & Lifestyle</a><a href="#home-skilled-trade-services" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Home & Skilled Trade Services</a>
+        </div>
+        <section id="creative-digital" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Creative & Digital</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Designers, developers, photographers, writers, and digital creators with polished professional profiles.</h2>
+            </div>
+            <a href="category-creative-digital.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Leila Ahmad</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Brand Designer & Creative Director</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Brand designer crafting visual systems and editorial identities for founders, studios, and purpose-driven teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Branding</span><span class="rounded-full bg-mist px-3 py-2">Editorial</span><span class="rounded-full bg-mist px-3 py-2">Identity Systems</span></div>
+            <a href="profile-leila-ahmad.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Camila Reyes</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Austin</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">UX Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">UX designer translating complex service journeys into calm, intuitive web and app experiences.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">UX Audits</span><span class="rounded-full bg-mist px-3 py-2">Product Design</span><span class="rounded-full bg-mist px-3 py-2">User Research</span></div>
+            <a href="profile-camila-reyes.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Jasmine Cole</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Copywriter & Content Strategist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Copywriter helping women-led businesses clarify offers, voice, and website messaging.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Website Copy</span><span class="rounded-full bg-mist px-3 py-2">Messaging</span><span class="rounded-full bg-mist px-3 py-2">Content Strategy</span></div>
+            <a href="profile-jasmine-cole.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Hana Noor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Brooklyn</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Photographer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Commercial photographer creating warm, polished brand imagery for service professionals and boutiques.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Brand Photography</span><span class="rounded-full bg-mist px-3 py-2">Editorial Shoots</span><span class="rounded-full bg-mist px-3 py-2">Retouching</span></div>
+            <a href="profile-hana-noor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Priya Desai</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Frontend Developer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Frontend developer building responsive marketing sites with clean code and high-conversion layouts.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">HTML/CSS</span><span class="rounded-full bg-mist px-3 py-2">Tailwind</span><span class="rounded-full bg-mist px-3 py-2">Landing Pages</span></div>
+            <a href="profile-priya-desai.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Maya Thompson</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Portland</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Illustrator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Illustrator producing custom visual assets and campaign artwork for lifestyle and wellness brands.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Illustration</span><span class="rounded-full bg-mist px-3 py-2">Packaging</span><span class="rounded-full bg-mist px-3 py-2">Campaign Art</span></div>
+            <a href="profile-maya-thompson.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Farah Siddiqui</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Los Angeles</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Videographer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Videographer directing concise brand films and social-first content for launches and events.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Brand Video</span><span class="rounded-full bg-mist px-3 py-2">Editing</span><span class="rounded-full bg-mist px-3 py-2">Launch Content</span></div>
+            <a href="profile-farah-siddiqui.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Olivia Bennett</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">SEO Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">SEO strategist improving discoverability for professional service firms through technical and editorial plans.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">SEO Audits</span><span class="rounded-full bg-mist px-3 py-2">Content SEO</span><span class="rounded-full bg-mist px-3 py-2">Analytics</span></div>
+            <a href="profile-olivia-bennett.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Noura Haddad</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Webflow Developer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Webflow developer shipping polished brochure sites for founders who want a refined digital presence.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Webflow</span><span class="rounded-full bg-mist px-3 py-2">CMS Builds</span><span class="rounded-full bg-mist px-3 py-2">Design Systems</span></div>
+            <a href="profile-noura-haddad.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Tessa Monroe</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Creative & Digital</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Nashville</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Email Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Email designer and strategist building editorial campaign systems for premium e-commerce and media brands.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Email Design</span><span class="rounded-full bg-mist px-3 py-2">Klaviyo</span><span class="rounded-full bg-mist px-3 py-2">Campaign Strategy</span></div>
+            <a href="profile-tessa-monroe.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="business-professional" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Business & Professional</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Consultants, legal professionals, accountants, operations specialists, and executive service providers.</h2>
+            </div>
+            <a href="category-business-professional.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Amara Okafor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Operations Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Operations consultant helping service firms document workflows, team roles, and delivery standards.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Operations</span><span class="rounded-full bg-mist px-3 py-2">Systems</span><span class="rounded-full bg-mist px-3 py-2">Process Design</span></div>
+            <a href="profile-amara-okafor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Miriam Ellis</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Chicago</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Business Attorney</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Business attorney advising founders on contracts, partnerships, and client-facing agreements.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Contracts</span><span class="rounded-full bg-mist px-3 py-2">Compliance</span><span class="rounded-full bg-mist px-3 py-2">Risk Review</span></div>
+            <a href="profile-miriam-ellis.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Diana Alvarez</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Miami</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">CPA</p>
+            <p class="mt-4 leading-7 text-charcoal/75">CPA supporting agencies and consultants with bookkeeping oversight, tax planning, and reporting.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Tax Planning</span><span class="rounded-full bg-mist px-3 py-2">Reporting</span><span class="rounded-full bg-mist px-3 py-2">Advisory</span></div>
+            <a href="profile-diana-alvarez.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Claire Donovan</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Executive Assistant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Fractional executive assistant managing calendars, inboxes, and travel for busy founders.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Executive Support</span><span class="rounded-full bg-mist px-3 py-2">Inbox Management</span><span class="rounded-full bg-mist px-3 py-2">Scheduling</span></div>
+            <a href="profile-claire-donovan.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Rania Saleh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">HR Advisor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">HR advisor designing onboarding, policies, and people systems for growing teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">HR Systems</span><span class="rounded-full bg-mist px-3 py-2">Policies</span><span class="rounded-full bg-mist px-3 py-2">Onboarding</span></div>
+            <a href="profile-rania-saleh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Jocelyn Price</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Philadelphia</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Grant Writer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Grant writer pairing persuasive narrative work with clean application strategy for nonprofit teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Grant Writing</span><span class="rounded-full bg-mist px-3 py-2">Nonprofit Strategy</span><span class="rounded-full bg-mist px-3 py-2">Editing</span></div>
+            <a href="profile-jocelyn-price.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Selin Kaya</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Procurement Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Procurement specialist helping organizations standardize sourcing and vendor evaluation.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Procurement</span><span class="rounded-full bg-mist px-3 py-2">Vendor Review</span><span class="rounded-full bg-mist px-3 py-2">RFP Support</span></div>
+            <a href="profile-selin-kaya.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Natalie Brooks</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Denver</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Project Manager</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Project manager coordinating multi-stakeholder launches with timelines, reporting, and vendor management.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Project Planning</span><span class="rounded-full bg-mist px-3 py-2">Stakeholder Comms</span><span class="rounded-full bg-mist px-3 py-2">Vendor Management</span></div>
+            <a href="profile-natalie-brooks.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Ivy Chen</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Business Analyst</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Business analyst turning operational data into decision-ready reports and dashboards.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Dashboards</span><span class="rounded-full bg-mist px-3 py-2">Reporting</span><span class="rounded-full bg-mist px-3 py-2">Insights</span></div>
+            <a href="profile-ivy-chen.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Helena Ross</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Business & Professional</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Minneapolis</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Mediation Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Mediation specialist facilitating structured conflict resolution for partnerships and small teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Mediation</span><span class="rounded-full bg-mist px-3 py-2">Facilitation</span><span class="rounded-full bg-mist px-3 py-2">Conflict Support</span></div>
+            <a href="profile-helena-ross.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="education-coaching" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Education & Coaching</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Tutors, trainers, mentors, and coaches offering structured learning and personal development services.</h2>
+            </div>
+            <a href="category-education-coaching.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Sofia Turner</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Chicago</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Career Coach</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Career coach supporting mid-career transitions with practical frameworks, interview preparation, and confidence-building.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Career Strategy</span><span class="rounded-full bg-mist px-3 py-2">Interview Prep</span><span class="rounded-full bg-mist px-3 py-2">Workshops</span></div>
+            <a href="profile-sofia-turner.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Aisha Karim</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">STEM Tutor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">STEM tutor delivering structured online support for middle school and high school students.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Math Tutoring</span><span class="rounded-full bg-mist px-3 py-2">Science Support</span><span class="rounded-full bg-mist px-3 py-2">Study Plans</span></div>
+            <a href="profile-aisha-karim.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Rebecca Hall</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Leadership Coach</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Leadership coach helping first-time managers build communication, delegation, and team confidence.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Leadership</span><span class="rounded-full bg-mist px-3 py-2">Manager Training</span><span class="rounded-full bg-mist px-3 py-2">1:1 Coaching</span></div>
+            <a href="profile-rebecca-hall.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Marisol Vega</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">San Diego</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Spanish Tutor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Language tutor creating engaging, conversation-first lessons for professionals and students.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Spanish Lessons</span><span class="rounded-full bg-mist px-3 py-2">Conversation Practice</span><span class="rounded-full bg-mist px-3 py-2">Exam Prep</span></div>
+            <a href="profile-marisol-vega.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Neha Kapoor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Admissions Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Admissions consultant guiding families through essays, timelines, and school application strategy.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Applications</span><span class="rounded-full bg-mist px-3 py-2">Essay Review</span><span class="rounded-full bg-mist px-3 py-2">Family Advising</span></div>
+            <a href="profile-neha-kapoor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Grace Miller</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Learning Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Learning designer producing thoughtful internal training content for people teams and service brands.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Curriculum</span><span class="rounded-full bg-mist px-3 py-2">Training Design</span><span class="rounded-full bg-mist px-3 py-2">Facilitation</span></div>
+            <a href="profile-grace-miller.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Lina Farouk</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Mindset Coach</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Mindset coach supporting women founders with clarity, accountability, and grounded planning.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Mindset</span><span class="rounded-full bg-mist px-3 py-2">Accountability</span><span class="rounded-full bg-mist px-3 py-2">Founder Support</span></div>
+            <a href="profile-lina-farouk.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Danielle Price</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Charlotte</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Literacy Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Literacy specialist building individualized reading support plans for elementary learners.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Reading Support</span><span class="rounded-full bg-mist px-3 py-2">Assessments</span><span class="rounded-full bg-mist px-3 py-2">Parent Guidance</span></div>
+            <a href="profile-danielle-price.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Noor Elamin</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Workshop Facilitator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Workshop facilitator leading communication, confidence, and public speaking sessions for teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Facilitation</span><span class="rounded-full bg-mist px-3 py-2">Public Speaking</span><span class="rounded-full bg-mist px-3 py-2">Team Sessions</span></div>
+            <a href="profile-noor-elamin.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Paige Sutton</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Education & Coaching</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Dallas</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">SAT Prep Tutor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">SAT tutor combining content mastery with practical pacing and confidence strategies.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">SAT Prep</span><span class="rounded-full bg-mist px-3 py-2">Test Strategy</span><span class="rounded-full bg-mist px-3 py-2">Study Coaching</span></div>
+            <a href="profile-paige-sutton.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="wellness-care" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Wellness & Care</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Practitioners and service providers focused on wellbeing, support, care, and holistic client experiences.</h2>
+            </div>
+            <a href="category-wellness-care.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Dr. Laila Morgan</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Licensed Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Therapist offering virtual support for anxiety, burnout, and life transitions with a calm, practical approach.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Therapy</span><span class="rounded-full bg-mist px-3 py-2">Burnout Support</span><span class="rounded-full bg-mist px-3 py-2">Virtual Care</span></div>
+            <a href="profile-dr-laila-morgan.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Yasmin Rahal</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Nutritionist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Nutritionist creating sustainable meal and wellness plans for busy professionals and families.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Nutrition Plans</span><span class="rounded-full bg-mist px-3 py-2">Wellness Coaching</span><span class="rounded-full bg-mist px-3 py-2">Family Support</span></div>
+            <a href="profile-yasmin-rahal.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Serena Blake</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Baltimore</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Doula</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Birth and postpartum doula providing education, preparation, and in-home support for new parents.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Birth Support</span><span class="rounded-full bg-mist px-3 py-2">Postpartum Care</span><span class="rounded-full bg-mist px-3 py-2">Education</span></div>
+            <a href="profile-serena-blake.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Mina Park</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Seattle</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Physical Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Physical therapist focused on mobility recovery and strength planning for active adults.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Mobility</span><span class="rounded-full bg-mist px-3 py-2">Recovery Plans</span><span class="rounded-full bg-mist px-3 py-2">Strength Support</span></div>
+            <a href="profile-mina-park.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Alina Cruz</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Phoenix</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Massage Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Massage therapist offering restorative sessions for clients managing chronic tension and stress.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Massage Therapy</span><span class="rounded-full bg-mist px-3 py-2">Stress Relief</span><span class="rounded-full bg-mist px-3 py-2">Bodywork</span></div>
+            <a href="profile-alina-cruz.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Meera Singh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Occupational Therapist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Occupational therapist helping children and families build supportive routines and daily skills.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Pediatric OT</span><span class="rounded-full bg-mist px-3 py-2">Family Coaching</span><span class="rounded-full bg-mist px-3 py-2">Routine Planning</span></div>
+            <a href="profile-meera-singh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Jenna Wallace</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Sleep Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Sleep consultant helping families establish realistic routines and restful transitions.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Sleep Plans</span><span class="rounded-full bg-mist px-3 py-2">Infant Support</span><span class="rounded-full bg-mist px-3 py-2">Family Guidance</span></div>
+            <a href="profile-jenna-wallace.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Ruqayyah Ali</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Yoga Instructor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Yoga instructor offering private therapeutic sessions centered on mobility, breath, and grounding.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Private Yoga</span><span class="rounded-full bg-mist px-3 py-2">Breathwork</span><span class="rounded-full bg-mist px-3 py-2">Mobility</span></div>
+            <a href="profile-ruqayyah-ali.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Kara Simmons</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Cleveland</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Care Coordinator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Care coordinator helping families organize appointments, records, and next-step planning.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Care Planning</span><span class="rounded-full bg-mist px-3 py-2">Scheduling</span><span class="rounded-full bg-mist px-3 py-2">Advocacy</span></div>
+            <a href="profile-kara-simmons.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Fatima Noor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Wellness & Care</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Lactation Consultant</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Lactation consultant offering compassionate virtual and in-home feeding support.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Lactation</span><span class="rounded-full bg-mist px-3 py-2">Feeding Support</span><span class="rounded-full bg-mist px-3 py-2">Parent Education</span></div>
+            <a href="profile-fatima-noor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="marketing-communication" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Marketing & Communication</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Brand strategists, publicists, copywriters, and communication specialists helping businesses grow clearly.</h2>
+            </div>
+            <a href="category-marketing-communication.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Nadia Brooks</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Messaging Strategist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Messaging strategist helping service brands refine positioning, launch offers, and communicate with clarity.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Positioning</span><span class="rounded-full bg-mist px-3 py-2">Copy Strategy</span><span class="rounded-full bg-mist px-3 py-2">Launch Support</span></div>
+            <a href="profile-nadia-brooks.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Bianca Hart</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">New York City</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Publicist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Publicist securing aligned media coverage for founders, authors, and premium service brands.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">PR Strategy</span><span class="rounded-full bg-mist px-3 py-2">Media Outreach</span><span class="rounded-full bg-mist px-3 py-2">Press Kits</span></div>
+            <a href="profile-bianca-hart.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Hiba Osman</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Social Strategist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Social strategist building calm, brand-aligned content systems for small teams.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Social Strategy</span><span class="rounded-full bg-mist px-3 py-2">Content Planning</span><span class="rounded-full bg-mist px-3 py-2">Audience Growth</span></div>
+            <a href="profile-hiba-osman.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Lauren Pierce</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Email Marketer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Email marketer designing nurture sequences and launch campaigns that feel polished and personal.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Lifecycle</span><span class="rounded-full bg-mist px-3 py-2">Automation</span><span class="rounded-full bg-mist px-3 py-2">Campaigns</span></div>
+            <a href="profile-lauren-pierce.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Khadija Bashir</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Washington, D.C.</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Communications Advisor</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Communications advisor supporting nonprofits and advocacy teams with narrative and stakeholder messaging.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Narrative Strategy</span><span class="rounded-full bg-mist px-3 py-2">Stakeholder Comms</span><span class="rounded-full bg-mist px-3 py-2">Campaign Planning</span></div>
+            <a href="profile-khadija-bashir.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Morgan Lee</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Conversion Copywriter</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Conversion copywriter shaping landing pages and offers for consultants, coaches, and educators.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Landing Pages</span><span class="rounded-full bg-mist px-3 py-2">Offers</span><span class="rounded-full bg-mist px-3 py-2">Voice Development</span></div>
+            <a href="profile-morgan-lee.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Talia Green</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Podcast Producer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Podcast producer handling show planning, guest coordination, and polished post-production.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Podcast Production</span><span class="rounded-full bg-mist px-3 py-2">Guest Ops</span><span class="rounded-full bg-mist px-3 py-2">Editing</span></div>
+            <a href="profile-talia-green.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Amina Yusuf</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Brand Strategist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Brand strategist building clear category positioning and go-to-market stories for emerging brands.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Brand Strategy</span><span class="rounded-full bg-mist px-3 py-2">Research</span><span class="rounded-full bg-mist px-3 py-2">Positioning</span></div>
+            <a href="profile-amina-yusuf.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Rachel Kim</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">San Francisco</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Community Manager</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Community manager designing thoughtful engagement programs for membership brands and expert communities.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Community Strategy</span><span class="rounded-full bg-mist px-3 py-2">Engagement</span><span class="rounded-full bg-mist px-3 py-2">Retention</span></div>
+            <a href="profile-rachel-kim.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Tara Osei</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Marketing & Communication</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Content Producer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Content producer coordinating editorial calendars, interviews, and campaign assets across channels.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Editorial Planning</span><span class="rounded-full bg-mist px-3 py-2">Production</span><span class="rounded-full bg-mist px-3 py-2">Campaign Support</span></div>
+            <a href="profile-tara-osei.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="events-lifestyle" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Events & Lifestyle</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Planners, stylists, hosts, and experience-focused professionals supporting memorable personal and business moments.</h2>
+            </div>
+            <a href="category-events-lifestyle.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Elena Rossi</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Miami</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Event Planner</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Event planner producing elegant corporate dinners, launch gatherings, and private celebrations.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Event Planning</span><span class="rounded-full bg-mist px-3 py-2">Vendor Coordination</span><span class="rounded-full bg-mist px-3 py-2">Guest Experience</span></div>
+            <a href="profile-elena-rossi.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Monique Taylor</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Charleston</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Wedding Coordinator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Wedding coordinator known for calm logistics, refined timelines, and polished day-of execution.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Weddings</span><span class="rounded-full bg-mist px-3 py-2">Coordination</span><span class="rounded-full bg-mist px-3 py-2">Timeline Design</span></div>
+            <a href="profile-monique-taylor.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Sahar Nabil</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Personal Stylist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Personal stylist helping professionals build practical wardrobes with polish and personality.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Wardrobe Editing</span><span class="rounded-full bg-mist px-3 py-2">Personal Styling</span><span class="rounded-full bg-mist px-3 py-2">Shopping Support</span></div>
+            <a href="profile-sahar-nabil.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Danica Holmes</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Travel Planner</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Travel planner designing seamless itineraries for group retreats, executive trips, and family travel.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Travel Design</span><span class="rounded-full bg-mist px-3 py-2">Retreat Planning</span><span class="rounded-full bg-mist px-3 py-2">Concierge Support</span></div>
+            <a href="profile-danica-holmes.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Priyanka Rao</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Austin</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Floral Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Floral designer creating modern installations for intimate celebrations and branded events.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Floral Design</span><span class="rounded-full bg-mist px-3 py-2">Installations</span><span class="rounded-full bg-mist px-3 py-2">Event Styling</span></div>
+            <a href="profile-priyanka-rao.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Harper James</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Dallas</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Home Organizer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Home organizer bringing structure and calm to closets, kitchens, and family systems.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Home Organizing</span><span class="rounded-full bg-mist px-3 py-2">Systems</span><span class="rounded-full bg-mist px-3 py-2">Move Support</span></div>
+            <a href="profile-harper-james.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Yumna Sheikh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Host & MC</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Host and MC leading community gatherings and business events with warmth and confidence.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Hosting</span><span class="rounded-full bg-mist px-3 py-2">Moderation</span><span class="rounded-full bg-mist px-3 py-2">Live Events</span></div>
+            <a href="profile-yumna-sheikh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Celia Grant</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Sedona</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Retreat Curator</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Retreat curator combining logistics, guest care, and thoughtful programming for women-led experiences.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Retreats</span><span class="rounded-full bg-mist px-3 py-2">Programming</span><span class="rounded-full bg-mist px-3 py-2">Guest Care</span></div>
+            <a href="profile-celia-grant.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Imani Scott</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">New Orleans</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Tablescape Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Tablescape designer styling intimate dinners, editorial events, and hospitality moments.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Tablescapes</span><span class="rounded-full bg-mist px-3 py-2">Event Styling</span><span class="rounded-full bg-mist px-3 py-2">Hospitality</span></div>
+            <a href="profile-imani-scott.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Noa Bernstein</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Events & Lifestyle</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Concierge Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Concierge specialist arranging local recommendations, bookings, and detail-driven guest support.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Concierge</span><span class="rounded-full bg-mist px-3 py-2">Guest Support</span><span class="rounded-full bg-mist px-3 py-2">Local Planning</span></div>
+            <a href="profile-noa-bernstein.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>        <section id="home-skilled-trade-services" class="mt-14 first:mt-0">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Home & Skilled Trade Services</p>
+              <h2 class="mt-2 font-display text-3xl font-bold">Trusted professionals offering hands-on services, technical expertise, and in-home support with credibility and clear service descriptions.</h2>
+            </div>
+            <a href="category-home-skilled-trade-services.html" class="text-sm font-semibold text-teal">View category page</a>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Teresa Nguyen</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Sacramento</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Interior Painter</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Interior painter known for precise finishes, clean job sites, and color guidance for lived-in homes.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Painting</span><span class="rounded-full bg-mist px-3 py-2">Color Consultation</span><span class="rounded-full bg-mist px-3 py-2">Residential</span></div>
+            <a href="profile-teresa-nguyen.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Aaliyah Brooks</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Detroit</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Electrician</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Electrician handling lighting upgrades, fixture installation, and residential troubleshooting.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Electrical</span><span class="rounded-full bg-mist px-3 py-2">Lighting</span><span class="rounded-full bg-mist px-3 py-2">Repairs</span></div>
+            <a href="profile-aaliyah-brooks.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Marina Lopes</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Orlando</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Tile Specialist</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Tile specialist installing polished kitchen and bath surfaces with detail-focused craftsmanship.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Tile Work</span><span class="rounded-full bg-mist px-3 py-2">Bathrooms</span><span class="rounded-full bg-mist px-3 py-2">Kitchens</span></div>
+            <a href="profile-marina-lopes.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Rosa Delgado</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">San Antonio</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Plumber</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Plumber providing dependable residential repairs, fixture replacements, and preventative service.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Plumbing</span><span class="rounded-full bg-mist px-3 py-2">Repairs</span><span class="rounded-full bg-mist px-3 py-2">Installations</span></div>
+            <a href="profile-rosa-delgado.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Kelsey Ward</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Boise</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Carpenter</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Carpenter building custom storage, trim upgrades, and practical finishing details for homes.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Carpentry</span><span class="rounded-full bg-mist px-3 py-2">Built-Ins</span><span class="rounded-full bg-mist px-3 py-2">Trim Work</span></div>
+            <a href="profile-kelsey-ward.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Samira Haddad</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal">Remote</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Home Inspector</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Home inspector delivering clear reports and practical explanations for buyers and homeowners.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Inspections</span><span class="rounded-full bg-mist px-3 py-2">Reports</span><span class="rounded-full bg-mist px-3 py-2">Property Guidance</span></div>
+            <a href="profile-samira-haddad.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Natalia Perez</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Santa Fe</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Landscape Designer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Landscape designer planning functional outdoor spaces with planting, layout, and maintenance guidance.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Landscape Design</span><span class="rounded-full bg-mist px-3 py-2">Planting Plans</span><span class="rounded-full bg-mist px-3 py-2">Outdoor Styling</span></div>
+            <a href="profile-natalia-perez.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Brielle Foster</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Portland</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Handyperson</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Handyperson helping homeowners handle small repairs, installs, and household maintenance with care.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Home Repairs</span><span class="rounded-full bg-mist px-3 py-2">Installations</span><span class="rounded-full bg-mist px-3 py-2">Maintenance</span></div>
+            <a href="profile-brielle-foster.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Zahra Khan</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Columbus</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">HVAC Technician</p>
+            <p class="mt-4 leading-7 text-charcoal/75">HVAC technician supporting seasonal maintenance, diagnostics, and residential system efficiency.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">HVAC</span><span class="rounded-full bg-mist px-3 py-2">Diagnostics</span><span class="rounded-full bg-mist px-3 py-2">Maintenance</span></div>
+            <a href="profile-zahra-khan.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          <article class="rounded-3xl bg-white p-8 shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="font-display text-2xl font-bold">Erin Walsh</h3>
+                <p class="mt-2 text-sm font-medium text-teal">Home & Skilled Trade Services</p>
+              </div>
+              <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold text-charcoal">Minneapolis</span>
+            </div>
+            <p class="mt-5 text-sm font-semibold text-clay">Closet Installer</p>
+            <p class="mt-4 leading-7 text-charcoal/75">Closet installer designing practical storage systems for busy households and smaller spaces.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75"><span class="rounded-full bg-mist px-3 py-2">Storage Systems</span><span class="rounded-full bg-mist px-3 py-2">Closets</span><span class="rounded-full bg-mist px-3 py-2">Space Planning</span></div>
+            <a href="profile-erin-walsh.html" class="mt-6 inline-block text-sm font-semibold text-teal">View profile</a>
+          </article>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer class="border-t border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="./Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
+          <a href="browse-categories.html" class="hover:text-teal">Browse categories</a>
+          <a href="professionals.html" class="hover:text-teal">Browse professionals</a>
+          <a href="index.html#how-it-works" class="hover:text-teal">How it works</a>
+          <a href="apply.html" class="hover:text-teal">Apply now</a>
+        </nav>
+      </div>
+    </footer>
+    <script>
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      mobileMenuButton?.addEventListener("click", () => {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden", isOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      });
+    </script>
+  </body>
+</html>
