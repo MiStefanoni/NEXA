@@ -1,8 +1,76 @@
-<!DOCTYPE html>
+const fs = require("fs");
+const path = require("path");
+
+const projectRoot = path.resolve(__dirname, "..");
+const dataPath = path.join(projectRoot, "data", "professionals.json");
+
+const escapeHtml = (value) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+const normalizeBoolean = (value) => String(value).toLowerCase() === "true";
+
+const getLinkLabel = (href, label, fallback) => {
+  if (label) return label;
+  if (href) return href.replace(/^https?:\/\//, "");
+  return fallback;
+};
+
+const buildServices = (profile) =>
+  (Array.isArray(profile.services) ? profile.services : [])
+    .filter((service) => service?.title)
+    .map(
+      (service) => `
+                <article class="rounded-3xl border border-charcoal/10 p-6">
+                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <h4 class="text-lg font-semibold">${escapeHtml(service.title)}</h4>
+                      <p class="mt-3 leading-7 text-charcoal/75">${escapeHtml(service.description)}</p>
+                    </div>
+                    <dl class="min-w-48 space-y-3 text-sm">
+                      <div>
+                        <dt class="text-charcoal/55">Delivery</dt>
+                        <dd class="font-semibold">${escapeHtml(service.delivery)}</dd>
+                      </div>
+                      <div>
+                        <dt class="text-charcoal/55">Engagement</dt>
+                        <dd class="font-semibold">${escapeHtml(service.engagement)}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </article>`
+    )
+    .join("");
+
+const buildPortfolio = (profile) =>
+  (Array.isArray(profile.portfolio) ? profile.portfolio : [])
+    .filter((item) => item?.title)
+    .map(
+      (item) => `
+                <article class="rounded-3xl bg-mist p-6">
+                  <p class="text-sm font-semibold text-clay">${escapeHtml(item.title)}</p>
+                  <p class="mt-3 text-sm leading-7 text-charcoal/75">${escapeHtml(item.description)}</p>
+                </article>`
+    )
+    .join("");
+
+const renderProfilePage = (profile) => {
+  const verified = normalizeBoolean(profile.verified);
+  const websiteLabel = getLinkLabel(profile.website, profile.website_label, "Visit website");
+  const socialLabel = getLinkLabel(profile.social_link, profile.social_label, "Social profile");
+  const verifiedBadge = verified
+    ? '\n                    <span class="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">Verified</span>'
+    : "";
+
+  return `<!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Elena Rossi | Nexa</title>
-    <meta name="description" content="Profile for Elena Rossi, listed in the Nexa directory." />
+    <title>${escapeHtml(profile.name)} | Nexa</title>
+    <meta name="description" content="Profile for ${escapeHtml(profile.name)}, listed in the Nexa directory." />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -74,8 +142,8 @@
       <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div class="mb-8 max-w-2xl">
           <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Profile detail</p>
-          <h1 class="mt-3 font-display text-4xl font-bold sm:text-5xl">Elena Rossi</h1>
-          <p class="mt-4 text-lg leading-8 text-charcoal/75">Event planner producing elegant corporate dinners, launch gatherings, and private celebrations.</p>
+          <h1 class="mt-3 font-display text-4xl font-bold sm:text-5xl">${escapeHtml(profile.name)}</h1>
+          <p class="mt-4 text-lg leading-8 text-charcoal/75">${escapeHtml(profile.short_bio)}</p>
         </div>
         <div class="mb-8 rounded-3xl border border-charcoal/10 bg-white/80 p-3 shadow-soft backdrop-blur">
           <nav aria-label="Profile sections" class="flex flex-wrap gap-2 text-sm font-semibold">
@@ -92,24 +160,23 @@
               <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                   <div class="flex flex-wrap items-center gap-3">
-                    <h2 class="font-display text-3xl font-bold">Elena Rossi</h2>
-                    <span class="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">Verified</span>
+                    <h2 class="font-display text-3xl font-bold">${escapeHtml(profile.name)}</h2>${verifiedBadge}
                   </div>
-                  <p class="mt-3 text-lg font-medium text-clay">Events &amp; Lifestyle</p>
-                  <p class="mt-2 text-sm font-semibold text-charcoal/70">Event Planner</p>
+                  <p class="mt-3 text-lg font-medium text-clay">${escapeHtml(profile.category)}</p>
+                  <p class="mt-2 text-sm font-semibold text-charcoal/70">${escapeHtml(profile.role_title)}</p>
                 </div>
                 <dl class="grid gap-3 text-sm sm:grid-cols-3 lg:text-right">
                   <div>
                     <dt class="text-charcoal/55">Location</dt>
-                    <dd class="mt-1 font-semibold">Miami, Florida</dd>
+                    <dd class="mt-1 font-semibold">${escapeHtml(profile.location)}</dd>
                   </div>
                   <div>
                     <dt class="text-charcoal/55">Languages</dt>
-                    <dd class="mt-1 font-semibold">English, Italian</dd>
+                    <dd class="mt-1 font-semibold">${escapeHtml(profile.languages)}</dd>
                   </div>
                   <div>
                     <dt class="text-charcoal/55">Profile type</dt>
-                    <dd class="mt-1 font-semibold">Planning studio owner</dd>
+                    <dd class="mt-1 font-semibold">${escapeHtml(profile.profile_type)}</dd>
                   </div>
                 </dl>
               </div>
@@ -117,67 +184,13 @@
 
             <section id="profile-about" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">About</h3>
-              <p class="mt-5 leading-8 text-charcoal/75">Elena Rossi is a event planner helping clients navigate events &amp; lifestyle work with more clarity, polish, and consistency. Her approach blends practical delivery with thoughtful communication so clients understand scope, next steps, and outcomes from the start.</p>
+              <p class="mt-5 leading-8 text-charcoal/75">${escapeHtml(profile.full_about)}</p>
             </section>
 
             <section id="profile-services" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">Services</h3>
               <div class="mt-6 space-y-5">
-
-                <article class="rounded-3xl border border-charcoal/10 p-6">
-                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
-                      <h4 class="text-lg font-semibold">Event Planning Engagement</h4>
-                      <p class="mt-3 leading-7 text-charcoal/75">Tailored support focused on event planning goals, with clear scoping, timelines, and deliverables.</p>
-                    </div>
-                    <dl class="min-w-48 space-y-3 text-sm">
-                      <div>
-                        <dt class="text-charcoal/55">Delivery</dt>
-                        <dd class="font-semibold">On-site / Hybrid</dd>
-                      </div>
-                      <div>
-                        <dt class="text-charcoal/55">Engagement</dt>
-                        <dd class="font-semibold">Project-based</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </article>
-                <article class="rounded-3xl border border-charcoal/10 p-6">
-                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
-                      <h4 class="text-lg font-semibold">Vendor Coordination Advisory</h4>
-                      <p class="mt-3 leading-7 text-charcoal/75">Strategic guidance for clients refining priorities, messaging, or execution around vendor coordination.</p>
-                    </div>
-                    <dl class="min-w-48 space-y-3 text-sm">
-                      <div>
-                        <dt class="text-charcoal/55">Delivery</dt>
-                        <dd class="font-semibold">On-site / Hybrid</dd>
-                      </div>
-                      <div>
-                        <dt class="text-charcoal/55">Engagement</dt>
-                        <dd class="font-semibold">Project-based</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </article>
-                <article class="rounded-3xl border border-charcoal/10 p-6">
-                  <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
-                      <h4 class="text-lg font-semibold">Guest Experience Support</h4>
-                      <p class="mt-3 leading-7 text-charcoal/75">Ongoing collaboration for teams that need expert help implementing guest experience work with consistency.</p>
-                    </div>
-                    <dl class="min-w-48 space-y-3 text-sm">
-                      <div>
-                        <dt class="text-charcoal/55">Delivery</dt>
-                        <dd class="font-semibold">On-site / Hybrid</dd>
-                      </div>
-                      <div>
-                        <dt class="text-charcoal/55">Engagement</dt>
-                        <dd class="font-semibold">Project-based</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </article>
+${buildServices(profile)}
               </div>
             </section>
 
@@ -186,36 +199,24 @@
               <div class="mt-6 grid gap-4 md:grid-cols-3">
                 <article class="rounded-3xl bg-mist p-6">
                   <p class="text-sm text-charcoal/60">Experience</p>
-                  <p class="mt-2 font-display text-3xl font-bold">8 years</p>
+                  <p class="mt-2 font-display text-3xl font-bold">${escapeHtml(profile.experience_years)}</p>
                 </article>
                 <article class="rounded-3xl bg-mist p-6">
                   <p class="text-sm text-charcoal/60">Client focus</p>
-                  <p class="mt-2 font-display text-3xl font-bold">Event clients</p>
+                  <p class="mt-2 font-display text-3xl font-bold">${escapeHtml(profile.client_focus)}</p>
                 </article>
                 <article class="rounded-3xl bg-mist p-6">
                   <p class="text-sm text-charcoal/60">Projects delivered</p>
-                  <p class="mt-2 font-display text-3xl font-bold">68+</p>
+                  <p class="mt-2 font-display text-3xl font-bold">${escapeHtml(profile.projects_delivered)}</p>
                 </article>
               </div>
-              <p class="mt-6 leading-8 text-charcoal/75">Her recent work spans collaborative client delivery, thoughtful communication, and repeatable service systems that help engagements feel organized from start to finish.</p>
+              <p class="mt-6 leading-8 text-charcoal/75">${escapeHtml(profile.experience_summary)}</p>
             </section>
 
             <section id="profile-portfolio" class="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
               <h3 class="font-display text-2xl font-bold">Portfolio</h3>
               <div class="mt-6 grid gap-5 md:grid-cols-3">
-
-                <article class="rounded-3xl bg-mist p-6">
-                  <p class="text-sm font-semibold text-clay">Signature Project 01</p>
-                  <p class="mt-3 text-sm leading-7 text-charcoal/75">Recent client engagement centered on event planning and measurable delivery improvements.</p>
-                </article>
-                <article class="rounded-3xl bg-mist p-6">
-                  <p class="text-sm font-semibold text-clay">Signature Project 02</p>
-                  <p class="mt-3 text-sm leading-7 text-charcoal/75">A polished project combining vendor coordination with strong client communication and execution.</p>
-                </article>
-                <article class="rounded-3xl bg-mist p-6">
-                  <p class="text-sm font-semibold text-clay">Signature Project 03</p>
-                  <p class="mt-3 text-sm leading-7 text-charcoal/75">A repeatable framework developed to support guest experience work across multiple client scenarios.</p>
-                </article>
+${buildPortfolio(profile)}
               </div>
             </section>
           </div>
@@ -226,15 +227,15 @@
               <ul class="mt-6 space-y-4 text-sm">
                 <li>
                   <span class="block text-charcoal/55">Email</span>
-                  <a href="mailto:elena-rossi@nexa.example" class="mt-1 inline-block font-semibold text-teal">elena-rossi@nexa.example</a>
+                  <a href="mailto:${escapeHtml(profile.email)}" class="mt-1 inline-block font-semibold text-teal">${escapeHtml(profile.email)}</a>
                 </li>
                 <li>
                   <span class="block text-charcoal/55">Website</span>
-                  <a href="https://example.com" class="mt-1 inline-block font-semibold text-teal">www.elenarossi.studio</a>
+                  <a href="${escapeHtml(profile.website)}" class="mt-1 inline-block font-semibold text-teal">${escapeHtml(websiteLabel)}</a>
                 </li>
                 <li>
                   <span class="block text-charcoal/55">Social</span>
-                  <a href="https://example.com" class="mt-1 inline-block font-semibold text-teal">LinkedIn profile</a>
+                  <a href="${escapeHtml(profile.social_link)}" class="mt-1 inline-block font-semibold text-teal">${escapeHtml(socialLabel)}</a>
                 </li>
               </ul>
               <a href="./apply.html" class="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Contact via Nexa form</a>
@@ -242,7 +243,7 @@
 
             <section class="rounded-3xl bg-mist p-8 shadow-soft">
               <h3 class="font-display text-xl font-bold">Safety note</h3>
-              <p class="mt-4 leading-7 text-charcoal/75">Nexa does not offer open direct messaging. Client outreach is routed through structured contact options to support clarity, professionalism, and safer interactions.</p>
+              <p class="mt-4 leading-7 text-charcoal/75">${escapeHtml(profile.safety_note)}</p>
             </section>
           </aside>
         </div>
@@ -267,3 +268,14 @@
     </script>
   </body>
 </html>
+`;
+};
+
+const profiles = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+
+for (const profile of profiles) {
+  const outputPath = path.join(projectRoot, `profile-${profile.slug}.html`);
+  fs.writeFileSync(outputPath, renderProfilePage(profile));
+}
+
+console.log(`Generated ${profiles.length} profile pages.`);
