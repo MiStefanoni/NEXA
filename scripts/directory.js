@@ -69,6 +69,8 @@ const normalizeBoolean = (value) => String(value).toLowerCase() === "true";
 const getLocationMode = (profile) =>
   (profile.remote_or_local || "").trim().toLowerCase() === "remote" ? "remote" : "local";
 
+const normalizeSearchText = (value) => String(value || "").trim().toLowerCase();
+
 const escapeHtml = (value) =>
   String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -109,6 +111,24 @@ function getBadgeLabel(profile) {
     return "Remote";
   }
   return (profile.location || "").split(",")[0] || profile.remote_or_local || "Local";
+}
+
+function matchesDirectorySearch(profile, query) {
+  if (!query) return true;
+
+  const searchIndex = [
+    profile.name,
+    profile.category,
+    profile.role_title,
+    profile.short_bio,
+    profile.location,
+    profile.remote_or_local,
+    ...(profile.serviceTags || []),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return searchIndex.includes(query);
 }
 
 function renderProfessionalCard(profile) {
@@ -201,14 +221,18 @@ async function renderProfessionalsDirectory(containerId) {
 
   const profiles = await loadProfessionals();
   const filterContainer = document.getElementById("directory-location-filter");
+  const searchInput = document.getElementById("directory-search");
   let activeFilter = "all";
+  let searchQuery = "";
 
   const renderSections = () => {
     const sections = NEXA_CATEGORY_ORDER.map((slug) => {
       const meta = NEXA_CATEGORY_META[slug];
       const categoryProfiles = profiles.filter((profile) => {
         if (profile.category_slug !== slug) return false;
-        return activeFilter === "all" || getLocationMode(profile) === activeFilter;
+        const matchesAvailability =
+          activeFilter === "all" || getLocationMode(profile) === activeFilter;
+        return matchesAvailability && matchesDirectorySearch(profile, searchQuery);
       });
 
       if (!categoryProfiles.length) {
@@ -238,6 +262,11 @@ async function renderProfessionalsDirectory(containerId) {
     if (!button) return;
     activeFilter = button.dataset.directoryFilter || "all";
     syncDirectoryFilterUi(filterContainer, activeFilter);
+    renderSections();
+  });
+
+  searchInput?.addEventListener("input", (event) => {
+    searchQuery = normalizeSearchText(event.target.value);
     renderSections();
   });
 
