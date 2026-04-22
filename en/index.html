@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Nexa | Multilingual Professional Directory for Women</title>
+    <meta name="description" content="Nexa is a professional directory connecting women professionals to clients through trusted visibility, polished profiles, and structured inquiries." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="alternate" hreflang="pt-BR" href="/pt/index.html" />
+    <link rel="alternate" hreflang="en" href="/en/index.html" />
+    <link rel="alternate" hreflang="x-default" href="/pt/index.html" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ivory: "#F7F6F4",
+              charcoal: "#2B2B2B",
+              clay: "#843088",
+              teal: "#E47E4A",
+              mist: "#F9E1CF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["DM Sans", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-ivory font-sans text-charcoal antialiased">
+    
+    <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+        <a href="/en/index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="/Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Primary" class="hidden items-center gap-8 text-sm font-medium md:flex">
+          <a href="/en/browse-categories.html" class="relative pb-1 transition-colors hover:text-teal ">Browse categories</a>
+          <a href="/en/professionals.html" class="relative pb-1 transition-colors hover:text-teal ">Browse professionals</a>
+          <a href="/en/index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal ">How it works</a>
+          <a href="/en/apply.html" class="relative pb-1 transition-colors hover:text-teal ">Apply</a>
+        </nav>
+        <div class="hidden items-center gap-3 md:flex">
+          <div class="flex items-center rounded-full border border-charcoal/15 bg-white p-1 shadow-soft">
+            <a href="/pt/index.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
+            <a href="#" class="rounded-full px-3 py-2 text-xs font-semibold bg-mist text-teal" >EN</a>
+          </div>
+          <a href="/en/browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse categories</a>
+          <a href="/en/apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">Apply now</a>
+        </div>
+        <div class="flex items-center gap-3 md:hidden">
+          <a href="/en/browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse</a>
+          <button id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft">Menu</button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
+        <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
+          <div class="mb-2 flex items-center rounded-full border border-charcoal/15 bg-ivory p-1">
+            <a href="/pt/index.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
+            <a href="#" class="rounded-full px-3 py-2 text-xs font-semibold bg-mist text-teal" >EN</a>
+          </div>
+          <a href="/en/browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
+          <a href="/en/professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse professionals</a>
+          <a href="/en/index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">How it works</a>
+          <a href="/en/apply.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">For professionals</a>
+          <a href="/en/apply.html" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">Apply now</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main id="top">
+      <section class="mx-auto flex min-h-[85vh] max-w-7xl items-center px-6 py-16 lg:px-8 lg:py-24">
+        <div class="grid w-full items-end gap-12 lg:grid-cols-[1fr_minmax(0,45vw)] lg:gap-16">
+          <div class="max-w-2xl">
+            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal">Professional visibility, thoughtfully designed</p>
+            <h1 class="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">Connecting women professionals to opportunity</h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-charcoal/75">Nexa is a curated professional directory that helps women showcase their work, share expertise, and receive structured client inquiries in a safer, more professional environment.</p>
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a href="/en/professionals.html" class="rounded-2xl bg-clay px-6 py-4 text-center text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Browse professionals</a>
+              <a href="/en/apply.html" class="rounded-2xl border border-charcoal/15 bg-white px-6 py-4 text-center text-sm font-semibold text-charcoal shadow-soft hover:border-teal hover:text-teal">Join as a professional</a>
+            </div>
+          </div>
+          <div class="flex items-end justify-center lg:justify-end">
+            <img src="/Women.png" alt="Woman using the Nexa platform" class="w-full max-w-md self-end object-contain lg:max-w-none" />
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-12">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">How it works</p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">A directory experience built around clarity and trust</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          
+            <article class="rounded-3xl bg-white p-8 shadow-soft">
+              <p class="text-sm font-semibold text-clay">Step 1</p>
+              <h3 class="mt-4 font-display text-2xl font-bold">Apply to join</h3>
+              <p class="mt-4 leading-7 text-charcoal/75">Submit your details for review so the directory remains professional, credible, and aligned with Nexa’s standards.</p>
+            </article>
+            <article class="rounded-3xl bg-white p-8 shadow-soft">
+              <p class="text-sm font-semibold text-clay">Step 2</p>
+              <h3 class="mt-4 font-display text-2xl font-bold">Build your profile</h3>
+              <p class="mt-4 leading-7 text-charcoal/75">Present your services, background, and portfolio with a polished profile designed for discovery rather than social posting.</p>
+            </article>
+            <article class="rounded-3xl bg-white p-8 shadow-soft">
+              <p class="text-sm font-semibold text-clay">Step 3</p>
+              <h3 class="mt-4 font-display text-2xl font-bold">Receive structured inquiries</h3>
+              <p class="mt-4 leading-7 text-charcoal/75">Clients reach out through guided contact flows, helping you assess fit without open direct messaging.</p>
+            </article>
+        </div>
+      </section>
+
+      <section id="categories" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Categories</p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Explore professionals across trusted service categories</h2>
+        </div>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Creative &amp; Digital</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Designers, developers, photographers, writers, and digital creators with polished professional profiles.</p>
+        <a href="/en/category-creative-digital.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Business &amp; Professional</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Consultants, legal professionals, accountants, operations specialists, and executive service providers.</p>
+        <a href="/en/category-business-professional.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Education &amp; Coaching</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Tutors, trainers, mentors, and coaches offering structured learning and personal development services.</p>
+        <a href="/en/category-education-coaching.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Wellness &amp; Care</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Practitioners and service providers focused on wellbeing, support, care, and holistic client experiences.</p>
+        <a href="/en/category-wellness-care.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Marketing &amp; Communication</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Brand strategists, publicists, copywriters, and communication specialists helping businesses grow clearly.</p>
+        <a href="/en/category-marketing-communication.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Events &amp; Lifestyle</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Planners, stylists, hosts, and experience-focused professionals supporting memorable personal and business moments.</p>
+        <a href="/en/category-events-lifestyle.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+      <article class="rounded-3xl bg-white p-7 shadow-soft">
+        <h3 class="font-display text-2xl font-bold">Home &amp; Skilled Trade Services</h3>
+        <p class="mt-3 leading-7 text-charcoal/75">Trusted professionals offering hands-on services, technical expertise, and in-home support with credibility and clear service descriptions.</p>
+        <a href="/en/category-home-skilled-trade-services.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">Browse category</a>
+      </article>
+          <div class="flex h-full items-center p-7 md:col-span-1 xl:col-span-2">
+            <p class="font-display text-2xl italic leading-tight text-charcoal/70">Each category is designed to make expertise easy to browse, compare, and contact with confidence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="professionals" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Featured professionals</p>
+          <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Discover standout profiles on Nexa</h2>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/55">Availability</p>
+          <div id="featured-location-filter" class="flex flex-wrap gap-3 text-sm font-semibold" aria-label="Filter featured professionals by availability">
+            <button type="button" data-directory-filter="all" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">All</button>
+            <button type="button" data-directory-filter="remote" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Remote</button>
+            <button type="button" data-directory-filter="local" class="rounded-full border border-charcoal/15 bg-white px-4 py-2 shadow-soft transition-colors hover:border-teal hover:text-teal">Local</button>
+          </div>
+        </div>
+        <div id="featured-profiles" class="mt-10 grid gap-6 lg:grid-cols-3"></div>
+      </section>
+
+      <section id="join" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="rounded-3xl bg-white p-8 shadow-soft">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Join Nexa</p>
+            <h2 class="mt-3 font-display text-3xl font-bold sm:text-4xl">Build a professional presence clients can trust</h2>
+            <p class="mt-5 leading-8 text-charcoal/75">Nexa is designed for women professionals who want visibility without the noise of a social platform or the pressure of a transactional marketplace.</p>
+            <ul class="mt-6 space-y-4 text-sm leading-7 text-charcoal/75">
+              <li>Curated directory placement for stronger credibility and fit.</li><li>Structured profile layouts that highlight expertise and services clearly.</li><li>Safer contact pathways without open direct messaging.</li>
+            </ul>
+            <a href="/en/apply.html" class="mt-8 inline-flex rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Apply now</a>
+          </div>
+          <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="application-form-title">
+            <h3 id="application-form-title" class="font-display text-2xl font-bold">Professional application</h3>
+            <form class="mt-6 grid gap-5">
+              <div>
+                <label for="name" class="mb-2 block text-sm font-medium">Name</label>
+                <input id="name" name="name" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="Your full name" />
+              </div>
+              <div>
+                <label for="email" class="mb-2 block text-sm font-medium">Email</label>
+                <input id="email" name="email" type="email" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="name@example.com" />
+              </div>
+              <div>
+                <label for="category" class="mb-2 block text-sm font-medium">Category</label>
+                <select id="category" name="category" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
+                  <option>Select a category</option><option>Creative &amp; Digital</option><option>Business &amp; Professional</option><option>Education &amp; Coaching</option><option>Wellness &amp; Care</option><option>Marketing &amp; Communication</option><option>Events &amp; Lifestyle</option><option>Home &amp; Skilled Trade Services</option>
+                </select>
+              </div>
+              <div>
+                <label for="description" class="mb-2 block text-sm font-medium">Description</label>
+                <textarea id="description" name="description" rows="5" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Tell us about your work, services, and ideal clients."></textarea>
+              </div>
+              <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Submit application</button>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="border-t border-charcoal/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <a href="/en/index.html" class="inline-flex items-center" aria-label="Nexa home">
+          <img src="/Nexa2.png" alt="Nexa" class="h-10 w-auto" />
+        </a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-5 text-sm text-charcoal/75">
+          <a href="/en/index.html#how-it-works" class="hover:text-teal">How it works</a>
+          <a href="/en/browse-categories.html" class="hover:text-teal">Browse categories</a>
+          <a href="/en/professionals.html" class="hover:text-teal">Browse professionals</a>
+          <a href="/en/apply.html" class="hover:text-teal">Apply now</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="/assets/js/nexa-directory.js"></script>
+    <script>
+      NexaDirectory.setupMobileMenu();
+      NexaDirectory.renderFeaturedProfessionals("featured-profiles", { lang: "en", filterContainerId: "featured-location-filter" });
+    </script>
+  </body>
+</html>
