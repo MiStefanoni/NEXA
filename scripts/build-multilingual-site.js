@@ -314,6 +314,9 @@ const SITE_COPY = {
       categories: "Explorar categorias",
       professionals: "Explorar profissionais",
       applyNow: "Candidatar agora",
+      guidelines: "Diretrizes",
+      privacy: "Privacidade",
+      usage: "Política de uso",
     },
     home: {
       title: "Nexa | Diretório Profissional Multilíngue para Mulheres",
@@ -434,6 +437,9 @@ const SITE_COPY = {
       metaTitle: (title) => `${title} | Nexa`,
       metaDescription: (title) => `Explore profissionais da categoria ${title} na Nexa.`,
     },
+    legal: {
+      backHome: "Voltar para início",
+    },
   },
   en: {
     htmlLang: "en",
@@ -452,6 +458,9 @@ const SITE_COPY = {
       categories: "Browse categories",
       professionals: "Browse professionals",
       applyNow: "Apply now",
+      guidelines: "Guidelines",
+      privacy: "Privacy",
+      usage: "Terms of use",
     },
     home: {
       title: "Nexa | Multilingual Professional Directory for Women",
@@ -571,6 +580,352 @@ const SITE_COPY = {
       browseAll: "Browse all professionals",
       metaTitle: (title) => `${title} | Nexa`,
       metaDescription: (title) => `Browse ${title} professionals on Nexa.`,
+    },
+    legal: {
+      backHome: "Back to home",
+    },
+  },
+};
+
+const LEGAL_PAGES = {
+  guidelines: {
+    pt: {
+      slug: "diretrizes",
+      title: "Diretrizes da Nexa",
+      description: "Diretrizes da plataforma Nexa para profissionais participantes.",
+      sections: [
+        {
+          heading: "Diretrizes da Plataforma Nexa",
+          paragraphs: [
+            "A Nexa foi criada para ser um ambiente profissional estruturado, seguro e confiável, com o objetivo de aumentar a visibilidade de mulheres que oferecem serviços.",
+            "Para manter a qualidade e a proposta da plataforma, todas as profissionais devem seguir as diretrizes abaixo:",
+          ],
+        },
+        {
+          heading: "1. Profissionalismo",
+          paragraphs: ["Os perfis devem refletir uma atuação profissional clara, com descrição objetiva dos serviços oferecidos."],
+          bullets: [
+            "Conteúdo ofensivo, discriminatório ou inadequado",
+            "Informações falsas ou enganosas",
+            "Linguagem excessivamente informal ou incompatível com ambiente profissional",
+          ],
+          bulletsIntro: "Não é permitido:",
+        },
+        {
+          heading: "2. Clareza de serviços",
+          bullets: [
+            "Descrever claramente seus serviços",
+            "Indicar forma de atuação (remoto/local)",
+            "Informar, sempre que possível, escopo e tipo de contratação",
+          ],
+          bulletsIntro: "Cada profissional deve:",
+        },
+        {
+          heading: "3. Uso adequado da plataforma",
+          paragraphs: ["A Nexa é um diretório profissional, não uma rede social."],
+          bullets: [
+            "Uso da plataforma para fins não relacionados à prestação de serviços",
+            "Divulgação de conteúdo pessoal sem relação profissional",
+            "Uso da plataforma para spam ou autopromoção fora do escopo do perfil",
+          ],
+          bulletsIntro: "Não é permitido:",
+        },
+        {
+          heading: "4. Atualização de informações",
+          bullets: [
+            "Manter suas informações atualizadas",
+            "Garantir que os dados apresentados sejam verdadeiros",
+          ],
+          bulletsIntro: "A profissional é responsável por:",
+        },
+        {
+          heading: "5. Conduta",
+          bullets: [
+            "Manter postura ética",
+            "Respeitar clientes e outras profissionais",
+            "Utilizar a plataforma de forma responsável",
+          ],
+          bulletsIntro: "Esperamos que todas as profissionais:",
+        },
+      ],
+    },
+    en: {
+      slug: "guidelines",
+      title: "Nexa Guidelines",
+      description: "Platform guidelines for professionals participating in Nexa.",
+      sections: [
+        {
+          heading: "Nexa Platform Guidelines",
+          paragraphs: [
+            "Nexa was created to be a structured, safe, and trustworthy professional environment focused on increasing the visibility of women offering services.",
+            "To preserve the quality and purpose of the platform, all professionals are expected to follow the guidelines below:",
+          ],
+        },
+        {
+          heading: "1. Professionalism",
+          paragraphs: ["Profiles should reflect clear professional practice, with objective descriptions of the services offered."],
+          bullets: [
+            "Offensive, discriminatory, or inappropriate content",
+            "False or misleading information",
+            "Excessively informal language or language incompatible with a professional environment",
+          ],
+          bulletsIntro: "The following is not allowed:",
+        },
+        {
+          heading: "2. Service clarity",
+          bullets: [
+            "Clearly describe services",
+            "Indicate delivery mode (remote/local)",
+            "Whenever possible, explain scope and engagement type",
+          ],
+          bulletsIntro: "Each professional should:",
+        },
+        {
+          heading: "3. Appropriate platform use",
+          paragraphs: ["Nexa is a professional directory, not a social network."],
+          bullets: [
+            "Using the platform for purposes unrelated to service delivery",
+            "Publishing personal content unrelated to professional work",
+            "Using the platform for spam or self-promotion outside the scope of the profile",
+          ],
+          bulletsIntro: "The following is not allowed:",
+        },
+        {
+          heading: "4. Keeping information current",
+          bullets: [
+            "Keep information up to date",
+            "Ensure presented data is accurate",
+          ],
+          bulletsIntro: "Each professional is responsible for:",
+        },
+        {
+          heading: "5. Conduct",
+          bullets: [
+            "Maintaining an ethical posture",
+            "Respecting clients and other professionals",
+            "Using the platform responsibly",
+          ],
+          bulletsIntro: "We expect all professionals to:",
+        },
+      ],
+    },
+  },
+  privacy: {
+    pt: {
+      slug: "politica-de-privacidade",
+      title: "Política de Privacidade",
+      description: "Política de Privacidade da Nexa.",
+      sections: [
+        {
+          heading: "Política de Privacidade da Nexa",
+          paragraphs: ["A Nexa valoriza a privacidade e a segurança das informações de suas usuárias."],
+        },
+        {
+          heading: "1. Coleta de dados",
+          bullets: [
+            "Criação e exibição do perfil profissional",
+            "Funcionamento da plataforma",
+            "Comunicação com a usuária",
+          ],
+          bulletsIntro: "A Nexa coleta apenas as informações necessárias para:",
+        },
+        {
+          heading: "2. Uso das informações",
+          bullets: [
+            "Exibir o perfil profissional na plataforma",
+            "Permitir que clientes entrem em contato",
+            "Melhorar a experiência da plataforma",
+          ],
+          bulletsIntro: "Os dados fornecidos serão utilizados para:",
+        },
+        {
+          heading: "3. Compartilhamento de dados",
+          paragraphs: [
+            "A Nexa não vende, não aluga e não compartilha dados pessoais com terceiros para fins comerciais.",
+          ],
+          bullets: [
+            "Para funcionamento interno da plataforma",
+            "Quando exigido por obrigação legal",
+          ],
+          bulletsIntro: "Os dados poderão ser utilizados apenas:",
+        },
+        {
+          heading: "4. Dados públicos vs privados",
+          bullets: [
+            "Informações inseridas no perfil profissional são públicas",
+            "Informações pessoais sensíveis não são solicitadas nem exibidas",
+          ],
+        },
+        {
+          heading: "5. Segurança",
+          paragraphs: [
+            "A Nexa adota medidas razoáveis para proteger os dados das usuárias, mas não pode garantir segurança absoluta contra acessos indevidos.",
+          ],
+        },
+        {
+          heading: "6. Controle dos dados",
+          bullets: [
+            "Solicitar atualização ou remoção de seus dados",
+            "Encerrar sua participação na plataforma a qualquer momento",
+          ],
+          bulletsIntro: "A usuária pode:",
+        },
+      ],
+    },
+    en: {
+      slug: "privacy-policy",
+      title: "Privacy Policy",
+      description: "Nexa privacy policy.",
+      sections: [
+        {
+          heading: "Nexa Privacy Policy",
+          paragraphs: ["Nexa values the privacy and security of its users’ information."],
+        },
+        {
+          heading: "1. Data collection",
+          bullets: [
+            "Creating and displaying the professional profile",
+            "Platform operation",
+            "Communication with the user",
+          ],
+          bulletsIntro: "Nexa only collects the information necessary for:",
+        },
+        {
+          heading: "2. Use of information",
+          bullets: [
+            "Displaying the professional profile on the platform",
+            "Allowing clients to get in touch",
+            "Improving the platform experience",
+          ],
+          bulletsIntro: "The information provided may be used to:",
+        },
+        {
+          heading: "3. Data sharing",
+          paragraphs: [
+            "Nexa does not sell, rent, or share personal data with third parties for commercial purposes.",
+          ],
+          bullets: [
+            "For the platform’s internal operation",
+            "When required by law",
+          ],
+          bulletsIntro: "Data may only be used:",
+        },
+        {
+          heading: "4. Public vs private data",
+          bullets: [
+            "Information included in the professional profile is public",
+            "Sensitive personal information is neither requested nor displayed",
+          ],
+        },
+        {
+          heading: "5. Security",
+          paragraphs: [
+            "Nexa adopts reasonable measures to protect user data, but cannot guarantee absolute security against unauthorized access.",
+          ],
+        },
+        {
+          heading: "6. Data control",
+          bullets: [
+            "Request updates or removal of personal data",
+            "End participation on the platform at any time",
+          ],
+          bulletsIntro: "The user may:",
+        },
+      ],
+    },
+  },
+  usage: {
+    pt: {
+      slug: "politica-de-uso",
+      title: "Política de Uso",
+      description: "Política de uso da plataforma Nexa.",
+      sections: [
+        {
+          heading: "Política de Uso da Nexa",
+          paragraphs: [
+            "A Nexa se reserva o direito de revisar, aprovar, editar ou remover perfis a qualquer momento, com o objetivo de manter a qualidade e a segurança da plataforma.",
+          ],
+        },
+        {
+          heading: "1. Aprovação de perfis",
+          bullets: [
+            "Todos os perfis passam por análise antes de serem publicados",
+            "A Nexa pode recusar perfis que não estejam alinhados com suas diretrizes",
+          ],
+        },
+        {
+          heading: "2. Remoção ou suspensão",
+          bullets: [
+            "Descumprimento das diretrizes",
+            "Informações falsas ou inconsistentes",
+            "Uso indevido da plataforma",
+            "Conduta inadequada",
+          ],
+          bulletsIntro: "A Nexa poderá remover ou suspender perfis em casos como:",
+        },
+        {
+          heading: "3. Limitação de responsabilidade",
+          paragraphs: ["A Nexa atua como intermediadora de visibilidade e conexão."],
+          bullets: [
+            "Não participa das negociações entre profissionais e clientes",
+            "Não garante resultados, contratações ou pagamentos",
+            "Não se responsabiliza por acordos realizados fora da plataforma",
+          ],
+        },
+        {
+          heading: "4. Contato entre usuários",
+          bullets: [
+            "O contato entre clientes e profissionais é de responsabilidade das partes",
+            "A Nexa não realiza mediação de conflitos",
+          ],
+        },
+      ],
+    },
+    en: {
+      slug: "terms-of-use",
+      title: "Terms of Use",
+      description: "Nexa platform terms of use.",
+      sections: [
+        {
+          heading: "Nexa Terms of Use",
+          paragraphs: [
+            "Nexa reserves the right to review, approve, edit, or remove profiles at any time in order to preserve the quality and safety of the platform.",
+          ],
+        },
+        {
+          heading: "1. Profile approval",
+          bullets: [
+            "All profiles are reviewed before publication",
+            "Nexa may reject profiles that are not aligned with its guidelines",
+          ],
+        },
+        {
+          heading: "2. Removal or suspension",
+          bullets: [
+            "Violation of the guidelines",
+            "False or inconsistent information",
+            "Improper use of the platform",
+            "Inappropriate conduct",
+          ],
+          bulletsIntro: "Nexa may remove or suspend profiles in cases such as:",
+        },
+        {
+          heading: "3. Limitation of liability",
+          paragraphs: ["Nexa acts as an intermediary for visibility and connection."],
+          bullets: [
+            "It does not participate in negotiations between professionals and clients",
+            "It does not guarantee results, hires, or payments",
+            "It is not responsible for agreements made outside the platform",
+          ],
+        },
+        {
+          heading: "4. Contact between users",
+          bullets: [
+            "Contact between clients and professionals is the responsibility of the parties involved",
+            "Nexa does not mediate conflicts",
+          ],
+        },
+      ],
     },
   },
 };
@@ -849,9 +1204,71 @@ function renderFooter(lang) {
           <a href="/${lang}/browse-categories.html" class="hover:text-teal">${copy.footer.categories}</a>
           <a href="/${lang}/professionals.html" class="hover:text-teal">${copy.footer.professionals}</a>
           <a href="/${lang}/apply.html" class="hover:text-teal">${copy.footer.applyNow}</a>
+          <a href="/${lang}/${LEGAL_PAGES.guidelines[lang].slug}.html" class="hover:text-teal">${copy.footer.guidelines}</a>
+          <a href="/${lang}/${LEGAL_PAGES.privacy[lang].slug}.html" class="hover:text-teal">${copy.footer.privacy}</a>
+          <a href="/${lang}/${LEGAL_PAGES.usage[lang].slug}.html" class="hover:text-teal">${copy.footer.usage}</a>
         </nav>
       </div>
     </footer>`;
+}
+
+function renderLegalPage(lang, key) {
+  const page = LEGAL_PAGES[key][lang];
+  const otherLang = lang === "pt" ? "en" : "pt";
+  const otherPage = LEGAL_PAGES[key][otherLang];
+  const copy = SITE_COPY[lang].legal;
+
+  const sections = page.sections
+    .map((section) => {
+      const paragraphs = (section.paragraphs || [])
+        .map((paragraph) => `<p class="leading-8 text-charcoal/75">${escapeHtml(paragraph)}</p>`)
+        .join("");
+      const bulletsIntro = section.bulletsIntro
+        ? `<p class="leading-8 text-charcoal/75">${escapeHtml(section.bulletsIntro)}</p>`
+        : "";
+      const bullets = section.bullets?.length
+        ? `<ul class="space-y-3 text-sm leading-7 text-charcoal/75">${section.bullets
+            .map((bullet) => `<li>${escapeHtml(bullet)}</li>`)
+            .join("")}</ul>`
+        : "";
+
+      return `
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">${escapeHtml(section.heading)}</h2>
+          <div class="mt-5 space-y-4">
+            ${paragraphs}
+            ${bulletsIntro}
+            ${bullets}
+          </div>
+        </section>`;
+    })
+    .join("");
+
+  const body = `
+    <main>
+      <section class="mx-auto max-w-5xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa</p>
+          <h1 class="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">${escapeHtml(page.title)}</h1>
+          <p class="mt-6 text-lg leading-8 text-charcoal/75">${escapeHtml(page.description)}</p>
+        </div>
+        <div class="mt-12 space-y-6">
+          ${sections}
+        </div>
+        <a href="/${lang}/index.html" class="mt-10 inline-flex rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">${escapeHtml(copy.backHome)}</a>
+      </section>
+    </main>`;
+
+  return renderLayout({
+    lang,
+    currentKey: "",
+    title: `${page.title} | Nexa`,
+    description: page.description,
+    ptPath: `/pt/${LEGAL_PAGES[key].pt.slug}.html`,
+    enPath: `/en/${LEGAL_PAGES[key].en.slug}.html`,
+    switchHref: `/${otherLang}/${otherPage.slug}.html`,
+    body,
+  });
 }
 
 function renderLayout({ lang, currentKey, title, description, ptPath, enPath, switchHref, body, scripts = "" }) {
@@ -1294,6 +1711,12 @@ writeFile("pt/apply.html", renderApplyPage("pt"));
 writeFile("en/apply.html", renderApplyPage("en"));
 writeFile("pt/profile-template.html", renderProfileTemplatePage("pt"));
 writeFile("en/profile-template.html", renderProfileTemplatePage("en"));
+writeFile(`pt/${LEGAL_PAGES.guidelines.pt.slug}.html`, renderLegalPage("pt", "guidelines"));
+writeFile(`en/${LEGAL_PAGES.guidelines.en.slug}.html`, renderLegalPage("en", "guidelines"));
+writeFile(`pt/${LEGAL_PAGES.privacy.pt.slug}.html`, renderLegalPage("pt", "privacy"));
+writeFile(`en/${LEGAL_PAGES.privacy.en.slug}.html`, renderLegalPage("en", "privacy"));
+writeFile(`pt/${LEGAL_PAGES.usage.pt.slug}.html`, renderLegalPage("pt", "usage"));
+writeFile(`en/${LEGAL_PAGES.usage.en.slug}.html`, renderLegalPage("en", "usage"));
 
 for (const slug of CATEGORY_ORDER) {
   writeFile(`pt/category-${slug}.html`, renderCategoryPage("pt", slug));

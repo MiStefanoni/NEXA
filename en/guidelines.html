@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Apply | Nexa</title>
-    <meta name="description" content="Apply to join Nexa as a listed professional." />
+    <title>Nexa Guidelines | Nexa</title>
+    <meta name="description" content="Platform guidelines for professionals participating in Nexa." />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="alternate" hreflang="pt-BR" href="/pt/apply.html" />
-    <link rel="alternate" hreflang="en" href="/en/apply.html" />
-    <link rel="alternate" hreflang="x-default" href="/pt/apply.html" />
+    <link rel="alternate" hreflang="pt-BR" href="/pt/diretrizes.html" />
+    <link rel="alternate" hreflang="en" href="/en/guidelines.html" />
+    <link rel="alternate" hreflang="x-default" href="/pt/diretrizes.html" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -55,11 +55,11 @@
           <a href="/en/browse-categories.html" class="relative pb-1 transition-colors hover:text-teal ">Browse categories</a>
           <a href="/en/professionals.html" class="relative pb-1 transition-colors hover:text-teal ">Browse professionals</a>
           <a href="/en/index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal ">How it works</a>
-          <a href="/en/apply.html" class="relative pb-1 transition-colors hover:text-teal text-teal">Apply</a>
+          <a href="/en/apply.html" class="relative pb-1 transition-colors hover:text-teal ">Apply</a>
         </nav>
         <div class="hidden items-center gap-3 md:flex">
           <div class="flex items-center rounded-full border border-charcoal/15 bg-white p-1 shadow-soft">
-            <a href="/pt/apply.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
+            <a href="/pt/diretrizes.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
             <a href="#" class="rounded-full px-3 py-2 text-xs font-semibold bg-mist text-teal" >EN</a>
           </div>
           <a href="/en/browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Browse categories</a>
@@ -73,7 +73,7 @@
       <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
         <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
           <div class="mb-2 flex items-center rounded-full border border-charcoal/15 bg-ivory p-1">
-            <a href="/pt/apply.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
+            <a href="/pt/diretrizes.html" class="rounded-full px-3 py-2 text-xs font-semibold text-charcoal/70" >PT</a>
             <a href="#" class="rounded-full px-3 py-2 text-xs font-semibold bg-mist text-teal" >EN</a>
           </div>
           <a href="/en/browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">Browse categories</a>
@@ -86,51 +86,64 @@
     </header>
     
     <main>
-      <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div class="rounded-3xl bg-white p-8 shadow-soft">
-            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Professional application</p>
-            <h1 class="mt-3 font-display text-4xl font-bold sm:text-5xl">Apply to join Nexa</h1>
-            <p class="mt-5 leading-8 text-charcoal/75">Nexa welcomes women professionals who want a polished, trusted place to present their services. Apply to be considered for directory placement and a structured profile page.</p>
-            <ul class="mt-6 space-y-4 text-sm leading-7 text-charcoal/75">
-              <li>Thoughtful review to keep the directory credible and aligned.</li><li>Profile layouts designed for clarity, trust, and discovery.</li><li>Structured inquiry pathways that reduce noise and improve fit.</li>
-            </ul>
-          </div>
-          <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="apply-form-title">
-            <h2 id="apply-form-title" class="font-display text-2xl font-bold">Professional application form</h2>
-            <form class="mt-6 grid gap-5">
-              <div>
-                <label for="name" class="mb-2 block text-sm font-medium">Name</label>
-                <input id="name" name="name" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Your full name" />
-              </div>
-              <div>
-                <label for="email" class="mb-2 block text-sm font-medium">Email</label>
-                <input id="email" name="email" type="email" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="name@example.com" />
-              </div>
-              <div class="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label for="category" class="mb-2 block text-sm font-medium">Category</label>
-                  <select id="category" name="category" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
-                    <option>Select a category</option><option>Creative &amp; Digital</option><option>Business &amp; Professional</option><option>Education &amp; Coaching</option><option>Wellness &amp; Care</option><option>Marketing &amp; Communication</option><option>Events &amp; Lifestyle</option><option>Home &amp; Skilled Trade Services</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="location" class="mb-2 block text-sm font-medium">Location</label>
-                  <input id="location" name="location" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="City, State or Remote" />
-                </div>
-              </div>
-              <div>
-                <label for="website" class="mb-2 block text-sm font-medium">Website or portfolio</label>
-                <input id="website" name="website" type="url" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="https://yourwebsite.com" />
-              </div>
-              <div>
-                <label for="description" class="mb-2 block text-sm font-medium">Description</label>
-                <textarea id="description" name="description" rows="6" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Tell us about your work, services, experience, and ideal clients."></textarea>
-              </div>
-              <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Submit application</button>
-            </form>
-          </section>
+      <section class="mx-auto max-w-5xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="max-w-3xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa</p>
+          <h1 class="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">Nexa Guidelines</h1>
+          <p class="mt-6 text-lg leading-8 text-charcoal/75">Platform guidelines for professionals participating in Nexa.</p>
         </div>
+        <div class="mt-12 space-y-6">
+          
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">Nexa Platform Guidelines</h2>
+          <div class="mt-5 space-y-4">
+            <p class="leading-8 text-charcoal/75">Nexa was created to be a structured, safe, and trustworthy professional environment focused on increasing the visibility of women offering services.</p><p class="leading-8 text-charcoal/75">To preserve the quality and purpose of the platform, all professionals are expected to follow the guidelines below:</p>
+            
+            
+          </div>
+        </section>
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">1. Professionalism</h2>
+          <div class="mt-5 space-y-4">
+            <p class="leading-8 text-charcoal/75">Profiles should reflect clear professional practice, with objective descriptions of the services offered.</p>
+            <p class="leading-8 text-charcoal/75">The following is not allowed:</p>
+            <ul class="space-y-3 text-sm leading-7 text-charcoal/75"><li>Offensive, discriminatory, or inappropriate content</li><li>False or misleading information</li><li>Excessively informal language or language incompatible with a professional environment</li></ul>
+          </div>
+        </section>
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">2. Service clarity</h2>
+          <div class="mt-5 space-y-4">
+            
+            <p class="leading-8 text-charcoal/75">Each professional should:</p>
+            <ul class="space-y-3 text-sm leading-7 text-charcoal/75"><li>Clearly describe services</li><li>Indicate delivery mode (remote/local)</li><li>Whenever possible, explain scope and engagement type</li></ul>
+          </div>
+        </section>
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">3. Appropriate platform use</h2>
+          <div class="mt-5 space-y-4">
+            <p class="leading-8 text-charcoal/75">Nexa is a professional directory, not a social network.</p>
+            <p class="leading-8 text-charcoal/75">The following is not allowed:</p>
+            <ul class="space-y-3 text-sm leading-7 text-charcoal/75"><li>Using the platform for purposes unrelated to service delivery</li><li>Publishing personal content unrelated to professional work</li><li>Using the platform for spam or self-promotion outside the scope of the profile</li></ul>
+          </div>
+        </section>
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">4. Keeping information current</h2>
+          <div class="mt-5 space-y-4">
+            
+            <p class="leading-8 text-charcoal/75">Each professional is responsible for:</p>
+            <ul class="space-y-3 text-sm leading-7 text-charcoal/75"><li>Keep information up to date</li><li>Ensure presented data is accurate</li></ul>
+          </div>
+        </section>
+        <section class="rounded-3xl bg-white p-8 shadow-soft">
+          <h2 class="font-display text-2xl font-bold">5. Conduct</h2>
+          <div class="mt-5 space-y-4">
+            
+            <p class="leading-8 text-charcoal/75">We expect all professionals to:</p>
+            <ul class="space-y-3 text-sm leading-7 text-charcoal/75"><li>Maintaining an ethical posture</li><li>Respecting clients and other professionals</li><li>Using the platform responsibly</li></ul>
+          </div>
+        </section>
+        </div>
+        <a href="/en/index.html" class="mt-10 inline-flex rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">Back to home</a>
       </section>
     </main>
     
