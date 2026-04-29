@@ -7,140 +7,64 @@ const dataPath = path.join(projectRoot, "data", "professionals.json");
 const csvPath = path.join(projectRoot, "data", "professionals.csv");
 
 const CATEGORY_ORDER = [
-  "creative-digital",
-  "business-professional",
-  "education-coaching",
-  "wellness-care",
-  "marketing-communication",
-  "events-lifestyle",
-  "home-skilled-trade-services",
+  "saude-bem-estar-cuidado",
+  "servicos-profissionais-negocios",
+  "educacao-desenvolvimento-consultoria",
 ];
 
 const CATEGORY_META = {
-  "creative-digital": {
+  "saude-bem-estar-cuidado": {
     pt: {
-      title: "Criativo & Digital",
+      title: "Saúde, Bem-Estar e Cuidado",
       description:
-        "Designers, desenvolvedoras, fotógrafas, redatoras e criadoras digitais com perfis profissionais bem apresentados.",
-      note: "Trabalho criativo com direção estratégica por trás.",
+        "Psicólogas, nutricionistas, fisioterapeutas, personal trainers, terapeutas ocupacionais, fonoaudiólogas, médicas, dentistas, terapeutas, profissionais de estética.",
+      note: "Atendimento especializado com foco em saúde, acolhimento e confiança.",
       pageDescription:
-        "Descubra mulheres criando marcas consistentes, experiências digitais, sistemas editoriais e narrativas visuais para negócios modernos.",
+        "Encontre profissionais de saúde, bem-estar e cuidado oferecendo suporte especializado, atendimento confiável e experiências mais seguras para suas clientes.",
     },
     en: {
-      title: "Creative & Digital",
+      title: "Health, Wellness & Care",
       description:
-        "Designers, developers, photographers, writers, and digital creators with polished professional profiles.",
-      note: "Creative work with strategy behind it.",
+        "Psychologists, nutritionists, physical therapists, personal trainers, occupational therapists, speech therapists, doctors, dentists, therapists, and beauty professionals.",
+      note: "Specialized care centered on wellbeing, trust, and client support.",
       pageDescription:
-        "Discover women building thoughtful brands, digital products, editorial systems, and visual stories for modern businesses.",
+        "Explore health, wellness, and care professionals offering trusted expertise, thoughtful support, and structured client experiences.",
     },
   },
-  "business-professional": {
+  "servicos-profissionais-negocios": {
     pt: {
-      title: "Negócios & Profissional",
+      title: "Serviços Profissionais e Negócios",
       description:
-        "Consultoras, profissionais jurídicas, contadoras, especialistas em operações e prestadoras de serviços executivos.",
-      note: "Suporte profissional para decisões que importam.",
+        "Advogadas, contadoras, consultoras empresariais, recrutadoras, profissionais de RH, estrategistas de marca, arquitetas, designers, programadoras, assessoras, especialistas B2B, personal organizer, diarista, babás.",
+      note: "Serviços estruturados para operação, crescimento e suporte profissional.",
       pageDescription:
-        "Encontre profissionais que apoiam estratégia, estrutura, finanças, operações e decisões críticas com clareza e credibilidade.",
+        "Descubra profissionais que apoiam negócios, rotinas, operações e entregas especializadas com clareza, organização e credibilidade.",
     },
     en: {
-      title: "Business & Professional",
+      title: "Professional & Business Services",
       description:
-        "Consultants, legal professionals, accountants, operations specialists, and executive service providers.",
-      note: "Professional support for decisions that matter.",
+        "Lawyers, accountants, business consultants, recruiters, HR professionals, brand strategists, architects, designers, developers, assistants, B2B specialists, personal organizers, cleaners, and nannies.",
+      note: "Structured services for operations, growth, and professional support.",
       pageDescription:
-        "Find professionals supporting strategy, structure, finance, operations, and key business decisions with clarity and credibility.",
+        "Discover professionals supporting businesses, households, operations, and specialized delivery with clarity, structure, and credibility.",
     },
   },
-  "education-coaching": {
+  "educacao-desenvolvimento-consultoria": {
     pt: {
-      title: "Educação & Mentoria",
+      title: "Educação, Desenvolvimento e Consultoria",
       description:
-        "Tutoras, treinadoras, mentoras e coaches oferecendo aprendizado estruturado e desenvolvimento pessoal.",
-      note: "Orientação pensada para gerar progresso real.",
+        "Professoras particulares, especialistas em idiomas, orientadoras educacionais, mentoras, consultoras de carreira, educadoras, facilitadoras.",
+      note: "Aprendizado, orientação e desenvolvimento com método e clareza.",
       pageDescription:
-        "Explore profissionais que apoiam aprendizado, desenvolvimento, preparação acadêmica e crescimento pessoal com método.",
+        "Explore profissionais focadas em ensino, desenvolvimento e consultoria com abordagens estruturadas para aprendizado e crescimento.",
     },
     en: {
-      title: "Education & Coaching",
+      title: "Education, Development & Consulting",
       description:
-        "Tutors, trainers, mentors, and coaches offering structured learning and personal development services.",
-      note: "Guidance designed for measurable progress.",
+        "Private tutors, language specialists, educational advisors, mentors, career consultants, educators, and facilitators.",
+      note: "Learning, guidance, and development delivered with structure and clarity.",
       pageDescription:
-        "Explore professionals supporting learning, development, academic preparation, and personal growth through structured guidance.",
-    },
-  },
-  "wellness-care": {
-    pt: {
-      title: "Bem-estar & Cuidado",
-      description:
-        "Profissionais focadas em bem-estar, suporte, cuidado e experiências de atendimento com confiança e acolhimento.",
-      note: "Serviços guiados pelo cuidado, com profissionalismo.",
-      pageDescription:
-        "Conheça profissionais de bem-estar e cuidado que trabalham com apoio personalizado, presença segura e atendimento confiável.",
-    },
-    en: {
-      title: "Wellness & Care",
-      description:
-        "Practitioners and service providers focused on wellbeing, support, care, and holistic client experiences.",
-      note: "Care-led services with professionalism and trust.",
-      pageDescription:
-        "Meet wellness and care professionals offering personalized support, trusted expertise, and thoughtful client experiences.",
-    },
-  },
-  "marketing-communication": {
-    pt: {
-      title: "Marketing & Comunicação",
-      description:
-        "Estrategistas de marca, publicistas, copywriters e especialistas em comunicação ajudando negócios a crescer com clareza.",
-      note: "Mensagens mais claras, presença mais forte.",
-      pageDescription:
-        "Descubra profissionais que fortalecem posicionamento, visibilidade, conteúdo e comunicação com foco em consistência.",
-    },
-    en: {
-      title: "Marketing & Communication",
-      description:
-        "Brand strategists, publicists, copywriters, and communication specialists helping businesses grow clearly.",
-      note: "Clearer messaging, stronger visibility.",
-      pageDescription:
-        "Discover professionals strengthening positioning, visibility, content, and communications with clarity and consistency.",
-    },
-  },
-  "events-lifestyle": {
-    pt: {
-      title: "Eventos & Lifestyle",
-      description:
-        "Planejadoras, stylists, anfitriãs e profissionais focadas em experiências pessoais e corporativas memoráveis.",
-      note: "Experiências bem conduzidas, com acabamento profissional.",
-      pageDescription:
-        "Explore profissionais que criam experiências, eventos e serviços de lifestyle com atenção aos detalhes e execução cuidadosa.",
-    },
-    en: {
-      title: "Events & Lifestyle",
-      description:
-        "Planners, stylists, hosts, and experience-focused professionals supporting memorable personal and business moments.",
-      note: "Experience-led work with a polished finish.",
-      pageDescription:
-        "Explore professionals creating experiences, events, and lifestyle services with thoughtful detail and polished execution.",
-    },
-  },
-  "home-skilled-trade-services": {
-    pt: {
-      title: "Serviços Domésticos & Técnicos",
-      description:
-        "Profissionais confiáveis oferecendo serviços práticos, conhecimento técnico e suporte residencial com credibilidade.",
-      note: "Conhecimento técnico com confiança desde o primeiro contato.",
-      pageDescription:
-        "Encontre profissionais para serviços técnicos, manutenção, organização e suporte residencial com apresentação clara e segura.",
-    },
-    en: {
-      title: "Home & Skilled Trade Services",
-      description:
-        "Trusted professionals offering hands-on services, technical expertise, and in-home support with credibility and clear service descriptions.",
-      note: "Hands-on expertise with credibility built in.",
-      pageDescription:
-        "Find professionals for technical services, maintenance, organization, and in-home support with clear positioning and trusted presentation.",
+        "Explore professionals focused on education, development, and consulting through structured guidance for learning and growth.",
     },
   },
 };
@@ -1027,7 +951,8 @@ function buildPortfolioTitlePt(index) {
 }
 
 function buildPortfolioDescriptionPt(profile, index) {
-  const role = ROLE_PT[profile.role_title] || translatePhraseToPt(profile.role_title);
+  const roleEn = sourceValue(profile, "role_title");
+  const role = ROLE_PT[roleEn] || translatePhraseToPt(roleEn);
   return `Projeto recente de ${profile.name} com foco em ${role.toLowerCase()}, combinando execução cuidadosa, boa comunicação e resultados claros para o cliente.`;
 }
 
@@ -1160,18 +1085,15 @@ function renderHeader(lang, currentKey, switchHref) {
           <a href="/${lang}/browse-categories.html" class="relative pb-1 transition-colors hover:text-teal ${isActive("categories")}">${copy.nav.categories}</a>
           <a href="/${lang}/professionals.html" class="relative pb-1 transition-colors hover:text-teal ${isActive("professionals")}">${copy.nav.professionals}</a>
           <a href="/${lang}/index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal ${isActive("how")}">${copy.nav.howItWorks}</a>
-          <a href="/${lang}/apply.html" class="relative pb-1 transition-colors hover:text-teal ${isActive("apply")}">${copy.nav.apply}</a>
         </nav>
         <div class="hidden items-center gap-3 md:flex">
           <div class="flex items-center rounded-full border border-charcoal/15 bg-white p-1 shadow-soft">
             <a href="${lang === "pt" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "pt" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="pt"' : ""}>PT</a>
             <a href="${lang === "en" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "en" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="en"' : ""}>EN</a>
           </div>
-          <a href="/${lang}/browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">${copy.nav.categories}</a>
           <a href="/${lang}/apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">${copy.nav.applyNow}</a>
         </div>
         <div class="flex items-center gap-3 md:hidden">
-          <a href="/${lang}/browse-categories.html" class="rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft transition-colors hover:border-teal hover:text-teal">${copy.nav.browse}</a>
           <button id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft">${copy.nav.menu}</button>
         </div>
       </div>
@@ -1184,7 +1106,6 @@ function renderHeader(lang, currentKey, switchHref) {
           <a href="/${lang}/browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.categories}</a>
           <a href="/${lang}/professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.professionals}</a>
           <a href="/${lang}/index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.howItWorks}</a>
-          <a href="/${lang}/apply.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.forProfessionals}</a>
           <a href="/${lang}/apply.html" class="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft">${copy.nav.applyNow}</a>
         </nav>
       </div>
@@ -1333,9 +1254,11 @@ function renderCategoryCards(lang) {
   return CATEGORY_ORDER.map((slug) => {
     const meta = CATEGORY_META[slug][lang];
     return `
-      <article class="rounded-3xl bg-white p-7 shadow-soft">
-        <h3 class="font-display text-2xl font-bold">${escapeHtml(meta.title)}</h3>
-        <p class="mt-3 leading-7 text-charcoal/75">${escapeHtml(meta.description)}</p>
+      <article class="flex h-full flex-col justify-between rounded-3xl bg-white p-7 shadow-soft">
+        <div>
+          <h3 class="font-display text-2xl font-bold">${escapeHtml(meta.title)}</h3>
+          <p class="mt-3 leading-7 text-charcoal/75">${escapeHtml(meta.description)}</p>
+        </div>
         <a href="/${lang}/category-${slug}.html" class="mt-6 inline-flex items-center text-sm font-semibold text-teal">${escapeHtml(cardLabel)}</a>
       </article>`;
   }).join("");

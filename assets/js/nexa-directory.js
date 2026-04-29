@@ -1,138 +1,62 @@
 const NEXA_CATEGORY_ORDER = [
-  "creative-digital",
-  "business-professional",
-  "education-coaching",
-  "wellness-care",
-  "marketing-communication",
-  "events-lifestyle",
-  "home-skilled-trade-services",
+  "saude-bem-estar-cuidado",
+  "servicos-profissionais-negocios",
+  "educacao-desenvolvimento-consultoria",
 ];
 
 const NEXA_CATEGORY_META = {
-  "creative-digital": {
+  "saude-bem-estar-cuidado": {
     pt: {
-      title: "Criativo & Digital",
+      title: "Saúde, Bem-Estar e Cuidado",
       description:
-        "Designers, desenvolvedoras, fotógrafas, redatoras e criadoras digitais com perfis profissionais bem apresentados.",
-      note: "Trabalho criativo com direção estratégica por trás.",
+        "Psicólogas, nutricionistas, fisioterapeutas, personal trainers, terapeutas ocupacionais, fonoaudiólogas, médicas, dentistas, terapeutas, profissionais de estética.",
+      note: "Atendimento especializado com foco em saúde, acolhimento e confiança.",
       pageDescription:
-        "Descubra mulheres criando marcas consistentes, experiências digitais, sistemas editoriais e narrativas visuais para negócios modernos.",
+        "Encontre profissionais de saúde, bem-estar e cuidado oferecendo suporte especializado, atendimento confiável e experiências mais seguras para suas clientes.",
     },
     en: {
-      title: "Creative & Digital",
+      title: "Health, Wellness & Care",
       description:
-        "Designers, developers, photographers, writers, and digital creators with polished professional profiles.",
-      note: "Creative work with strategy behind it.",
+        "Psychologists, nutritionists, physical therapists, personal trainers, occupational therapists, speech therapists, doctors, dentists, therapists, and beauty professionals.",
+      note: "Specialized care centered on wellbeing, trust, and client support.",
       pageDescription:
-        "Discover women building thoughtful brands, digital products, editorial systems, and visual stories for modern businesses.",
+        "Explore health, wellness, and care professionals offering trusted expertise, thoughtful support, and structured client experiences.",
     },
   },
-  "business-professional": {
+  "servicos-profissionais-negocios": {
     pt: {
-      title: "Negócios & Profissional",
+      title: "Serviços Profissionais e Negócios",
       description:
-        "Consultoras, profissionais jurídicas, contadoras, especialistas em operações e prestadoras de serviços executivos.",
-      note: "Suporte profissional para decisões que importam.",
+        "Advogadas, contadoras, consultoras empresariais, recrutadoras, profissionais de RH, estrategistas de marca, arquitetas, designers, programadoras, assessoras, especialistas B2B, personal organizer, diarista, babás.",
+      note: "Serviços estruturados para operação, crescimento e suporte profissional.",
       pageDescription:
-        "Encontre profissionais que apoiam estratégia, estrutura, finanças, operações e decisões críticas com clareza e credibilidade.",
+        "Descubra profissionais que apoiam negócios, rotinas, operações e entregas especializadas com clareza, organização e credibilidade.",
     },
     en: {
-      title: "Business & Professional",
+      title: "Professional & Business Services",
       description:
-        "Consultants, legal professionals, accountants, operations specialists, and executive service providers.",
-      note: "Professional support for decisions that matter.",
+        "Lawyers, accountants, business consultants, recruiters, HR professionals, brand strategists, architects, designers, developers, assistants, B2B specialists, personal organizers, cleaners, and nannies.",
+      note: "Structured services for operations, growth, and professional support.",
       pageDescription:
-        "Find professionals supporting strategy, structure, finance, operations, and key business decisions with clarity and credibility.",
+        "Discover professionals supporting businesses, households, operations, and specialized delivery with clarity, structure, and credibility.",
     },
   },
-  "education-coaching": {
+  "educacao-desenvolvimento-consultoria": {
     pt: {
-      title: "Educação & Mentoria",
+      title: "Educação, Desenvolvimento e Consultoria",
       description:
-        "Tutoras, treinadoras, mentoras e coaches oferecendo aprendizado estruturado e desenvolvimento pessoal.",
-      note: "Orientação pensada para gerar progresso real.",
+        "Professoras particulares, especialistas em idiomas, orientadoras educacionais, mentoras, consultoras de carreira, educadoras, facilitadoras.",
+      note: "Aprendizado, orientação e desenvolvimento com método e clareza.",
       pageDescription:
-        "Explore profissionais que apoiam aprendizado, desenvolvimento, preparação acadêmica e crescimento pessoal com método.",
+        "Explore profissionais focadas em ensino, desenvolvimento e consultoria com abordagens estruturadas para aprendizado e crescimento.",
     },
     en: {
-      title: "Education & Coaching",
+      title: "Education, Development & Consulting",
       description:
-        "Tutors, trainers, mentors, and coaches offering structured learning and personal development services.",
-      note: "Guidance designed for measurable progress.",
+        "Private tutors, language specialists, educational advisors, mentors, career consultants, educators, and facilitators.",
+      note: "Learning, guidance, and development delivered with structure and clarity.",
       pageDescription:
-        "Explore professionals supporting learning, development, academic preparation, and personal growth through structured guidance.",
-    },
-  },
-  "wellness-care": {
-    pt: {
-      title: "Bem-estar & Cuidado",
-      description:
-        "Profissionais focadas em bem-estar, suporte, cuidado e experiências de atendimento com confiança e acolhimento.",
-      note: "Serviços guiados pelo cuidado, com profissionalismo.",
-      pageDescription:
-        "Conheça profissionais de bem-estar e cuidado que trabalham com apoio personalizado, presença segura e atendimento confiável.",
-    },
-    en: {
-      title: "Wellness & Care",
-      description:
-        "Practitioners and service providers focused on wellbeing, support, care, and holistic client experiences.",
-      note: "Care-led services with professionalism and trust.",
-      pageDescription:
-        "Meet wellness and care professionals offering personalized support, trusted expertise, and thoughtful client experiences.",
-    },
-  },
-  "marketing-communication": {
-    pt: {
-      title: "Marketing & Comunicação",
-      description:
-        "Estrategistas de marca, publicistas, copywriters e especialistas em comunicação ajudando negócios a crescer com clareza.",
-      note: "Mensagens mais claras, presença mais forte.",
-      pageDescription:
-        "Descubra profissionais que fortalecem posicionamento, visibilidade, conteúdo e comunicação com foco em consistência.",
-    },
-    en: {
-      title: "Marketing & Communication",
-      description:
-        "Brand strategists, publicists, copywriters, and communication specialists helping businesses grow clearly.",
-      note: "Clearer messaging, stronger visibility.",
-      pageDescription:
-        "Discover professionals strengthening positioning, visibility, content, and communications with clarity and consistency.",
-    },
-  },
-  "events-lifestyle": {
-    pt: {
-      title: "Eventos & Lifestyle",
-      description:
-        "Planejadoras, stylists, anfitriãs e profissionais focadas em experiências pessoais e corporativas memoráveis.",
-      note: "Experiências bem conduzidas, com acabamento profissional.",
-      pageDescription:
-        "Explore profissionais que criam experiências, eventos e serviços de lifestyle com atenção aos detalhes e execução cuidadosa.",
-    },
-    en: {
-      title: "Events & Lifestyle",
-      description:
-        "Planners, stylists, hosts, and experience-focused professionals supporting memorable personal and business moments.",
-      note: "Experience-led work with a polished finish.",
-      pageDescription:
-        "Explore professionals creating experiences, events, and lifestyle services with thoughtful detail and polished execution.",
-    },
-  },
-  "home-skilled-trade-services": {
-    pt: {
-      title: "Serviços Domésticos & Técnicos",
-      description:
-        "Profissionais confiáveis oferecendo serviços práticos, conhecimento técnico e suporte residencial com credibilidade.",
-      note: "Conhecimento técnico com confiança desde o primeiro contato.",
-      pageDescription:
-        "Encontre profissionais para serviços técnicos, manutenção, organização e suporte residencial com apresentação clara e segura.",
-    },
-    en: {
-      title: "Home & Skilled Trade Services",
-      description:
-        "Trusted professionals offering hands-on services, technical expertise, and in-home support with credibility and clear service descriptions.",
-      note: "Hands-on expertise with credibility built in.",
-      pageDescription:
-        "Find professionals for technical services, maintenance, organization, and in-home support with clear positioning and trusted presentation.",
+        "Explore professionals focused on education, development, and consulting through structured guidance for learning and growth.",
     },
   },
 };
@@ -395,21 +319,23 @@ function renderProfessionalCard(profile, lang) {
   const serviceTags = buildServiceTags(profile, lang);
 
   return `
-    <article class="rounded-3xl bg-white p-8 shadow-soft">
-      <div class="flex items-center justify-between gap-4">
-        <div>
-          <h3 class="font-display text-2xl font-bold">${escapeHtml(profile.name)}</h3>
-          <p class="mt-2 text-sm font-medium text-teal">${escapeHtml(category)}</p>
+    <article class="flex h-full flex-col justify-between rounded-3xl bg-white p-8 shadow-soft">
+      <div>
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <h3 class="font-display text-2xl font-bold">${escapeHtml(profile.name)}</h3>
+            <p class="mt-2 text-sm font-medium text-teal">${escapeHtml(category)}</p>
+          </div>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold ${getLocationMode(profile) === "remote" ? "text-teal" : "text-charcoal"}">${escapeHtml(badgeLabel)}</span>
         </div>
-        <span class="rounded-full bg-mist px-3 py-1 text-xs font-semibold ${getLocationMode(profile) === "remote" ? "text-teal" : "text-charcoal"}">${escapeHtml(badgeLabel)}</span>
-      </div>
-      <p class="mt-5 text-sm font-semibold text-clay">${escapeHtml(roleTitle)}</p>
-      <p class="mt-4 leading-7 text-charcoal/75">${escapeHtml(shortBio)}</p>
-      <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
-        ${serviceTags
-          .slice(0, 3)
-          .map((tag) => `<span class="rounded-full bg-mist px-3 py-2">${escapeHtml(tag)}</span>`)
-          .join("")}
+        <p class="mt-5 text-sm font-semibold text-clay">${escapeHtml(roleTitle)}</p>
+        <p class="mt-4 leading-7 text-charcoal/75">${escapeHtml(shortBio)}</p>
+        <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
+          ${serviceTags
+            .slice(0, 3)
+            .map((tag) => `<span class="rounded-full bg-mist px-3 py-2">${escapeHtml(tag)}</span>`)
+            .join("")}
+        </div>
       </div>
       <a href="${getProfileUrl(profile.slug, lang)}" class="mt-6 inline-block text-sm font-semibold text-teal">${escapeHtml(ui.cardProfileCta)}</a>
     </article>
