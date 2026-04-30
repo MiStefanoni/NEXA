@@ -274,8 +274,6 @@ const SITE_COPY = {
       ],
       categoriesEyebrow: "Categorias",
       categoriesTitle: "Explore profissionais em categorias confiáveis de serviço",
-      categoriesNote:
-        "Cada categoria foi pensada para tornar a expertise mais fácil de encontrar, comparar e contatar com confiança.",
       featuredEyebrow: "Profissionais em destaque",
       featuredTitle: "Descubra perfis de destaque na Nexa",
       availability: "Disponibilidade",
@@ -418,8 +416,6 @@ const SITE_COPY = {
       ],
       categoriesEyebrow: "Categories",
       categoriesTitle: "Explore professionals across trusted service categories",
-      categoriesNote:
-        "Each category is designed to make expertise easy to browse, compare, and contact with confidence.",
       featuredEyebrow: "Featured professionals",
       featuredTitle: "Discover standout profiles on Nexa",
       availability: "Availability",
@@ -1323,9 +1319,6 @@ function renderHomePage(lang) {
         </div>
         <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           ${renderCategoryCards(lang)}
-          <div class="flex h-full items-center p-7 md:col-span-1 xl:col-span-2">
-            <p class="font-display text-2xl italic leading-tight text-charcoal/70">${escapeHtml(copy.categoriesNote)}</p>
-          </div>
         </div>
       </section>
 

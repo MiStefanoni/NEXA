@@ -100,6 +100,22 @@ const NEXA_UI = {
       category: "Categoria",
     },
     contactViaNexa: "Entrar em contato pela Nexa",
+    contactModal: {
+      title: "Contate através da Nexa",
+      close: "Fechar",
+      name: "Nome",
+      namePlaceholder: "Seu nome",
+      email: "Email",
+      emailPlaceholder: "voce@exemplo.com",
+      phone: "Fone",
+      phonePlaceholder: "(00) 00000-0000",
+      message: "Mensagem",
+      messagePlaceholder: "Escreva sua mensagem",
+      send: "Send",
+      subject: "Contato via Nexa",
+      validation: "Preencha Nome e Email para enviar a mensagem.",
+      success: "Mensagem enviada com sucesso",
+    },
   },
   en: {
     language: "en",
@@ -139,6 +155,22 @@ const NEXA_UI = {
       category: "Category",
     },
     contactViaNexa: "Contact via Nexa",
+    contactModal: {
+      title: "Contact via Nexa",
+      close: "Close",
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "you@example.com",
+      phone: "Phone",
+      phonePlaceholder: "(000) 000-0000",
+      message: "Message",
+      messagePlaceholder: "Write your message",
+      send: "Send",
+      subject: "Contato via Nexa",
+      validation: "Please fill in Name and Email before sending your message.",
+      success: "Mensagem enviada com sucesso",
+    },
   },
 };
 
@@ -433,7 +465,6 @@ async function renderProfessionalsDirectory(containerId, options = {}) {
         <section id="${escapeHtml(slug)}" class="mt-14 first:mt-0">
           <div class="mb-6 max-w-3xl">
             <p class="text-sm font-semibold uppercase tracking-[0.24em] text-teal">${escapeHtml(meta.title)}</p>
-            <h2 class="mt-2 font-display text-3xl font-bold">${escapeHtml(meta.description)}</h2>
           </div>
           <div class="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
             ${categoryProfiles.map((profile) => renderProfessionalCard(profile, lang)).join("")}
@@ -529,6 +560,7 @@ function buildProfileMain(profile, lang) {
       `;
     })
     .join("");
+  const modal = ui.contactModal;
 
   return `
     <section class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
@@ -631,17 +663,181 @@ function buildProfileMain(profile, lang) {
                 <a href="${escapeHtml(profile.social_link || "#")}" class="mt-1 inline-block font-semibold text-teal">${escapeHtml(socialLabel)}</a>
               </li>
             </ul>
-            <a href="/${lang}/apply.html" class="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(ui.contactViaNexa)}</a>
+            <button
+              type="button"
+              data-contact-trigger
+              class="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
+            >${escapeHtml(ui.contactViaNexa)}</button>
           </section>
 
           <section class="rounded-3xl bg-mist p-8 shadow-soft">
-            <h3 class="font-display text-xl font-bold">${escapeHtml(ui.labels.safetyNote)}</h3>
-            <p class="mt-4 leading-7 text-charcoal/75">${escapeHtml(safetyNote)}</p>
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="font-display text-xl font-bold">${escapeHtml(ui.labels.safetyNote)}</h3>
+              <button
+                type="button"
+                data-safety-toggle
+                aria-expanded="false"
+                aria-controls="profile-safety-note"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-lg font-semibold text-charcoal transition-colors hover:text-teal"
+              >
+                <span data-safety-icon aria-hidden="true">▼</span>
+              </button>
+            </div>
+            <div id="profile-safety-note" data-safety-content class="hidden">
+              <p class="mt-4 leading-7 text-charcoal/75">${escapeHtml(safetyNote)}</p>
+            </div>
           </section>
         </aside>
       </div>
+
+      <div data-contact-success class="pointer-events-none fixed inset-x-0 top-24 z-50 hidden px-6">
+        <div class="pointer-events-auto mx-auto flex max-w-xl items-start justify-between gap-4 rounded-3xl border border-charcoal/10 bg-white p-5 shadow-soft">
+          <p class="text-sm font-semibold text-charcoal">${escapeHtml(modal.success)}</p>
+          <button type="button" data-contact-success-close aria-label="${escapeHtml(modal.close)}" class="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-teal">X</button>
+        </div>
+      </div>
+
+      <div data-contact-modal class="fixed inset-0 z-50 hidden bg-charcoal/35 px-6 py-8" aria-hidden="true">
+        <div data-contact-overlay class="absolute inset-0"></div>
+        <div class="relative mx-auto flex min-h-full max-w-2xl items-center justify-center">
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-modal-title"
+            class="relative w-full rounded-3xl bg-white p-8 shadow-soft"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <h3 id="contact-modal-title" class="font-display text-2xl font-bold">${escapeHtml(modal.title)}</h3>
+              <button type="button" data-contact-close aria-label="${escapeHtml(modal.close)}" class="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-teal">X</button>
+            </div>
+            <form data-contact-form class="mt-6 grid gap-5">
+              <div>
+                <label for="contact-name" class="mb-2 block text-sm font-medium">${escapeHtml(modal.name)}</label>
+                <input id="contact-name" name="name" type="text" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.namePlaceholder)}" />
+              </div>
+              <div>
+                <label for="contact-email" class="mb-2 block text-sm font-medium">${escapeHtml(modal.email)}</label>
+                <input id="contact-email" name="email" type="email" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.emailPlaceholder)}" />
+              </div>
+              <div>
+                <label for="contact-phone" class="mb-2 block text-sm font-medium">${escapeHtml(modal.phone)}</label>
+                <input id="contact-phone" name="phone" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.phonePlaceholder)}" />
+              </div>
+              <div>
+                <label for="contact-message" class="mb-2 block text-sm font-medium">${escapeHtml(modal.message)}</label>
+                <textarea id="contact-message" name="message" rows="6" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.messagePlaceholder)}"></textarea>
+              </div>
+              <p data-contact-validation class="hidden rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75">${escapeHtml(modal.validation)}</p>
+              <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(modal.send)}</button>
+            </form>
+          </section>
+        </div>
+      </div>
     </section>
   `;
+}
+
+function setupProfileContactModal(profile, lang) {
+  const ui = getUi(lang);
+  const modalRoot = document.querySelector("[data-contact-modal]");
+  const trigger = document.querySelector("[data-contact-trigger]");
+  const closeButton = document.querySelector("[data-contact-close]");
+  const overlay = document.querySelector("[data-contact-overlay]");
+  const form = document.querySelector("[data-contact-form]");
+  const validation = document.querySelector("[data-contact-validation]");
+  const success = document.querySelector("[data-contact-success]");
+  const successClose = document.querySelector("[data-contact-success-close]");
+  const firstField = document.getElementById("contact-name");
+
+  if (!modalRoot || !trigger || !closeButton || !overlay || !form || !firstField) {
+    return;
+  }
+
+  const openModal = () => {
+    modalRoot.classList.remove("hidden");
+    modalRoot.setAttribute("aria-hidden", "false");
+    validation?.classList.add("hidden");
+    document.body.classList.add("overflow-hidden");
+    window.setTimeout(() => firstField.focus(), 0);
+  };
+
+  const closeModal = () => {
+    modalRoot.classList.add("hidden");
+    modalRoot.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("overflow-hidden");
+  };
+
+  const showSuccess = () => {
+    if (!success) return;
+    success.classList.remove("hidden");
+  };
+
+  const hideSuccess = () => {
+    success?.classList.add("hidden");
+  };
+
+  trigger.addEventListener("click", openModal);
+  closeButton.addEventListener("click", closeModal);
+  overlay.addEventListener("click", closeModal);
+  successClose?.addEventListener("click", hideSuccess);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modalRoot.getAttribute("aria-hidden") === "false") {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    if (!name || !email) {
+      validation?.classList.remove("hidden");
+      return;
+    }
+
+    validation?.classList.add("hidden");
+
+    const subject = ui.contactModal.subject;
+    const body = [
+      `Nome: ${name}`,
+      `Email: ${email}`,
+      `Fone: ${phone || "-"}`,
+      "",
+      "Mensagem:",
+      message || "-",
+    ].join("\n");
+
+    // Future backend integration point:
+    // replace this `mailto:` fallback with a POST request to your email/contact service.
+    window.location.href = `mailto:${encodeURIComponent(profile.email || "")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    closeModal();
+    form.reset();
+    showSuccess();
+  });
+}
+
+function setupSafetyNoteToggle() {
+  const toggle = document.querySelector("[data-safety-toggle]");
+  const content = document.querySelector("[data-safety-content]");
+  const icon = document.querySelector("[data-safety-icon]");
+
+  if (!toggle || !content || !icon) {
+    return;
+  }
+
+  toggle.addEventListener("click", () => {
+    const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isExpanded));
+    content.classList.toggle("hidden", isExpanded);
+    icon.textContent = isExpanded ? "▼" : "▲";
+  });
 }
 
 function updateProfileLanguageSwitcher(slug) {
@@ -699,6 +895,8 @@ async function renderProfileTemplate(options = {}) {
   }
 
   container.innerHTML = buildProfileMain(profile, lang);
+  setupProfileContactModal(profile, lang);
+  setupSafetyNoteToggle();
 }
 
 window.NexaDirectory = {
