@@ -115,6 +115,7 @@ const NEXA_UI = {
       subject: "Contato via Nexa",
       validation: "Preencha Nome e Email para enviar a mensagem.",
       success: "Mensagem enviada com sucesso",
+      error: "Não foi possível enviar a mensagem agora. Tente novamente.",
     },
   },
   en: {
@@ -170,6 +171,7 @@ const NEXA_UI = {
       subject: "Contato via Nexa",
       validation: "Please fill in Name and Email before sending your message.",
       success: "Mensagem enviada com sucesso",
+      error: "We couldn't send your message right now. Please try again.",
     },
   },
 };
@@ -725,7 +727,7 @@ function buildProfileMain(profile, lang) {
               </div>
               <div>
                 <label for="contact-message" class="mb-2 block text-sm font-medium">${escapeHtml(modal.message)}</label>
-                <textarea id="contact-message" name="message" rows="6" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.messagePlaceholder)}"></textarea>
+                <textarea id="contact-message" name="message" rows="6" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(modal.messagePlaceholder)}"></textarea>
               </div>
               <p data-contact-validation class="hidden rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75">${escapeHtml(modal.validation)}</p>
               <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(modal.send)}</button>
@@ -753,10 +755,17 @@ function setupProfileContactModal(profile, lang) {
     return;
   }
 
+  const setFeedback = (message, visible) => {
+    if (!validation) return;
+    validation.textContent = message;
+    validation.classList.toggle("hidden", !visible);
+  };
+
   const openModal = () => {
     modalRoot.classList.remove("hidden");
     modalRoot.setAttribute("aria-hidden", "false");
-    validation?.classList.add("hidden");
+    setFeedback("", false);
+    hideSuccess();
     document.body.classList.add("overflow-hidden");
     window.setTimeout(() => firstField.focus(), 0);
   };
@@ -787,39 +796,51 @@ function setupProfileContactModal(profile, lang) {
     }
   });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     const formData = new FormData(form);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    const submitButton = form.querySelector('button[type="submit"]');
 
     if (!name || !email) {
-      validation?.classList.remove("hidden");
+      setFeedback(ui.contactModal.validation, true);
       return;
     }
 
-    validation?.classList.add("hidden");
+    setFeedback("", false);
+    submitButton?.setAttribute("disabled", "disabled");
 
-    const subject = ui.contactModal.subject;
-    const body = [
-      `Nome: ${name}`,
-      `Email: ${email}`,
-      `Fone: ${phone || "-"}`,
-      "",
-      "Mensagem:",
-      message || "-",
-    ].join("\n");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+          professionalSlug: profile.slug,
+        }),
+      });
 
-    // Future backend integration point:
-    // replace this `mailto:` fallback with a POST request to your email/contact service.
-    window.location.href = `mailto:${encodeURIComponent(profile.email || "")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(payload.error || ui.contactModal.error);
+      }
 
-    closeModal();
-    form.reset();
-    showSuccess();
+      closeModal();
+      form.reset();
+      showSuccess();
+    } catch (error) {
+      setFeedback(error.message || ui.contactModal.error, true);
+    } finally {
+      submitButton?.removeAttribute("disabled");
+    }
   });
 }
 
