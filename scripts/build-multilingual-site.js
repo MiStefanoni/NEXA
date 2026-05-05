@@ -266,7 +266,7 @@ const SITE_COPY = {
       description:
         "Nexa é um diretório profissional que conecta mulheres profissionais a clientes por meio de visibilidade confiável, perfis bem apresentados e contatos estruturados.",
       heroEyebrow: "Visibilidade profissional, pensada com cuidado",
-      heroTitle: "MULHERES PROFISSIONAIS, NOVAS CONEXÕES, MAIS OPORTUNIDADES",
+      heroTitle: "Mulheres profissionais, novas conexões, mais oportunidades",
       heroBody:
         "A Nexa é uma plataforma criada para ampliar a presença de mulheres no mercado, conectando talentos a clientes, empresas e parceiros que procuram serviços com confiança, qualidade e profissionalismo. Aqui, cada perfil ganha uma vitrine própria para mostrar experiências, serviços e diferenciais abrindo caminhos para novas conexões e oportunidades reais.",
       heroPrimary: "Encontrar profissionais",
