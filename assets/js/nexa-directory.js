@@ -1,6 +1,7 @@
 const NEXA_CATEGORY_ORDER = [
   "saude-bem-estar-cuidado",
   "servicos-profissionais-negocios",
+  "home-and-family-care",
   "educacao-desenvolvimento-consultoria",
 ];
 
@@ -27,18 +28,36 @@ const NEXA_CATEGORY_META = {
     pt: {
       title: "Serviços Profissionais e Negócios",
       description:
-        "Advogadas, contadoras, consultoras empresariais, recrutadoras, profissionais de RH, estrategistas de marca, arquitetas, designers, programadoras, assessoras, especialistas B2B, personal organizer, diarista, babás.",
+        "Advogadas, contadoras, consultoras empresariais, recrutadoras, profissionais de RH, estrategistas de marca, arquitetas, designers, programadoras, assessoras e especialistas B2B.",
       note: "Serviços estruturados para operação, crescimento e suporte profissional.",
       pageDescription:
-        "Descubra profissionais que apoiam negócios, rotinas, operações e entregas especializadas com clareza, organização e credibilidade.",
+        "Descubra profissionais que apoiam negócios, operações e entregas especializadas com clareza, organização e credibilidade.",
     },
     en: {
       title: "Professional & Business Services",
       description:
-        "Lawyers, accountants, business consultants, recruiters, HR professionals, brand strategists, architects, designers, developers, assistants, B2B specialists, personal organizers, cleaners, and nannies.",
+        "Lawyers, accountants, business consultants, recruiters, HR professionals, brand strategists, architects, designers, developers, assistants, and B2B specialists.",
       note: "Structured services for operations, growth, and professional support.",
       pageDescription:
-        "Discover professionals supporting businesses, households, operations, and specialized delivery with clarity, structure, and credibility.",
+        "Discover professionals supporting businesses, operations, and specialized delivery with clarity, structure, and credibility.",
+    },
+  },
+  "home-and-family-care": {
+    pt: {
+      title: "Casa e Família",
+      description:
+        "Babás, chefs e cozinheiras, cuidadora de idosos, diaristas, personal organizers, serviços gerais e construção.",
+      note: "Serviços domésticos, familiares e de manutenção com confiança e apoio prático.",
+      pageDescription:
+        "Explore profissionais que apoiam a rotina da casa e da família com organização, cuidado, manutenção e serviços práticos.",
+    },
+    en: {
+      title: "Home and Family Care",
+      description:
+        "Nannies, chefs and cooks, elder care providers, cleaners, personal organizers, and general home and construction services.",
+      note: "Trusted home, family, and maintenance services with practical day-to-day support.",
+      pageDescription:
+        "Explore professionals supporting home and family life through organization, care, upkeep, and practical residential services.",
     },
   },
   "educacao-desenvolvimento-consultoria": {
