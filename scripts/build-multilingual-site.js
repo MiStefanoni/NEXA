@@ -250,13 +250,13 @@ const SITE_COPY = {
       browse: "Explorar",
       menu: "Menu",
       forProfessionals: "Para profissionais",
-      applyNow: "Candidatar agora",
+      applyNow: "Entre para a Nexa",
     },
     footer: {
       howItWorks: "Como funciona",
       categories: "Explorar categorias",
       professionals: "Explorar profissionais",
-      applyNow: "Candidatar agora",
+      applyNow: "Entre para a Nexa",
       guidelines: "Diretrizes",
       privacy: "Privacidade",
       usage: "Política de uso",
@@ -266,49 +266,47 @@ const SITE_COPY = {
       description:
         "Nexa é um diretório profissional que conecta mulheres profissionais a clientes por meio de visibilidade confiável, perfis bem apresentados e contatos estruturados.",
       heroEyebrow: "Visibilidade profissional, pensada com cuidado",
-      heroTitle: "Conectando mulheres profissionais a novas oportunidades",
+      heroTitle: "MULHERES PROFISSIONAIS, NOVAS CONEXÕES, MAIS OPORTUNIDADES",
       heroBody:
-        "Nexa é um diretório profissional curado que ajuda mulheres a apresentar seu trabalho, compartilhar expertise e receber contatos de clientes em um ambiente mais seguro e profissional.",
-      heroPrimary: "Explorar profissionais",
-      heroSecondary: "Entrar como profissional",
+        "A Nexa é uma plataforma criada para ampliar a presença de mulheres no mercado, conectando talentos a clientes, empresas e parceiros que procuram serviços com confiança, qualidade e profissionalismo. Aqui, cada perfil ganha uma vitrine própria para mostrar experiências, serviços e diferenciais abrindo caminhos para novas conexões e oportunidades reais.",
+      heroPrimary: "Encontrar profissionais",
+      heroSecondary: "Entrar para a Nexa",
       heroImageAlt: "Mulher usando a plataforma Nexa",
       howEyebrow: "Como funciona",
-      howTitle: "Uma experiência de diretório construída com clareza e confiança",
+      howTitle: "Do cadastro ao contato: uma jornada simples, segura e profissional",
       steps: [
         {
           step: "Passo 1",
-          title: "Candidate-se para entrar",
-          body: "Envie seus dados para análise e mantenha o diretório profissional, confiável e alinhado ao padrão da Nexa.",
+          title: "Candidate-se para fazer parte",
+          body: "Envie suas informações para análise. A curadoria da Nexa ajuda a manter a plataforma organizada, confiável e alinhada ao seu propósito: valorizar mulheres profissionais e seus talentos.",
         },
         {
           step: "Passo 2",
-          title: "Monte seu perfil",
-          body: "Apresente serviços, experiência e portfólio em um perfil pensado para descoberta, e não para postagem social.",
+          title: "Crie seu perfil profissional",
+          body: "Apresente sua trajetória, seus serviços, sua experiência e seus diferenciais em uma página clara, estruturada e fácil de conhecer.",
         },
         {
           step: "Passo 3",
-          title: "Receba contatos estruturados",
-          body: "Clientes entram em contato por caminhos orientados, facilitando avaliar alinhamento sem mensagens abertas.",
+          title: "Receba conexões qualificadas",
+          body: "Clientes, empresas e parceiros podem encontrar seu perfil por área de atuação, localização e formato de atendimento, facilitando contatos mais diretos e relevantes.",
         },
       ],
       categoriesEyebrow: "Categorias",
-      categoriesTitle: "Explore profissionais em categorias confiáveis de serviço",
+      categoriesTitle: "Encontre mulheres profissionais em áreas essenciais para a sua vida, sua rotina e seu negócio",
       featuredEyebrow: "Profissionais em destaque",
-      featuredTitle: "Descubra perfis de destaque na Nexa",
+      featuredTitle: "Conheça as profissionais que já fazem parte da Nexa",
       availability: "Disponibilidade",
       featuredFilterAria: "Filtrar profissionais em destaque por disponibilidade",
       filters: { all: "Todas", remote: "Remoto", local: "Local" },
-      joinEyebrow: "Participe da Nexa",
-      joinTitle: "Construa uma presença profissional que gere confiança",
+      joinEyebrow: "ENTRE PARA A NEXA",
+      joinTitle: "Faça parte de uma plataforma criada para valorizar o seu trabalho",
       joinBody:
-        "A Nexa foi criada para mulheres profissionais que querem visibilidade sem o ruído de uma rede social ou a pressão de um marketplace transacional.",
-      joinPoints: [
-        "Presença em um diretório curado para aumentar credibilidade e alinhamento.",
-        "Perfis estruturados para destacar serviços, experiência e diferenciais com clareza.",
-        "Caminhos de contato mais seguros, sem mensagens abertas.",
-      ],
-      joinCta: "Candidatar agora",
-      inlineFormTitle: "Aplicação profissional",
+        "A Nexa reúne mulheres que querem apresentar seus serviços com mais profissionalismo, fortalecer sua presença no mercado e ser encontradas por quem procura talento, confiança e qualidade. Ao entrar para a Nexa, seu trabalho ganha um espaço próprio para mostrar quem você é, o que você faz e por que a sua experiência merece ser reconhecida. Um perfil pensado para valorizar sua trajetória Apresente seus serviços, sua experiência, seus diferenciais e sua forma de atuação em uma página clara, profissional e fácil de compartilhar. Mais chances de ser encontrada por quem procura o que você oferece A Nexa organiza profissionais por categoria, localização e formato de atendimento, facilitando o encontro entre mulheres qualificadas e pessoas interessadas em contratar. Uma presença profissional mais forte e organizada Seu trabalho passa a ocupar um espaço confiável, com foco em visibilidade, conexão e novas oportunidades sem depender apenas das redes sociais.",
+      joinPoints: [],
+      joinCta: "",
+      inlineFormTitle: "Envie sua candidatura",
+      inlineFormBody:
+        "Preencha suas informações para que a equipe da Nexa conheça melhor sua atuação profissional e avalie seu perfil para fazer parte da plataforma.",
       inlineFormName: "Nome",
       inlineFormNamePlaceholder: "Seu nome completo",
       inlineFormEmail: "Email",
@@ -449,8 +447,10 @@ const SITE_COPY = {
         "Structured profile layouts that highlight expertise and services clearly.",
         "Safer contact pathways without open direct messaging.",
       ],
-      joinCta: "Apply now",
+      joinCta: "",
       inlineFormTitle: "Professional application",
+      inlineFormBody:
+        "Fill in your information so the Nexa team can better understand your professional work and evaluate your profile to join the platform.",
       inlineFormName: "Name",
       inlineFormNamePlaceholder: "Your full name",
       inlineFormEmail: "Email",
@@ -1265,7 +1265,7 @@ function renderLayout({ lang, currentKey, title, description, ptPath, enPath, sw
 }
 
 function renderCategoryCards(lang) {
-  const cardLabel = lang === "pt" ? "Explorar categoria" : "Browse category";
+  const cardLabel = lang === "pt" ? "Ver profissionais" : "Browse category";
   return CATEGORY_ORDER.map((slug) => {
     const meta = CATEGORY_META[slug][lang];
     return `
@@ -1366,10 +1366,11 @@ function renderHomePage(lang) {
             <ul class="mt-6 space-y-4 text-sm leading-7 text-charcoal/75">
               ${copy.joinPoints.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
             </ul>
-            <a href="/${lang}/apply.html" class="mt-8 inline-flex rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(copy.joinCta)}</a>
+            ${copy.joinCta ? `<a href="/${lang}/apply.html" class="mt-8 inline-flex rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(copy.joinCta)}</a>` : ""}
           </div>
           <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="application-form-title">
             <h3 id="application-form-title" class="font-display text-2xl font-bold">${escapeHtml(copy.inlineFormTitle)}</h3>
+            <p class="mt-3 leading-8 text-charcoal/75">${escapeHtml(copy.inlineFormBody)}</p>
             <form class="mt-6 grid gap-5">
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium">${escapeHtml(copy.inlineFormName)}</label>
