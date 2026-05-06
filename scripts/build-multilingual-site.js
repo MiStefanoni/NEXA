@@ -5,6 +5,7 @@ const { execSync } = require("child_process");
 const projectRoot = path.resolve(__dirname, "..");
 const dataPath = path.join(projectRoot, "data", "professionals.json");
 const csvPath = path.join(projectRoot, "data", "professionals.csv");
+const ENGLISH_PUBLICLY_VISIBLE = false;
 
 const CATEGORY_ORDER = [
   "saude-bem-estar-cuidado",
@@ -1080,6 +1081,12 @@ function ensureDir(dirPath) {
 }
 
 function buildHreflang(ptPath, enPath) {
+  if (!ENGLISH_PUBLICLY_VISIBLE) {
+    return `
+    <link rel="alternate" hreflang="pt-BR" href="${ptPath}" />
+    <link rel="alternate" hreflang="x-default" href="${ptPath}" />`;
+  }
+
   return `
     <link rel="alternate" hreflang="pt-BR" href="${ptPath}" />
     <link rel="alternate" hreflang="en" href="${enPath}" />
@@ -1089,6 +1096,20 @@ function buildHreflang(ptPath, enPath) {
 function renderHeader(lang, currentKey, switchHref) {
   const copy = SITE_COPY[lang];
   const isActive = (key) => (key === currentKey ? "text-teal" : "");
+  const desktopLanguageSwitcher = ENGLISH_PUBLICLY_VISIBLE
+    ? `
+          <div class="flex items-center rounded-full border border-charcoal/15 bg-white p-1 shadow-soft">
+            <a href="${lang === "pt" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "pt" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="pt"' : ""}>PT</a>
+            <a href="${lang === "en" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "en" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="en"' : ""}>EN</a>
+          </div>`
+    : "";
+  const mobileLanguageSwitcher = ENGLISH_PUBLICLY_VISIBLE
+    ? `
+          <div class="mb-2 flex items-center rounded-full border border-charcoal/15 bg-ivory p-1">
+            <a href="${lang === "pt" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "pt" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="pt"' : ""}>PT</a>
+            <a href="${lang === "en" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "en" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="en"' : ""}>EN</a>
+          </div>`
+    : "";
 
   return `
     <header class="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory/95 backdrop-blur">
@@ -1102,10 +1123,7 @@ function renderHeader(lang, currentKey, switchHref) {
           <a href="/${lang}/index.html#how-it-works" class="relative pb-1 transition-colors hover:text-teal ${isActive("how")}">${copy.nav.howItWorks}</a>
         </nav>
         <div class="hidden items-center gap-3 md:flex">
-          <div class="flex items-center rounded-full border border-charcoal/15 bg-white p-1 shadow-soft">
-            <a href="${lang === "pt" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "pt" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="pt"' : ""}>PT</a>
-            <a href="${lang === "en" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "en" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="en"' : ""}>EN</a>
-          </div>
+          ${desktopLanguageSwitcher}
           <a href="/${lang}/apply.html" class="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90">${copy.nav.applyNow}</a>
         </div>
         <div class="flex items-center gap-3 md:hidden">
@@ -1114,10 +1132,7 @@ function renderHeader(lang, currentKey, switchHref) {
       </div>
       <div id="mobile-menu" class="hidden border-t border-charcoal/10 bg-white md:hidden">
         <nav aria-label="Mobile primary" class="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4 text-sm font-medium lg:px-8">
-          <div class="mb-2 flex items-center rounded-full border border-charcoal/15 bg-ivory p-1">
-            <a href="${lang === "pt" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "pt" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="pt"' : ""}>PT</a>
-            <a href="${lang === "en" ? "#" : switchHref}" class="rounded-full px-3 py-2 text-xs font-semibold ${lang === "en" ? "bg-mist text-teal" : "text-charcoal/70"}" ${currentKey === "profile-template" ? 'data-profile-lang-switch="en"' : ""}>EN</a>
-          </div>
+          ${mobileLanguageSwitcher}
           <a href="/${lang}/browse-categories.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.categories}</a>
           <a href="/${lang}/professionals.html" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.professionals}</a>
           <a href="/${lang}/index.html#how-it-works" class="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal">${copy.nav.howItWorks}</a>
@@ -1208,6 +1223,10 @@ function renderLegalPage(lang, key) {
 }
 
 function renderLayout({ lang, currentKey, title, description, ptPath, enPath, switchHref, body, scripts = "" }) {
+  const robotsMeta =
+    !ENGLISH_PUBLICLY_VISIBLE && lang === "en"
+      ? '\n    <meta name="robots" content="noindex, nofollow" />'
+      : "";
   return `<!DOCTYPE html>
 <html lang="${SITE_COPY[lang].htmlLang}">
   <head>
@@ -1216,6 +1235,11 @@ function renderLayout({ lang, currentKey, title, description, ptPath, enPath, sw
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     ${buildHreflang(ptPath, enPath)}
+    ${robotsMeta}
+    <link rel="apple-touch-icon" sizes="180x180" href="/Favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/Favicon/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/Favicon/favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
