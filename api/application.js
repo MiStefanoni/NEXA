@@ -48,6 +48,7 @@ async function sendViaMailgun({ name, email, category, location, website, descri
   const apiKey = process.env.MAILGUN_API_KEY;
   const domain = process.env.MAILGUN_DOMAIN;
   const apiBaseUrl = getMailgunApiBaseUrl(process.env.MAILGUN_API_BASE_URL);
+  const sender = getMailgunSender(domain);
 
   if (!apiKey || !domain) {
     throw new Error("Mailgun environment variables are not configured.");
@@ -55,7 +56,7 @@ async function sendViaMailgun({ name, email, category, location, website, descri
 
   const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
   const body = new FormData();
-  body.set("from", getMailgunSender(domain));
+  body.set("from", sender);
   body.set("to", APPLICATION_RECIPIENT);
   body.set("subject", "Nova candidatura via Nexa");
   body.set("h:Reply-To", email);
@@ -87,7 +88,14 @@ async function sendViaMailgun({ name, email, category, location, website, descri
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Mailgun request failed: ${response.status} ${errorText}`);
+    const error = new Error(`Mailgun request failed: ${response.status} ${errorText}`);
+    error.debug = {
+      domain,
+      apiBaseUrl,
+      sender,
+      recipient: APPLICATION_RECIPIENT,
+    };
+    throw error;
   }
 }
 
@@ -137,6 +145,7 @@ module.exports = async function handler(req, res) {
     return json(res, 500, {
       success: false,
       error: error.message || "Failed to send application.",
+      debug: error.debug || null,
     });
   }
 };
