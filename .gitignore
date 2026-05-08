@@ -2,3 +2,7 @@
 telegram_local_bot/
 telegram_relay/
 .DS_Store
+.vercel
+.env
+.next/
+node_modules/

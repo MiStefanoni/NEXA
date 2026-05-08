@@ -50,6 +50,9 @@ async function sendViaMailgun({ name, email, category, location, website, descri
   const apiBaseUrl = getMailgunApiBaseUrl(process.env.MAILGUN_API_BASE_URL);
   const sender = getMailgunSender(domain);
 
+  console.log("ronaldo")
+  console.log(apiKey)
+
   if (!apiKey || !domain) {
     throw new Error("Mailgun environment variables are not configured.");
   }
@@ -100,6 +103,9 @@ async function sendViaMailgun({ name, email, category, location, website, descri
 }
 
 module.exports = async function handler(req, res) {
+
+
+  console.log("TEST")
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return json(res, 405, { success: false, error: "Method not allowed." });

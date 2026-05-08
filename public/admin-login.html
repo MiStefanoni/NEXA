@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexa Admin Login</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/Favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/Favicon/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/Favicon/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body class="nexa-admin-body nexa-admin-login" data-admin-page="login">
+    <main class="nexa-admin-login-card">
+      <p class="nexa-admin-kicker">Nexa</p>
+      <h1 class="nexa-admin-title">Área administrativa Nexa</h1>
+      <p class="nexa-admin-copy">
+        Acesse o painel administrativo para acompanhar o fluxo de cadastros da plataforma.
+      </p>
+
+      <form class="nexa-admin-form" data-admin-login-form novalidate>
+        <div class="nexa-admin-field">
+          <label class="nexa-admin-label" for="admin-password">Senha</label>
+          <input
+            class="nexa-admin-input"
+            id="admin-password"
+            name="password"
+            type="password"
+            placeholder="Digite sua senha"
+          />
+        </div>
+        <p class="nexa-admin-error" data-admin-error></p>
+        <button class="nexa-admin-button" type="submit">Entrar no Admin</button>
+      </form>
+    </main>
+
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
