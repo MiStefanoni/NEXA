@@ -136,6 +136,13 @@ const NEXA_UI = {
       success: "Mensagem enviada com sucesso",
       error: "Não foi possível enviar a mensagem agora. Tente novamente.",
     },
+    applicationForm: {
+      validation: "Preencha os campos obrigatórios antes de enviar sua candidatura.",
+      success:
+        "Cadastro enviado com sucesso! Seu perfil será revisado antes de ser publicado.",
+      error: "Não foi possível enviar sua candidatura agora. Tente novamente.",
+      sending: "Enviando...",
+    },
   },
   en: {
     language: "en",
@@ -191,6 +198,13 @@ const NEXA_UI = {
       validation: "Please fill in Name and Email before sending your message.",
       success: "Mensagem enviada com sucesso",
       error: "We couldn't send your message right now. Please try again.",
+    },
+    applicationForm: {
+      validation: "Please fill in the required fields before sending your application.",
+      success:
+        "Application submitted successfully! Your profile will be reviewed before it is published.",
+      error: "We couldn't send your application right now. Please try again.",
+      sending: "Sending...",
     },
   },
 };
@@ -402,6 +416,99 @@ function setupMobileMenu() {
     const isOpen = !mobileMenu.classList.contains("hidden");
     mobileMenu.classList.toggle("hidden", isOpen);
     mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+  });
+}
+
+function setApplicationFeedback(form, message, state = "neutral") {
+  const feedback = form.querySelector("[data-application-feedback]");
+  if (!feedback) return;
+
+  if (!message) {
+    feedback.textContent = "";
+    feedback.classList.add("hidden");
+    feedback.classList.remove("border-red-200", "bg-red-50", "text-red-700");
+    feedback.classList.add("border-clay/15", "bg-mist", "text-charcoal/75");
+    return;
+  }
+
+  feedback.textContent = message;
+  feedback.classList.remove("hidden");
+
+  const isError = state === "error";
+  feedback.classList.toggle("border-red-200", isError);
+  feedback.classList.toggle("bg-red-50", isError);
+  feedback.classList.toggle("text-red-700", isError);
+  feedback.classList.toggle("border-clay/15", !isError);
+  feedback.classList.toggle("bg-mist", !isError);
+  feedback.classList.toggle("text-charcoal/75", !isError);
+}
+
+async function submitApplicationForm(form, lang) {
+  const ui = getUi(lang).applicationForm;
+  const formData = new FormData(form);
+  const payload = {
+    name: String(formData.get("name") || "").trim(),
+    email: String(formData.get("email") || "").trim(),
+    category: String(formData.get("category") || "").trim(),
+    location: String(formData.get("location") || "").trim(),
+    website: String(formData.get("website") || "").trim(),
+    description: String(formData.get("description") || "").trim(),
+    source: String(form.dataset.applicationSource || "").trim(),
+  };
+
+  if (!payload.name || !payload.email || !payload.category || !payload.description) {
+    setApplicationFeedback(form, ui.validation, "error");
+    return;
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalLabel = submitButton?.textContent || "";
+
+  setApplicationFeedback(form, "", "neutral");
+  submitButton?.setAttribute("disabled", "disabled");
+  if (submitButton) {
+    submitButton.textContent = ui.sending;
+  }
+
+  try {
+    const response = await fetch("/api/application", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(result.error || ui.error);
+    }
+
+    form.reset();
+    setApplicationFeedback(form, ui.success, "success");
+  } catch (error) {
+    setApplicationFeedback(form, error.message || ui.error, "error");
+  } finally {
+    submitButton?.removeAttribute("disabled");
+    if (submitButton) {
+      submitButton.textContent = originalLabel;
+    }
+  }
+}
+
+function setupApplicationForms() {
+  const forms = document.querySelectorAll("[data-professional-application-form]");
+  forms.forEach((form) => {
+    if (form.dataset.applicationBound === "true") {
+      return;
+    }
+
+    form.dataset.applicationBound = "true";
+    const lang = getCurrentLang(form.dataset.applicationLang || document.documentElement.lang);
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await submitApplicationForm(form, lang);
+    });
   });
 }
 
@@ -948,5 +1055,6 @@ window.NexaDirectory = {
   renderProfessionalsDirectory,
   renderCategoryDirectory,
   renderProfileTemplate,
+  setupApplicationForms,
   setupMobileMenu,
 };

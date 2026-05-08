@@ -1282,6 +1282,7 @@ function renderLayout({ lang, currentKey, title, description, ptPath, enPath, sw
     <script src="/assets/js/nexa-directory.js"></script>
     <script>
       NexaDirectory.setupMobileMenu();
+      NexaDirectory.setupApplicationForms();
       ${scripts}
     </script>
   </body>
@@ -1395,25 +1396,26 @@ function renderHomePage(lang) {
           <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="application-form-title">
             <h3 id="application-form-title" class="font-display text-2xl font-bold">${escapeHtml(copy.inlineFormTitle)}</h3>
             <p class="mt-3 leading-8 text-charcoal/75">${escapeHtml(copy.inlineFormBody)}</p>
-            <form class="mt-6 grid gap-5">
+            <form class="mt-6 grid gap-5" data-professional-application-form data-application-lang="${lang}" data-application-source="home" novalidate>
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium">${escapeHtml(copy.inlineFormName)}</label>
-                <input id="name" name="name" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormNamePlaceholder)}" />
+                <input id="name" name="name" type="text" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormNamePlaceholder)}" />
               </div>
               <div>
                 <label for="email" class="mb-2 block text-sm font-medium">${escapeHtml(copy.inlineFormEmail)}</label>
-                <input id="email" name="email" type="email" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormEmailPlaceholder)}" />
+                <input id="email" name="email" type="email" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none ring-0 placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormEmailPlaceholder)}" />
               </div>
               <div>
                 <label for="category" class="mb-2 block text-sm font-medium">${escapeHtml(copy.inlineFormCategory)}</label>
-                <select id="category" name="category" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
+                <select id="category" name="category" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
                   ${renderCategoryOptions(lang)}
                 </select>
               </div>
               <div>
                 <label for="description" class="mb-2 block text-sm font-medium">${escapeHtml(copy.inlineFormDescription)}</label>
-                <textarea id="description" name="description" rows="5" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormDescriptionPlaceholder)}"></textarea>
+                <textarea id="description" name="description" rows="5" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.inlineFormDescriptionPlaceholder)}"></textarea>
               </div>
+              <p data-application-feedback class="hidden rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75"></p>
               <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(copy.inlineFormSubmit)}</button>
             </form>
           </section>
@@ -1531,19 +1533,19 @@ function renderApplyPage(lang) {
           </div>
           <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="apply-form-title">
             <h2 id="apply-form-title" class="font-display text-2xl font-bold">${escapeHtml(copy.formTitle)}</h2>
-            <form class="mt-6 grid gap-5">
+            <form class="mt-6 grid gap-5" data-professional-application-form data-application-lang="${lang}" data-application-source="apply" novalidate>
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium">${escapeHtml(copy.name)}</label>
-                <input id="name" name="name" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.namePlaceholder)}" />
+                <input id="name" name="name" type="text" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.namePlaceholder)}" />
               </div>
               <div>
                 <label for="email" class="mb-2 block text-sm font-medium">${escapeHtml(copy.email)}</label>
-                <input id="email" name="email" type="email" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.emailPlaceholder)}" />
+                <input id="email" name="email" type="email" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.emailPlaceholder)}" />
               </div>
               <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label for="category" class="mb-2 block text-sm font-medium">${escapeHtml(copy.category)}</label>
-                  <select id="category" name="category" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
+                  <select id="category" name="category" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
                     ${renderCategoryOptions(lang)}
                   </select>
                 </div>
@@ -1558,8 +1560,9 @@ function renderApplyPage(lang) {
               </div>
               <div>
                 <label for="description" class="mb-2 block text-sm font-medium">${escapeHtml(copy.descriptionLabel)}</label>
-                <textarea id="description" name="description" rows="6" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.descriptionPlaceholder)}"></textarea>
+                <textarea id="description" name="description" rows="6" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="${escapeHtml(copy.descriptionPlaceholder)}"></textarea>
               </div>
+              <p data-application-feedback class="hidden rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75"></p>
               <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">${escapeHtml(copy.submit)}</button>
             </form>
           </section>

@@ -93,19 +93,19 @@
           </div>
           <section class="rounded-3xl bg-white p-8 shadow-soft" aria-labelledby="apply-form-title">
             <h2 id="apply-form-title" class="font-display text-2xl font-bold">Professional application form</h2>
-            <form class="mt-6 grid gap-5">
+            <form class="mt-6 grid gap-5" data-professional-application-form data-application-lang="en" data-application-source="apply" novalidate>
               <div>
                 <label for="name" class="mb-2 block text-sm font-medium">Name</label>
-                <input id="name" name="name" type="text" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Your full name" />
+                <input id="name" name="name" type="text" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Your full name" />
               </div>
               <div>
                 <label for="email" class="mb-2 block text-sm font-medium">Email</label>
-                <input id="email" name="email" type="email" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="name@example.com" />
+                <input id="email" name="email" type="email" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="name@example.com" />
               </div>
               <div class="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label for="category" class="mb-2 block text-sm font-medium">Category</label>
-                  <select id="category" name="category" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
+                  <select id="category" name="category" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal">
                     <option>Select a category</option><option>Health, Wellness &amp; Care</option><option>Professional &amp; Business Services</option><option>Home and Family Care</option><option>Education, Development &amp; Consulting</option>
                   </select>
                 </div>
@@ -120,8 +120,9 @@
               </div>
               <div>
                 <label for="description" class="mb-2 block text-sm font-medium">Description</label>
-                <textarea id="description" name="description" rows="6" class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Tell us about your work, services, experience, and ideal clients."></textarea>
+                <textarea id="description" name="description" rows="6" required class="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal" placeholder="Tell us about your work, services, experience, and ideal clients."></textarea>
               </div>
+              <p data-application-feedback class="hidden rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75"></p>
               <button type="submit" class="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90">Submit application</button>
             </form>
           </section>
@@ -148,6 +149,7 @@
     <script src="/assets/js/nexa-directory.js"></script>
     <script>
       NexaDirectory.setupMobileMenu();
+      NexaDirectory.setupApplicationForms();
       
     </script>
   </body>

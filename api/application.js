@@ -1,0 +1,120 @@
+const DEFAULT_MAILGUN_API_BASE_URL = "https://api.mailgun.net";
+const APPLICATION_RECIPIENT = "mifstefanoni@gmail.com";
+
+function getMailgunSender(domain) {
+  if (String(domain || "").startsWith("sandbox")) {
+    return `Mailgun Sandbox <postmaster@${domain}>`;
+  }
+
+  return `Nexa <no-reply@${domain}>`;
+}
+
+function sanitizeText(value, maxLength = 4000) {
+  return String(value || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/\0/g, "")
+    .trim()
+    .slice(0, maxLength);
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
+}
+
+function json(res, status, payload) {
+  res.status(status).setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(payload));
+}
+
+async function sendViaMailgun({ name, email, category, location, website, description, source }) {
+  const apiKey = process.env.MAILGUN_API_KEY;
+  const domain = process.env.MAILGUN_DOMAIN;
+  const apiBaseUrl = process.env.MAILGUN_API_BASE_URL || DEFAULT_MAILGUN_API_BASE_URL;
+
+  if (!apiKey || !domain) {
+    throw new Error("Mailgun environment variables are not configured.");
+  }
+
+  const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
+  const body = new URLSearchParams({
+    from: getMailgunSender(domain),
+    to: APPLICATION_RECIPIENT,
+    subject: "Nova candidatura via Nexa",
+    "h:Reply-To": email,
+    text: [
+      "Nova candidatura via Nexa",
+      "",
+      `Nome: ${name}`,
+      `Email: ${email}`,
+      `Categoria: ${category}`,
+      `Localização: ${location || "-"}`,
+      `Website: ${website || "-"}`,
+      `Origem: ${source || "-"}`,
+      "",
+      "Descrição:",
+      description,
+    ].join("\n"),
+  });
+
+  const credentials = Buffer.from(`api:${apiKey}`).toString("base64");
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${credentials}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Mailgun request failed: ${response.status} ${errorText}`);
+  }
+}
+
+module.exports = async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    return json(res, 405, { success: false, error: "Method not allowed." });
+  }
+
+  // Future hardening:
+  // add CAPTCHA verification and rate limiting before processing the request body.
+  const rawBody =
+    typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+
+  const name = sanitizeText(rawBody.name, 200);
+  const email = sanitizeText(rawBody.email, 320);
+  const category = sanitizeText(rawBody.category, 200);
+  const location = sanitizeText(rawBody.location, 200);
+  const website = sanitizeText(rawBody.website, 500);
+  const description = sanitizeText(rawBody.description, 5000);
+  const source = sanitizeText(rawBody.source, 120);
+
+  if (!name || !email || !category || !description) {
+    return json(res, 400, {
+      success: false,
+      error: "Missing required fields: name, email, category, description.",
+    });
+  }
+
+  if (!isValidEmail(email)) {
+    return json(res, 400, { success: false, error: "Invalid email." });
+  }
+
+  try {
+    await sendViaMailgun({
+      name,
+      email,
+      category,
+      location,
+      website,
+      description,
+      source,
+    });
+    return json(res, 200, { success: true });
+  } catch (error) {
+    console.error("Application send failed", error);
+    return json(res, 500, { success: false, error: "Failed to send application." });
+  }
+};
