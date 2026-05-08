@@ -36,12 +36,14 @@ async function sendViaMailgun({ name, email, category, location, website, descri
   }
 
   const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
-  const body = new URLSearchParams({
-    from: getMailgunSender(domain),
-    to: APPLICATION_RECIPIENT,
-    subject: "Nova candidatura via Nexa",
-    "h:Reply-To": email,
-    text: [
+  const body = new FormData();
+  body.set("from", getMailgunSender(domain));
+  body.set("to", APPLICATION_RECIPIENT);
+  body.set("subject", "Nova candidatura via Nexa");
+  body.set("h:Reply-To", email);
+  body.set(
+    "text",
+    [
       "Nova candidatura via Nexa",
       "",
       `Nome: ${name}`,
@@ -54,14 +56,13 @@ async function sendViaMailgun({ name, email, category, location, website, descri
       "Descrição:",
       description,
     ].join("\n"),
-  });
+  );
 
   const credentials = Buffer.from(`api:${apiKey}`).toString("base64");
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       Authorization: `Basic ${credentials}`,
-      "Content-Type": "application/x-www-form-urlencoded",
     },
     body,
   });
@@ -115,6 +116,9 @@ module.exports = async function handler(req, res) {
     return json(res, 200, { success: true });
   } catch (error) {
     console.error("Application send failed", error);
-    return json(res, 500, { success: false, error: "Failed to send application." });
+    return json(res, 500, {
+      success: false,
+      error: error.message || "Failed to send application.",
+    });
   }
 };
