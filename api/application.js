@@ -26,10 +26,28 @@ function json(res, status, payload) {
   res.end(JSON.stringify(payload));
 }
 
+function getMailgunApiBaseUrl(value) {
+  const candidate = String(value || "").trim();
+  if (!candidate) {
+    return DEFAULT_MAILGUN_API_BASE_URL;
+  }
+
+  try {
+    const parsed = new URL(candidate);
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+      return parsed.origin;
+    }
+  } catch (_) {
+    // Ignore invalid custom values and fall back to the Mailgun default.
+  }
+
+  return DEFAULT_MAILGUN_API_BASE_URL;
+}
+
 async function sendViaMailgun({ name, email, category, location, website, description, source }) {
   const apiKey = process.env.MAILGUN_API_KEY;
   const domain = process.env.MAILGUN_DOMAIN;
-  const apiBaseUrl = process.env.MAILGUN_API_BASE_URL || DEFAULT_MAILGUN_API_BASE_URL;
+  const apiBaseUrl = getMailgunApiBaseUrl(process.env.MAILGUN_API_BASE_URL);
 
   if (!apiKey || !domain) {
     throw new Error("Mailgun environment variables are not configured.");
