@@ -13,10 +13,10 @@ export function generateMetadata({ params }) {
   return metadata;
 }
 
-export default function ProfessionalsPage({ params }) {
+export default async function ProfessionalsPage({ params }) {
   const lang = getCurrentLang(params.lang);
   const ui = getLangConfig(lang);
-  const profiles = getProfessionals();
+  const profiles = await getProfessionals();
 
   return (
     <main>

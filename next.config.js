@@ -13,6 +13,16 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: "/admin.html",
+        destination: "/admin",
+        permanent: false,
+      },
+      {
+        source: "/admin-login.html",
+        destination: "/admin/login",
+        permanent: false,
+      },
+      {
         source: "/pt/index.html",
         destination: "/pt",
         permanent: false,

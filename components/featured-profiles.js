@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { getLangConfig, getLocationMode } from "../lib/nexa-data";
+import { getLangConfig, matchesAvailabilityFilter } from "../lib/nexa-data";
 import { ProfessionalCard } from "./cards";
 
 export function FeaturedProfiles({ profiles, lang, limit = 3 }) {
@@ -9,7 +9,7 @@ export function FeaturedProfiles({ profiles, lang, limit = 3 }) {
   const [filter, setFilter] = useState("all");
 
   const selected = useMemo(() => {
-    const matches = (profile) => filter === "all" || getLocationMode(profile) === filter;
+    const matches = (profile) => matchesAvailabilityFilter(profile, filter);
     const featured = profiles.filter((profile) => profile.featured && matches(profile)).slice(0, limit);
     const fallback = profiles.filter(matches).slice(0, limit);
     return featured.length ? featured : fallback;

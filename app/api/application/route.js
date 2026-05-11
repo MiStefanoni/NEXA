@@ -1,4 +1,5 @@
 import { jsonResponse, isValidEmail, sanitizeText } from "../../../lib/server-utils";
+import { createPendingApplicationRecord } from "../../../lib/admin-store";
 
 const DEFAULT_MAILGUN_API_BASE_URL = "https://api.mailgun.net";
 const APPLICATION_RECIPIENT = "mifstefanoni@gmail.com";
@@ -101,6 +102,7 @@ export async function POST(request) {
   }
 
   try {
+    await createPendingApplicationRecord({ name, email, category, location, website, description, source });
     await sendViaMailgun({ name, email, category, location, website, description, source });
     return jsonResponse({ success: true }, { status: 200 });
   } catch (error) {

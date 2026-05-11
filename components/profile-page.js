@@ -11,7 +11,6 @@ import {
   getPortfolioItem,
   getServiceDelivery,
   getServiceDescription,
-  getServiceEngagement,
   getServiceTitle,
 } from "../lib/nexa-data";
 
@@ -21,14 +20,11 @@ export function ProfilePage({ profile, lang }) {
   const roleTitle = getLocalizedField(profile, "role_title", lang, ui.profileFallback);
   const shortBio = getLocalizedField(profile, "short_bio", lang, ui.profileFallback);
   const fullAbout = getLocalizedField(profile, "full_about", lang, ui.profileFallback);
-  const profileType = getLocalizedField(profile, "profile_type", lang, ui.profileFallback);
   const clientFocus = getLocalizedField(profile, "client_focus", lang, ui.profileFallback);
-  const experienceSummary = getLocalizedField(profile, "experience_summary", lang, ui.profileFallback);
-  const safetyNote = getLocalizedField(profile, "safety_note", lang, ui.profileFallback);
   const websiteLabel = getLinkLabel(profile.website, profile.website_label, ui.labels.website);
   const socialLabel = getLinkLabel(profile.social_link, profile.social_label, ui.labels.social);
+  const profileImage = String(profile.profile_image || "").trim();
 
-  const [isSafetyOpen, setIsSafetyOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [success, setSuccess] = useState(false);
@@ -81,7 +77,6 @@ export function ProfilePage({ profile, lang }) {
       title: getServiceTitle(profile, index, lang),
       description: getServiceDescription(profile, index, lang),
       delivery: getServiceDelivery(profile, index, lang),
-      engagement: getServiceEngagement(profile, index, lang),
     }))
     .filter((service) => service.title);
 
@@ -111,37 +106,48 @@ export function ProfilePage({ profile, lang }) {
           ))}
         </nav>
       </div>
+      <section className="mb-8 rounded-3xl bg-white p-8 shadow-soft">
+        <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr] xl:items-center">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-display text-3xl font-bold">{profile.name}</h2>
+              {profile.verified ? (
+                <span className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">{ui.verified}</span>
+              ) : null}
+            </div>
+            <p className="mt-3 text-lg font-medium text-clay">{category}</p>
+            <p className="mt-2 text-sm font-semibold text-charcoal/70">{roleTitle}</p>
+            <dl className="mt-8 grid gap-4 text-sm sm:grid-cols-2">
+              <div className="rounded-2xl bg-mist px-4 py-4">
+                <dt className="text-charcoal/55">{ui.labels.location}</dt>
+                <dd className="mt-1 font-semibold">{profile.location || ""}</dd>
+              </div>
+              <div className="rounded-2xl bg-mist px-4 py-4">
+                <dt className="text-charcoal/55">{ui.labels.languages}</dt>
+                <dd className="mt-1 font-semibold">{getLocalizedLanguages(profile.languages, lang)}</dd>
+              </div>
+            </dl>
+          </div>
+          <div className="xl:justify-self-end">
+            <div className="overflow-hidden rounded-[2rem] bg-mist shadow-soft">
+              {profileImage ? (
+                <img
+                  src={profileImage}
+                  alt={`Foto de ${profile.name}`}
+                  className="h-[18rem] w-[14rem] object-cover object-center"
+                />
+              ) : (
+                <div className="flex h-[18rem] w-[14rem] items-center justify-center px-6 text-center text-sm font-semibold text-charcoal/55">
+                  Imagem de perfil indisponível
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="grid gap-8 xl:grid-cols-[1.35fr_0.65fr]">
         <div className="space-y-8">
-          <section className="rounded-3xl bg-white p-8 shadow-soft">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <h2 className="font-display text-3xl font-bold">{profile.name}</h2>
-                  {profile.verified ? (
-                    <span className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">{ui.verified}</span>
-                  ) : null}
-                </div>
-                <p className="mt-3 text-lg font-medium text-clay">{category}</p>
-                <p className="mt-2 text-sm font-semibold text-charcoal/70">{roleTitle}</p>
-              </div>
-              <dl className="grid gap-3 text-sm sm:grid-cols-3 lg:text-right">
-                <div>
-                  <dt className="text-charcoal/55">{ui.labels.location}</dt>
-                  <dd className="mt-1 font-semibold">{profile.location || ""}</dd>
-                </div>
-                <div>
-                  <dt className="text-charcoal/55">{ui.labels.languages}</dt>
-                  <dd className="mt-1 font-semibold">{getLocalizedLanguages(profile.languages, lang)}</dd>
-                </div>
-                <div>
-                  <dt className="text-charcoal/55">{ui.labels.profileType}</dt>
-                  <dd className="mt-1 font-semibold">{profileType}</dd>
-                </div>
-              </dl>
-            </div>
-          </section>
-
           <section id="profile-about" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
             <h3 className="font-display text-2xl font-bold">{ui.sections.about}</h3>
             <p className="mt-5 leading-8 text-charcoal/75">{fullAbout}</p>
@@ -161,10 +167,6 @@ export function ProfilePage({ profile, lang }) {
                       <div>
                         <dt className="text-charcoal/55">{ui.labels.delivery}</dt>
                         <dd className="font-semibold">{service.delivery}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-charcoal/55">{ui.labels.engagement}</dt>
-                        <dd className="font-semibold">{service.engagement}</dd>
                       </div>
                     </dl>
                   </div>
@@ -189,7 +191,6 @@ export function ProfilePage({ profile, lang }) {
                 <p className="mt-2 font-display text-3xl font-bold">{profile.projects_delivered || ""}</p>
               </article>
             </div>
-            <p className="mt-6 leading-8 text-charcoal/75">{experienceSummary}</p>
           </section>
 
           <section id="profile-portfolio" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
@@ -199,6 +200,16 @@ export function ProfilePage({ profile, lang }) {
                 <article key={item.title} className="rounded-3xl bg-mist p-6">
                   <p className="text-sm font-semibold text-clay">{item.title}</p>
                   <p className="mt-3 text-sm leading-7 text-charcoal/75">{item.description}</p>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="mt-5 inline-flex items-center text-sm font-semibold text-teal hover:underline"
+                    >
+                      Veja o projeto
+                    </a>
+                  ) : null}
                 </article>
               ))}
             </div>
@@ -241,25 +252,6 @@ export function ProfilePage({ profile, lang }) {
             </button>
           </section>
 
-          <section className="rounded-3xl bg-mist p-8 shadow-soft">
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="font-display text-xl font-bold">{ui.labels.safetyNote}</h3>
-              <button
-                type="button"
-                aria-expanded={isSafetyOpen}
-                aria-controls="profile-safety-note"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-lg font-semibold text-charcoal transition-colors hover:text-teal"
-                onClick={() => setIsSafetyOpen((value) => !value)}
-              >
-                <span aria-hidden="true">{isSafetyOpen ? "▲" : "▼"}</span>
-              </button>
-            </div>
-            {isSafetyOpen ? (
-              <div id="profile-safety-note">
-                <p className="mt-4 leading-7 text-charcoal/75">{safetyNote}</p>
-              </div>
-            ) : null}
-          </section>
         </aside>
       </div>
 

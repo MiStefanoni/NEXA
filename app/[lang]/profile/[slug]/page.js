@@ -3,10 +3,10 @@ import { ProfilePage } from "../../../../components/profile-page";
 import { getCurrentLang, getLangConfig, getLocalizedField } from "../../../../lib/nexa-data";
 import { getProfessionals } from "../../../../lib/nexa-server";
 
-export function generateMetadata({ params }) {
+export async function generateMetadata({ params }) {
   const lang = getCurrentLang(params.lang);
   const ui = getLangConfig(lang);
-  const profile = getProfessionals().find((item) => item.slug === params.slug);
+  const profile = (await getProfessionals()).find((item) => item.slug === params.slug);
 
   if (!profile) {
     return {
@@ -24,10 +24,10 @@ export function generateMetadata({ params }) {
   return metadata;
 }
 
-export default function ProfileRoute({ params }) {
+export default async function ProfileRoute({ params }) {
   const lang = getCurrentLang(params.lang);
   const ui = getLangConfig(lang);
-  const profile = getProfessionals().find((item) => item.slug === params.slug);
+  const profile = (await getProfessionals()).find((item) => item.slug === params.slug);
 
   if (!profile) {
     notFound();

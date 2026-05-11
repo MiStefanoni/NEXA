@@ -16,7 +16,7 @@ export function generateMetadata({ params }) {
   return metadata;
 }
 
-export default function CategoryPage({ params }) {
+export default async function CategoryPage({ params }) {
   const lang = getCurrentLang(params.lang);
   const ui = getLangConfig(lang);
   const slug = params.slug;
@@ -26,7 +26,7 @@ export default function CategoryPage({ params }) {
   }
 
   const meta = getCategoryMeta(slug, lang);
-  const profiles = getProfessionals().filter((profile) => profile.category_slug === slug);
+  const profiles = (await getProfessionals()).filter((profile) => profile.category_slug === slug);
 
   return (
     <main>

@@ -68,7 +68,7 @@ export async function POST(request) {
     return jsonResponse({ success: false, error: "Invalid email." }, { status: 400 });
   }
 
-  const professional = getProfessionals().find((item) => item.slug === professionalSlug);
+  const professional = (await getProfessionals()).find((item) => item.slug === professionalSlug);
   if (!professional || !isValidEmail(professional.email)) {
     return jsonResponse({ success: false, error: "Professional not found." }, { status: 404 });
   }

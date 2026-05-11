@@ -34,10 +34,10 @@ export function generateMetadata({ params }) {
   return metadata;
 }
 
-export default function HomePage({ params }) {
+export default async function HomePage({ params }) {
   const lang = getCurrentLang(params.lang);
   const ui = getLangConfig(lang);
-  const profiles = getProfessionals();
+  const profiles = await getProfessionals();
 
   return (
     <main id="top">

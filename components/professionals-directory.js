@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CATEGORY_ORDER, getCategoryMeta, getLangConfig, getLocationMode, matchesDirectorySearch } from "../lib/nexa-data";
+import { CATEGORY_ORDER, getCategoryMeta, getLangConfig, matchesAvailabilityFilter, matchesDirectorySearch } from "../lib/nexa-data";
 import { ProfessionalCard } from "./cards";
 
 export function ProfessionalsDirectory({ profiles, lang }) {
@@ -16,7 +16,7 @@ export function ProfessionalsDirectory({ profiles, lang }) {
         meta: getCategoryMeta(slug, lang),
         profiles: profiles.filter((profile) => {
           if (profile.category_slug !== slug) return false;
-          const matchesAvailability = filter === "all" || getLocationMode(profile) === filter;
+          const matchesAvailability = matchesAvailabilityFilter(profile, filter);
           return matchesAvailability && matchesDirectorySearch(profile, query.trim().toLowerCase(), lang);
         }),
       })).filter((section) => section.profiles.length),
