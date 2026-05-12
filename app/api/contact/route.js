@@ -3,10 +3,37 @@ import { jsonResponse, isValidEmail, sanitizeText } from "../../../lib/server-ut
 
 const DEFAULT_MAILGUN_API_BASE_URL = "https://api.mailgun.net";
 
+function getMailgunSender(domain) {
+  if (String(domain || "").startsWith("sandbox")) {
+    return `Mailgun Sandbox <postmaster@${domain}>`;
+  }
+
+  return `Nexa <no-reply@${domain}>`;
+}
+
+function getMailgunApiBaseUrl(value) {
+  const candidate = String(value || "").trim();
+  if (!candidate) {
+    return DEFAULT_MAILGUN_API_BASE_URL;
+  }
+
+  try {
+    const parsed = new URL(candidate);
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+      return parsed.origin;
+    }
+  } catch (_) {
+    return DEFAULT_MAILGUN_API_BASE_URL;
+  }
+
+  return DEFAULT_MAILGUN_API_BASE_URL;
+}
+
 async function sendViaMailgun({ professional, name, email, phone, message, professionalSlug }) {
   const apiKey = process.env.MAILGUN_API_KEY;
   const domain = process.env.MAILGUN_DOMAIN;
-  const apiBaseUrl = process.env.MAILGUN_API_BASE_URL || DEFAULT_MAILGUN_API_BASE_URL;
+  const apiBaseUrl = getMailgunApiBaseUrl(process.env.MAILGUN_API_BASE_URL);
+  const sender = getMailgunSender(domain);
 
   if (!apiKey || !domain) {
     throw new Error("Mailgun environment variables are not configured.");
@@ -14,7 +41,7 @@ async function sendViaMailgun({ professional, name, email, phone, message, profe
 
   const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
   const body = new URLSearchParams({
-    from: `Nexa <no-reply@${domain}>`,
+    from: sender,
     to: professional.email,
     subject: "Nova mensagem via Nexa",
     "h:Reply-To": email,
@@ -45,7 +72,9 @@ async function sendViaMailgun({ professional, name, email, phone, message, profe
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Mailgun request failed: ${response.status} ${errorText}`);
+    const error = new Error(`Mailgun request failed: ${response.status} ${errorText}`);
+    error.debug = { domain, apiBaseUrl, sender, recipient: professional.email };
+    throw error;
   }
 }
 
@@ -76,7 +105,14 @@ export async function POST(request) {
   try {
     await sendViaMailgun({ professional, name, email, phone, message, professionalSlug });
     return jsonResponse({ success: true }, { status: 200 });
-  } catch (_) {
-    return jsonResponse({ success: false, error: "Failed to send email." }, { status: 500 });
+  } catch (error) {
+    return jsonResponse(
+      {
+        success: false,
+        error: error.message || "Failed to send email.",
+        debug: error.debug || null,
+      },
+      { status: 500 },
+    );
   }
 }
