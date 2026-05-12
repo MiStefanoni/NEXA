@@ -8,6 +8,7 @@ import {
   getLocalizedField,
   getLocalizedLanguages,
   getLinkLabel,
+  normalizeExternalUrl,
   getPortfolioItem,
   getServiceDelivery,
   getServiceDescription,
@@ -23,6 +24,8 @@ export function ProfilePage({ profile, lang }) {
   const clientFocus = getLocalizedField(profile, "client_focus", lang, ui.profileFallback);
   const websiteLabel = getLinkLabel(profile.website, profile.website_label, ui.labels.website);
   const socialLabel = getLinkLabel(profile.social_link, profile.social_label, ui.labels.social);
+  const websiteHref = normalizeExternalUrl(profile.website);
+  const socialHref = normalizeExternalUrl(profile.social_link);
   const profileImage = String(profile.profile_image || "").trim();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -202,7 +205,7 @@ export function ProfilePage({ profile, lang }) {
                   <p className="mt-3 text-sm leading-7 text-charcoal/75">{item.description}</p>
                   {item.url ? (
                     <a
-                      href={item.url}
+                      href={normalizeExternalUrl(item.url)}
                       target="_blank"
                       rel="noreferrer noopener"
                       className="mt-5 inline-flex items-center text-sm font-semibold text-teal hover:underline"
@@ -228,13 +231,23 @@ export function ProfilePage({ profile, lang }) {
               </li>
               <li>
                 <span className="block text-charcoal/55">{ui.labels.website}</span>
-                <a href={profile.website || "#"} className="mt-1 inline-block font-semibold text-teal">
+                <a
+                  href={websiteHref || "#"}
+                  target={websiteHref ? "_blank" : undefined}
+                  rel={websiteHref ? "noreferrer noopener" : undefined}
+                  className="mt-1 inline-block font-semibold text-teal"
+                >
                   {websiteLabel}
                 </a>
               </li>
               <li>
                 <span className="block text-charcoal/55">{ui.labels.social}</span>
-                <a href={profile.social_link || "#"} className="mt-1 inline-block font-semibold text-teal">
+                <a
+                  href={socialHref || "#"}
+                  target={socialHref ? "_blank" : undefined}
+                  rel={socialHref ? "noreferrer noopener" : undefined}
+                  className="mt-1 inline-block font-semibold text-teal"
+                >
                   {socialLabel}
                 </a>
               </li>
