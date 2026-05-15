@@ -25,8 +25,8 @@ export function AppShell({ lang, ui, children }) {
 
   return (
     <div lang={ui.htmlLang}>
-      <header className="sticky top-0 z-50 bg-ivory/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
+      <header className="bg-ivory/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-10 lg:px-8">
           <Link href={ui.homePath} className="inline-flex items-center" aria-label="Nexa home">
             <Image src="/Nexa2.png" alt="Nexa" width={113} height={40} className="h-10 w-auto" priority />
           </Link>

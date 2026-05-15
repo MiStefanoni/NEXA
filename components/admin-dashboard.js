@@ -514,6 +514,15 @@ export function AdminDashboard({ initialData }) {
                         />
                         Destaque na home
                       </label>
+                      <label className="inline-flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editorState.profile.founder_professional)}
+                          onChange={(event) => updateProfileField("founder_professional", event.target.checked)}
+                          className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
+                        />
+                        Profissional fundadora
+                      </label>
                     </div>
                   </section>
 

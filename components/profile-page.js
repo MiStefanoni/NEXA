@@ -117,6 +117,11 @@ export function ProfilePage({ profile, lang }) {
               {profile.verified ? (
                 <span className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">{ui.verified}</span>
               ) : null}
+              {profile.founder_professional ? (
+                <span className="inline-flex items-center rounded-full border border-[#843088] bg-[#e6d6e7] px-3 py-1 text-sm font-semibold text-[#843088]">
+                  Profissional Fundadora
+                </span>
+              ) : null}
             </div>
             <p className="mt-3 text-lg font-medium text-clay">{category}</p>
             <p className="mt-2 text-sm font-semibold text-charcoal/70">{roleTitle}</p>

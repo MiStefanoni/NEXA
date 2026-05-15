@@ -41,7 +41,7 @@ export default async function HomePage({ params }) {
 
   return (
     <main id="top">
-      <section className="mx-auto flex min-h-[85vh] max-w-7xl items-center px-6 py-16 lg:px-8 lg:py-24">
+      <section className="mx-auto flex min-h-[85vh] max-w-7xl items-center px-6 pb-16 pt-8 lg:px-8 lg:pb-24 lg:pt-12">
         <div className="grid w-full items-end gap-12 lg:grid-cols-[1fr_minmax(0,45vw)] lg:gap-16">
           <div className="max-w-2xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.eyebrow}</p>

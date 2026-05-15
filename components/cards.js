@@ -31,7 +31,14 @@ export function ProfessionalCard({ profile, lang }) {
       <div>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h3 className="font-display text-2xl font-bold">{profile.name}</h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="font-display text-2xl font-bold">{profile.name}</h3>
+              {profile.founder_professional ? (
+                <span className="inline-flex items-center rounded-full border border-[#843088] bg-[#e6d6e7] px-3 py-1 text-sm font-semibold text-[#843088]">
+                  Profissional Fundadora
+                </span>
+              ) : null}
+            </div>
             <p className="mt-2 text-sm font-medium text-teal">{category}</p>
           </div>
           <span
