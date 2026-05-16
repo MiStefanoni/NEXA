@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { sendEmail } = require("../../lib/email.cjs");
 
 const DATA_PATH = path.join(process.cwd(), "data", "professionals.json");
-const DEFAULT_MAILGUN_API_BASE_URL = "https://api.mailgun.net";
 
 function readProfessionals() {
   const file = fs.readFileSync(DATA_PATH, "utf8");
@@ -24,59 +24,6 @@ function isValidEmail(value) {
 function json(res, status, payload) {
   res.status(status).setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(payload));
-}
-
-async function sendViaMailgun({
-  professional,
-  name,
-  email,
-  phone,
-  message,
-  professionalSlug,
-}) {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const apiBaseUrl = process.env.MAILGUN_API_BASE_URL || DEFAULT_MAILGUN_API_BASE_URL;
-
-  if (!apiKey || !domain) {
-    throw new Error("Mailgun environment variables are not configured.");
-  }
-
-  const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
-  const body = new URLSearchParams({
-    from: `Nexa <no-reply@${domain}>`,
-    to: professional.email,
-    subject: "Nova mensagem via Nexa",
-    "h:Reply-To": email,
-    text: [
-      "Nova mensagem via Nexa",
-      "",
-      `Professional name: ${professional.name}`,
-      `Professional slug: ${professionalSlug}`,
-      "",
-      `Nome: ${name}`,
-      `Email: ${email}`,
-      `Fone: ${phone || "-"}`,
-      "",
-      "Mensagem:",
-      message,
-    ].join("\n"),
-  });
-
-  const credentials = Buffer.from(`api:${apiKey}`).toString("base64");
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${credentials}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body,
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Mailgun request failed: ${response.status} ${errorText}`);
-  }
 }
 
 module.exports = async function handler(req, res) {
@@ -121,14 +68,25 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    await sendViaMailgun({
-      professional,
-      name,
-      email,
-      phone,
-      message,
-      professionalSlug,
+    await sendEmail({
+      to: professional.email,
+      subject: "Nova mensagem via Nexa",
+      replyTo: email,
+      text: [
+        "Nova mensagem via Nexa",
+        "",
+        `Professional name: ${professional.name}`,
+        `Professional slug: ${professionalSlug}`,
+        "",
+        `Nome: ${name}`,
+        `Email: ${email}`,
+        `Fone: ${phone || "-"}`,
+        "",
+        "Mensagem:",
+        message,
+      ].join("\n"),
     });
+
     return json(res, 200, { success: true });
   } catch (error) {
     console.error("Contact send failed", error);

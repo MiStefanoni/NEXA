@@ -1,82 +1,8 @@
 import { getProfessionals } from "../../../lib/nexa-server";
 import { jsonResponse, isValidEmail, sanitizeText } from "../../../lib/server-utils";
+import emailUtils from "../../../lib/email.cjs";
 
-const DEFAULT_MAILGUN_API_BASE_URL = "https://api.mailgun.net";
-
-function getMailgunSender(domain) {
-  if (String(domain || "").startsWith("sandbox")) {
-    return `Mailgun Sandbox <postmaster@${domain}>`;
-  }
-
-  return `Nexa <no-reply@${domain}>`;
-}
-
-function getMailgunApiBaseUrl(value) {
-  const candidate = String(value || "").trim();
-  if (!candidate) {
-    return DEFAULT_MAILGUN_API_BASE_URL;
-  }
-
-  try {
-    const parsed = new URL(candidate);
-    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
-      return parsed.origin;
-    }
-  } catch (_) {
-    return DEFAULT_MAILGUN_API_BASE_URL;
-  }
-
-  return DEFAULT_MAILGUN_API_BASE_URL;
-}
-
-async function sendViaMailgun({ professional, name, email, phone, message, professionalSlug }) {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const apiBaseUrl = getMailgunApiBaseUrl(process.env.MAILGUN_API_BASE_URL);
-  const sender = getMailgunSender(domain);
-
-  if (!apiKey || !domain) {
-    throw new Error("Mailgun environment variables are not configured.");
-  }
-
-  const endpoint = `${apiBaseUrl.replace(/\/$/, "")}/v3/${domain}/messages`;
-  const body = new URLSearchParams({
-    from: sender,
-    to: professional.email,
-    subject: "Nova mensagem via Nexa",
-    "h:Reply-To": email,
-    text: [
-      "Nova mensagem via Nexa",
-      "",
-      `Professional name: ${professional.name}`,
-      `Professional slug: ${professionalSlug}`,
-      "",
-      `Nome: ${name}`,
-      `Email: ${email}`,
-      `Fone: ${phone || "-"}`,
-      "",
-      "Mensagem:",
-      message,
-    ].join("\n"),
-  });
-
-  const credentials = Buffer.from(`api:${apiKey}`).toString("base64");
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${credentials}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body,
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    const error = new Error(`Mailgun request failed: ${response.status} ${errorText}`);
-    error.debug = { domain, apiBaseUrl, sender, recipient: professional.email };
-    throw error;
-  }
-}
+const { getEmailDebugInfo, sendEmail } = emailUtils;
 
 export async function POST(request) {
   const rawBody = await request.json().catch(() => ({}));
@@ -103,14 +29,32 @@ export async function POST(request) {
   }
 
   try {
-    await sendViaMailgun({ professional, name, email, phone, message, professionalSlug });
+    await sendEmail({
+      to: professional.email,
+      subject: "Nova mensagem via Nexa",
+      replyTo: email,
+      text: [
+        "Nova mensagem via Nexa",
+        "",
+        `Professional name: ${professional.name}`,
+        `Professional slug: ${professionalSlug}`,
+        "",
+        `Nome: ${name}`,
+        `Email: ${email}`,
+        `Fone: ${phone || "-"}`,
+        "",
+        "Mensagem:",
+        message,
+      ].join("\n"),
+    });
+
     return jsonResponse({ success: true }, { status: 200 });
   } catch (error) {
     return jsonResponse(
       {
         success: false,
         error: error.message || "Failed to send email.",
-        debug: error.debug || null,
+        debug: getEmailDebugInfo({ recipient: professional.email }),
       },
       { status: 500 },
     );
