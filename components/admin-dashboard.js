@@ -104,7 +104,9 @@ function FileField({ label, value, onChange }) {
   );
 }
 
-function StatusList({ title, records, activeId, onSelect }) {
+function StatusList({ title, records, activeId, onSelect, selectable = false, selectedIds = new Set(), onToggleSelect, onDeleteSelected, deleting = false }) {
+  const selectedCount = records.filter((record) => selectedIds.has(record.id)).length;
+
   return (
     <section className="rounded-3xl bg-white p-6 shadow-soft">
       <div className="mb-5 flex items-center justify-between gap-4">
@@ -112,31 +114,57 @@ function StatusList({ title, records, activeId, onSelect }) {
           <h2 className="font-display text-2xl font-bold">{title}</h2>
           <p className="text-sm text-charcoal/60">{records.length} registro(s)</p>
         </div>
+        {selectable ? (
+          <button
+            type="button"
+            disabled={!selectedCount || deleting}
+            onClick={onDeleteSelected}
+            className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Excluir selecionadas
+          </button>
+        ) : null}
       </div>
       <div className="space-y-3">
         {records.length ? (
           records.map((record) => (
-            <button
+            <div
               key={record.id}
-              type="button"
-              onClick={() => onSelect(record.id)}
-              className={`w-full rounded-2xl border p-4 text-left transition-colors ${
-                activeId === record.id ? "border-teal bg-mist" : "border-charcoal/10 bg-ivory hover:border-teal"
+              className={`rounded-2xl border p-4 transition-colors ${
+                activeId === record.id ? "border-teal bg-mist" : "border-charcoal/10 bg-ivory"
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="font-semibold text-charcoal">{record.profile.name || record.applicant.name || "Sem nome"}</p>
-                  <p className="mt-1 text-sm text-charcoal/65">{record.profile.category_pt || record.applicant.category || "Categoria pendente"}</p>
-                </div>
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-charcoal/70">
-                  #{record.id}
-                </span>
+              <div className="flex items-start gap-3">
+                {selectable ? (
+                  <label className="mt-1 inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.has(record.id)}
+                      onChange={(event) => onToggleSelect(record.id, event.target.checked)}
+                      className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
+                    />
+                  </label>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={() => onSelect(record.id)}
+                  className="flex-1 text-left"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-charcoal">{record.profile.name || record.applicant.name || "Sem nome"}</p>
+                      <p className="mt-1 text-sm text-charcoal/65">{record.profile.category_pt || record.applicant.category || "Categoria pendente"}</p>
+                    </div>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-charcoal/70">
+                      #{record.id}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm text-charcoal/70">
+                    Atualizado em {formatDate(record.updated_at)}
+                  </p>
+                </button>
               </div>
-              <p className="mt-3 text-sm text-charcoal/70">
-                Atualizado em {formatDate(record.updated_at)}
-              </p>
-            </button>
+            </div>
           ))
         ) : (
           <div className="rounded-2xl border border-dashed border-charcoal/15 bg-ivory px-4 py-6 text-sm text-charcoal/65">
@@ -155,7 +183,9 @@ export function AdminDashboard({ initialData }) {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [editorState, setEditorState] = useState(null);
+  const [selectedRejectedIds, setSelectedRejectedIds] = useState([]);
 
   const lists = {
     pending: dashboard.pending || [],
@@ -169,6 +199,8 @@ export function AdminDashboard({ initialData }) {
       if (first) {
         setSelectedRecord(first);
         setEditorState(first);
+      } else {
+        setEditorState(null);
       }
       return;
     }
@@ -181,8 +213,18 @@ export function AdminDashboard({ initialData }) {
     if (fresh) {
       setSelectedRecord(fresh);
       setEditorState(fresh);
+      return;
     }
+
+    const fallback = lists[activeStatus]?.[0] || lists.pending?.[0] || lists.approved?.[0] || lists.rejected?.[0] || null;
+    setSelectedRecord(fallback);
+    setEditorState(fallback);
   }, [dashboard, activeStatus, selectedRecord]);
+
+  useEffect(() => {
+    const rejectedIds = new Set(lists.rejected.map((record) => record.id));
+    setSelectedRejectedIds((current) => current.filter((id) => rejectedIds.has(id)));
+  }, [dashboard.rejected]);
 
   async function fetchDashboard() {
     const response = await fetch("/api/admin/dashboard", { cache: "no-store" });
@@ -305,6 +347,45 @@ export function AdminDashboard({ initialData }) {
     window.location.href = "/admin/login";
   }
 
+  function handleRejectedSelection(id, checked) {
+    setSelectedRejectedIds((current) => {
+      if (checked) {
+        return current.includes(id) ? current : [...current, id];
+      }
+      return current.filter((value) => value !== id);
+    });
+  }
+
+  async function handleDeleteRejected() {
+    if (!selectedRejectedIds.length) return;
+
+    setFeedback("");
+    setError(false);
+    setDeleting(true);
+
+    try {
+      const response = await fetch("/api/admin/applications", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids: selectedRejectedIds }),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "Não foi possível excluir os registros selecionados.");
+      }
+
+      await fetchDashboard();
+      setSelectedRejectedIds([]);
+      setFeedback(`${result.deleted || 0} registro(s) rejeitado(s) excluído(s).`);
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível excluir os registros selecionados.");
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   const currentList = lists[activeStatus] || [];
 
   return (
@@ -395,6 +476,11 @@ export function AdminDashboard({ initialData }) {
             title={STATUS_LABELS[activeStatus]}
             records={currentList}
             activeId={selectedRecord?.id}
+            selectable={activeStatus === "rejected"}
+            selectedIds={new Set(selectedRejectedIds)}
+            onToggleSelect={handleRejectedSelection}
+            onDeleteSelected={handleDeleteRejected}
+            deleting={deleting}
             onSelect={(id) => {
               setSelectedRecord(null);
               setEditorState(null);
