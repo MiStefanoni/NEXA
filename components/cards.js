@@ -4,11 +4,12 @@ import {
   getBadgeLabel,
   getCategoryPath,
   getCategoryTitle,
-  getLocationMode,
   getLocalizedField,
   getProfilePath,
   getLangConfig,
 } from "../lib/nexa-data";
+
+const AVAILABILITY_BADGE_CLASS = "rounded-full bg-mist px-3 py-1 text-xs font-semibold text-teal";
 
 export function CategoryCard({ slug, lang }) {
   const ui = getLangConfig(lang);
@@ -41,11 +42,7 @@ export function ProfessionalCard({ profile, lang }) {
             </div>
             <p className="mt-2 text-sm font-medium text-teal">{category}</p>
           </div>
-          <span
-            className={`rounded-full bg-mist px-3 py-1 text-xs font-semibold ${
-              getLocationMode(profile) === "remote" ? "text-teal" : "text-charcoal"
-            }`}
-          >
+          <span className={AVAILABILITY_BADGE_CLASS}>
             {badgeLabel}
           </span>
         </div>
