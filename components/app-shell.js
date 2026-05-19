@@ -8,6 +8,7 @@ export function AppShell({ lang, ui, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const footerLinks = [
+    { href: ui.aboutPath, label: ui.footer.about },
     { href: `${ui.homePath}#how-it-works`, label: ui.footer.howItWorks },
     { href: ui.categoriesPath, label: ui.footer.categories },
     { href: ui.professionalsPath, label: ui.footer.professionals },
@@ -18,6 +19,7 @@ export function AppShell({ lang, ui, children }) {
   ];
 
   const navLinks = [
+    { href: ui.aboutPath, label: ui.nav.about },
     { href: ui.categoriesPath, label: ui.nav.categories },
     { href: ui.professionalsPath, label: ui.nav.professionals },
     { href: `${ui.homePath}#how-it-works`, label: ui.nav.howItWorks },
