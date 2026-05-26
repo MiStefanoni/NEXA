@@ -131,6 +131,9 @@ export function InviteApplicationPage() {
             <p className="mt-5 leading-8 text-charcoal/75">
               Este formulário é pessoal e vinculado ao convite enviado para o seu email. Depois do envio, a equipe da Nexa irá revisar sua candidatura antes de qualquer publicação.
             </p>
+            <p className="mt-4 leading-8 text-charcoal/75">
+              Preencha seu perfil da forma mais completa possível. Campos não obrigatórios podem ficar em branco, e, nesse caso, essas informações simplesmente não aparecerão no seu perfil público.
+            </p>
             {invite?.expires_at ? (
               <p className="mt-5 rounded-2xl bg-mist px-4 py-3 text-sm font-semibold text-charcoal/75">
                 Link válido até {new Date(invite.expires_at).toLocaleString("pt-BR")}.
@@ -161,6 +164,7 @@ export function InviteApplicationPage() {
                   onProfileFieldChange={updateProfileField}
                   emailReadOnly
                   profileEmailReadOnly
+                  showApplicantSection={false}
                   applicantSectionTitle="Dados da candidatura"
                   applicantNameLabel="Nome"
                   applicantEmailLabel="Email do convite"

@@ -121,6 +121,7 @@ export function ProfileQuestionnaireFields({
   applicantCategoryLabel = "Categoria enviada",
   applicantLocationLabel = "Localização enviada",
   applicantDescriptionLabel = "Descrição enviada",
+  showApplicantSection = true,
 }) {
   const applicant = record?.applicant || {};
   const profile = record?.profile || {};
@@ -131,29 +132,31 @@ export function ProfileQuestionnaireFields({
 
   return (
     <div className="grid gap-8">
-      <section className="rounded-3xl bg-ivory p-6">
-        <h3 className="font-display text-2xl font-bold">{applicantSectionTitle}</h3>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
-          <TextField label={applicantNameLabel} value={applicant.name} onChange={(value) => onApplicantFieldChange("name", value)} />
-          <TextField
-            label={applicantEmailLabel}
-            value={applicant.email}
-            onChange={(value) => onApplicantFieldChange("email", value)}
-            type="email"
-            readOnly={emailReadOnly}
-          />
-          <TextField label={applicantCategoryLabel} value={applicant.category} onChange={(value) => onApplicantFieldChange("category", value)} />
-          <TextField label={applicantLocationLabel} value={applicant.location} onChange={(value) => onApplicantFieldChange("location", value)} />
-        </div>
-        <div className="mt-4">
-          <TextareaField label={applicantDescriptionLabel} value={applicant.description} onChange={(value) => onApplicantFieldChange("description", value)} rows={4} />
-        </div>
-        {showAdminNotes ? (
-          <div className="mt-4">
-            <TextareaField label="Notas internas" value={adminNotes} onChange={onAdminNotesChange} rows={4} placeholder="Ex.: aguardando portfólio, faltou revisar tradução, rejeitado por inconsistência de escopo." />
+      {showApplicantSection ? (
+        <section className="rounded-3xl bg-ivory p-6">
+          <h3 className="font-display text-2xl font-bold">{applicantSectionTitle}</h3>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <TextField label={applicantNameLabel} value={applicant.name} onChange={(value) => onApplicantFieldChange("name", value)} />
+            <TextField
+              label={applicantEmailLabel}
+              value={applicant.email}
+              onChange={(value) => onApplicantFieldChange("email", value)}
+              type="email"
+              readOnly={emailReadOnly}
+            />
+            <TextField label={applicantCategoryLabel} value={applicant.category} onChange={(value) => onApplicantFieldChange("category", value)} />
+            <TextField label={applicantLocationLabel} value={applicant.location} onChange={(value) => onApplicantFieldChange("location", value)} />
           </div>
-        ) : null}
-      </section>
+          <div className="mt-4">
+            <TextareaField label={applicantDescriptionLabel} value={applicant.description} onChange={(value) => onApplicantFieldChange("description", value)} rows={4} />
+          </div>
+          {showAdminNotes ? (
+            <div className="mt-4">
+              <TextareaField label="Notas internas" value={adminNotes} onChange={onAdminNotesChange} rows={4} placeholder="Ex.: aguardando portfólio, faltou revisar tradução, rejeitado por inconsistência de escopo." />
+            </div>
+          ) : null}
+        </section>
+      ) : null}
 
       <section className="rounded-3xl bg-ivory p-6">
         <h3 className="font-display text-2xl font-bold">Perfil público</h3>
