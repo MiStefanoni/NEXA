@@ -367,6 +367,7 @@ export function AdminDashboard({ initialData }) {
   }
 
   const currentList = lists[activeStatus] || [];
+  const activeInvites = (dashboard.invites || []).filter((invite) => invite.status === "pending");
 
   return (
     <main className="min-h-screen bg-ivory px-6 py-8">
@@ -488,13 +489,13 @@ export function AdminDashboard({ initialData }) {
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convites enviados</p>
-                <h2 className="mt-3 font-display text-2xl font-bold">Links privados ativos e históricos</h2>
+                <h2 className="mt-3 font-display text-2xl font-bold">Links privados ativos</h2>
               </div>
-              <p className="text-sm text-charcoal/60">{(dashboard.invites || []).length} convite(s)</p>
+              <p className="text-sm text-charcoal/60">{activeInvites.length} convite(s)</p>
             </div>
             <div className="mt-6 space-y-4">
-              {(dashboard.invites || []).length ? (
-                dashboard.invites.map((invite) => (
+              {activeInvites.length ? (
+                activeInvites.map((invite) => (
                   <article key={invite.id} className="rounded-3xl border border-charcoal/10 bg-ivory p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                       <div className="space-y-2">
@@ -504,18 +505,15 @@ export function AdminDashboard({ initialData }) {
                           <span>Status: {invite.status}</span>
                           <span>Criado em {formatDate(invite.created_at)}</span>
                           <span>Expira em {formatDate(invite.expires_at)}</span>
-                          {invite.used_at ? <span>Usado em {formatDate(invite.used_at)}</span> : null}
                         </div>
                       </div>
-                      {invite.status === "pending" ? (
-                        <button
-                          type="button"
-                          onClick={() => handleRevokeInvite(invite.id)}
-                          className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft"
-                        >
-                          Revogar
-                        </button>
-                      ) : null}
+                      <button
+                        type="button"
+                        onClick={() => handleRevokeInvite(invite.id)}
+                        className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft"
+                      >
+                        Revogar
+                      </button>
                     </div>
                   </article>
                 ))
