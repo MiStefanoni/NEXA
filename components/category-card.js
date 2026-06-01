@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Card } from "./design-system/card";
 import { getCategoryMeta, getCategoryPath, getLangConfig } from "../lib/nexa-data";
 
 export function CategoryCard({ slug, lang }) {
@@ -6,7 +7,7 @@ export function CategoryCard({ slug, lang }) {
   const meta = getCategoryMeta(slug, lang);
 
   return (
-    <article className="flex h-full flex-col justify-between rounded-3xl bg-white p-7 shadow-soft">
+    <Card className="flex h-full flex-col justify-between p-7">
       <div>
         <h3 className="font-display text-2xl font-bold">{meta.title}</h3>
         <p className="mt-3 leading-7 text-charcoal/75">{meta.description}</p>
@@ -14,6 +15,6 @@ export function CategoryCard({ slug, lang }) {
       <Link href={getCategoryPath(slug, lang)} className="mt-6 inline-flex items-center text-sm font-semibold text-teal">
         {ui.categoriesPage.cta}
       </Link>
-    </article>
+    </Card>
   );
 }

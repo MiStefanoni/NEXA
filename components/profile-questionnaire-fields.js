@@ -2,6 +2,7 @@
 
 import { CATEGORY_META, CATEGORY_ORDER } from "../lib/nexa-data";
 import { buildProfileSlugFromName } from "../lib/admin-profile";
+import { Checkbox, FieldLabel, Input, Select, Textarea } from "./design-system/field";
 
 export const SERVICE_DELIVERY_OPTIONS = [
   { value: "Remote", label: "Remoto" },
@@ -28,14 +29,13 @@ export const SOCIAL_LABEL_OPTIONS = [
 export function TextField({ label, value, onChange, placeholder = "", type = "text", readOnly = false }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-charcoal/80">{label}</span>
-      <input
+      <FieldLabel className="text-charcoal/80">{label}</FieldLabel>
+      <Input
         type={type}
         value={value || ""}
         readOnly={readOnly}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal read-only:cursor-not-allowed read-only:opacity-80"
       />
     </label>
   );
@@ -44,13 +44,12 @@ export function TextField({ label, value, onChange, placeholder = "", type = "te
 export function TextareaField({ label, value, onChange, rows = 4, placeholder = "" }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-charcoal/80">{label}</span>
-      <textarea
+      <FieldLabel className="text-charcoal/80">{label}</FieldLabel>
+      <Textarea
         value={value || ""}
         rows={rows}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal"
       />
     </label>
   );
@@ -59,11 +58,10 @@ export function TextareaField({ label, value, onChange, rows = 4, placeholder = 
 export function SelectField({ label, value, onChange, options }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-charcoal/80">{label}</span>
-      <select
+      <FieldLabel className="text-charcoal/80">{label}</FieldLabel>
+      <Select
         value={value || ""}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal"
       >
         <option value="">Selecione</option>
         {options.map((option) => (
@@ -71,7 +69,7 @@ export function SelectField({ label, value, onChange, options }) {
             {option.label}
           </option>
         ))}
-      </select>
+      </Select>
     </label>
   );
 }
@@ -206,29 +204,23 @@ export function ProfileQuestionnaireFields({
         {showInternalFlags ? (
           <div className="mt-5 flex flex-wrap gap-6 text-sm">
             <label className="inline-flex items-center gap-3">
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={Boolean(profile.verified)}
                 onChange={(event) => onProfileFieldChange("verified", event.target.checked)}
-                className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
               />
               Perfil verificado
             </label>
             <label className="inline-flex items-center gap-3">
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={Boolean(profile.featured)}
                 onChange={(event) => onProfileFieldChange("featured", event.target.checked)}
-                className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
               />
               Destaque na home
             </label>
             <label className="inline-flex items-center gap-3">
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={Boolean(profile.founder_professional)}
                 onChange={(event) => onProfileFieldChange("founder_professional", event.target.checked)}
-                className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
               />
               Profissional fundadora
             </label>

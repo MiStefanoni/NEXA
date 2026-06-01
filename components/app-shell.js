@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Button } from "./design-system/button";
 
 export function AppShell({ lang, ui, children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,23 +41,21 @@ export function AppShell({ lang, ui, children }) {
             ))}
           </nav>
           <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href={ui.applyPath}
-              className="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90"
-            >
+            <Button href={ui.applyPath} variant="primary">
               {ui.nav.applyNow}
-            </Link>
+            </Button>
           </div>
           <div className="flex items-center gap-3 md:hidden">
-            <button
+            <Button
               type="button"
+              variant="secondary"
+              size="sm"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              className="inline-flex items-center rounded-2xl border border-charcoal/15 bg-white px-4 py-2 text-sm font-semibold text-charcoal shadow-soft"
               onClick={() => setIsOpen((value) => !value)}
             >
               {ui.nav.menu}
-            </button>
+            </Button>
           </div>
         </div>
         <div id="mobile-menu" className={`${isOpen ? "block" : "hidden"} border-t border-charcoal/10 bg-white md:hidden`}>
@@ -71,13 +70,9 @@ export function AppShell({ lang, ui, children }) {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href={ui.applyPath}
-              className="mt-2 rounded-2xl bg-clay px-4 py-3 text-center font-semibold text-white shadow-soft"
-              onClick={() => setIsOpen(false)}
-            >
+            <Button href={ui.applyPath} className="mt-2" fullWidth onClick={() => setIsOpen(false)}>
               {ui.nav.applyNow}
-            </Link>
+            </Button>
           </nav>
         </div>
       </header>

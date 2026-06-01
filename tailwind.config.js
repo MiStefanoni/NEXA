@@ -8,18 +8,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ivory: "#F7F6F4",
-        charcoal: "#2B2B2B",
-        clay: "#843088",
-        teal: "#E47E4A",
-        mist: "#F9E1CF",
+        ivory: "rgb(var(--color-ivory) / <alpha-value>)",
+        charcoal: "rgb(var(--color-charcoal) / <alpha-value>)",
+        clay: "rgb(var(--color-clay) / <alpha-value>)",
+        teal: "rgb(var(--color-teal) / <alpha-value>)",
+        mist: "rgb(var(--color-mist) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        display: ["DM Sans", "sans-serif"],
+        sans: ["var(--font-body)", "Inter", "sans-serif"],
+        display: ["var(--font-display)", "DM Sans", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 16px 40px rgba(43, 43, 43, 0.08)",
+        soft: "var(--shadow-soft)",
       },
     },
   },

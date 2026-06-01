@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "./design-system/button";
+import { FeedbackBanner } from "./design-system/feedback-banner";
+import { FieldLabel, Input, Select, Textarea } from "./design-system/field";
 
 export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
   const [feedback, setFeedback] = useState("");
@@ -72,110 +75,74 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
   return (
     <form className="mt-6 grid gap-5" onSubmit={handleSubmit} noValidate>
       <div>
-        <label htmlFor={`name-${source}`} className="mb-2 block text-sm font-medium">
-          {lang === "en" ? "Name" : "Nome"}
-        </label>
-        <input
+        <FieldLabel htmlFor={`name-${source}`}>{lang === "en" ? "Name" : "Nome"}</FieldLabel>
+        <Input
           id={`name-${source}`}
           name="name"
           type="text"
           required
-          className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
           placeholder={lang === "en" ? "Your full name" : "Seu nome completo"}
         />
       </div>
       <div>
-        <label htmlFor={`email-${source}`} className="mb-2 block text-sm font-medium">
-          Email
-        </label>
-        <input
+        <FieldLabel htmlFor={`email-${source}`}>Email</FieldLabel>
+        <Input
           id={`email-${source}`}
           name="email"
           type="email"
           required
-          className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
           placeholder={lang === "en" ? "name@example.com" : "nome@exemplo.com"}
         />
       </div>
       {withExtraFields ? (
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor={`category-${source}`} className="mb-2 block text-sm font-medium">
-              {lang === "en" ? "Category" : "Categoria"}
-            </label>
-            <select
-              id={`category-${source}`}
-              name="category"
-              required
-              className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal"
-              defaultValue=""
-            >
+            <FieldLabel htmlFor={`category-${source}`}>{lang === "en" ? "Category" : "Categoria"}</FieldLabel>
+            <Select id={`category-${source}`} name="category" required defaultValue="">
               <option value="">{lang === "en" ? "Select a category" : "Selecione uma categoria"}</option>
               {categories.map((category) => (
                 <option key={category} value={category}>
                   {category}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
           <div>
-            <label htmlFor={`location-${source}`} className="mb-2 block text-sm font-medium">
-              {lang === "en" ? "Location" : "Localização"}
-            </label>
-            <input
+            <FieldLabel htmlFor={`location-${source}`}>{lang === "en" ? "Location" : "Localização"}</FieldLabel>
+            <Input
               id={`location-${source}`}
               name="location"
               type="text"
-              className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
               placeholder={lang === "en" ? "City, state, or remote" : "Cidade, estado ou remoto"}
             />
           </div>
         </div>
       ) : (
         <div>
-          <label htmlFor={`category-${source}`} className="mb-2 block text-sm font-medium">
-            {lang === "en" ? "Category" : "Categoria"}
-          </label>
-          <select
-            id={`category-${source}`}
-            name="category"
-            required
-            className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none focus:border-teal"
-            defaultValue=""
-          >
+          <FieldLabel htmlFor={`category-${source}`}>{lang === "en" ? "Category" : "Categoria"}</FieldLabel>
+          <Select id={`category-${source}`} name="category" required defaultValue="">
             <option value="">{lang === "en" ? "Select a category" : "Selecione uma categoria"}</option>
             {categories.map((category) => (
               <option key={category} value={category}>
                 {category}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
       )}
-      {withExtraFields && (
+      {withExtraFields ? (
         <div>
-          <label htmlFor={`website-${source}`} className="mb-2 block text-sm font-medium">
-            {lang === "en" ? "Website or portfolio" : "Website ou portfólio"}
-          </label>
-          <input
-            id={`website-${source}`}
-            name="website"
-            type="url"
-            className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
-            placeholder="https://seusite.com"
-          />
+          <FieldLabel htmlFor={`website-${source}`}>{lang === "en" ? "Website or portfolio" : "Website ou portfólio"}</FieldLabel>
+          <Input id={`website-${source}`} name="website" type="url" placeholder="https://seusite.com" />
         </div>
-      )}
+      ) : null}
       <div>
-        <label htmlFor={`description-${source}`} className="mb-2 block text-sm font-medium">
-          {lang === "en" ? "Description" : "Descrição"}
-        </label>
-        <textarea
+        <FieldLabel htmlFor={`description-${source}`}>{lang === "en" ? "Description" : "Descrição"}</FieldLabel>
+        <Textarea
           id={`description-${source}`}
           name="description"
           rows={withExtraFields ? 6 : 5}
           required
-          className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
           placeholder={
             lang === "en"
               ? "Tell us about your work, services, and ideal clients."
@@ -183,18 +150,10 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
           }
         />
       </div>
-      {feedback ? (
-        <p
-          className={`rounded-2xl px-4 py-3 text-sm ${
-            error ? "border border-red-200 bg-red-50 text-red-700" : "border border-clay/15 bg-mist text-charcoal/75"
-          }`}
-        >
-          {feedback}
-        </p>
-      ) : null}
-      <button type="submit" disabled={sending} className="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90 disabled:opacity-60">
+      {feedback ? <FeedbackBanner variant={error ? "error" : "success"}>{feedback}</FeedbackBanner> : null}
+      <Button type="submit" disabled={sending} size="lg">
         {sending ? ui.applicationForm.sending : lang === "en" ? "Submit application" : "Enviar candidatura"}
-      </button>
+      </Button>
     </form>
   );
 }
