@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "./design-system/button";
+import { PanelCard, SubtleCard } from "./design-system/card";
+import { FeedbackBanner } from "./design-system/feedback-banner";
+import { Checkbox, FieldLabel, Input, Select } from "./design-system/field";
 import { ProfileQuestionnaireFields } from "./profile-questionnaire-fields";
 
 const STATUS_LABELS = {
@@ -18,21 +22,21 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
   const selectedCount = records.filter((record) => selectedIds.has(record.id)).length;
 
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-soft">
+    <PanelCard className="p-6">
       <div className="mb-5 flex items-center justify-between gap-4">
         <div>
           <h2 className="font-display text-2xl font-bold">{title}</h2>
           <p className="text-sm text-charcoal/60">{records.length} registro(s)</p>
         </div>
         {selectable ? (
-          <button
-            type="button"
+          <Button
             disabled={!selectedCount || deleting}
             onClick={onDeleteSelected}
-            className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft disabled:cursor-not-allowed disabled:opacity-60"
+            variant="destructive"
+            size="md"
           >
             Excluir selecionadas
-          </button>
+          </Button>
         ) : null}
       </div>
       <div className="space-y-3">
@@ -47,11 +51,9 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
               <div className="flex items-start gap-3">
                 {selectable ? (
                   <label className="mt-1 inline-flex items-center">
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={selectedIds.has(record.id)}
                       onChange={(event) => onToggleSelect(record.id, event.target.checked)}
-                      className="h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal"
                     />
                   </label>
                 ) : null}
@@ -77,12 +79,12 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
             </div>
           ))
         ) : (
-          <div className="rounded-2xl border border-dashed border-charcoal/15 bg-ivory px-4 py-6 text-sm text-charcoal/65">
+          <SubtleCard className="rounded-2xl border border-dashed border-charcoal/15 px-4 py-6 text-sm text-charcoal/65">
             Nenhum registro nesta área.
-          </div>
+          </SubtleCard>
         )}
       </div>
-    </section>
+    </PanelCard>
   );
 }
 
@@ -355,7 +357,7 @@ export function AdminDashboard({ initialData }) {
   return (
     <main className="min-h-screen bg-ivory px-6 py-8">
       <div className="mx-auto max-w-7xl">
-        <header className="rounded-[2rem] bg-white p-8 shadow-soft">
+        <PanelCard className="p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa Admin</p>
@@ -365,90 +367,78 @@ export function AdminDashboard({ initialData }) {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={handleCreateDraft}
-                className="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
-              >
+              <Button type="button" onClick={handleCreateDraft}>
                 Novo perfil
-              </button>
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="rounded-2xl border border-charcoal/15 bg-white px-5 py-3 text-sm font-semibold text-charcoal shadow-soft hover:border-teal hover:text-teal"
-              >
+              </Button>
+              <Button type="button" variant="secondary" onClick={handleLogout}>
                 Sair
-              </button>
+              </Button>
             </div>
           </div>
-        </header>
+        </PanelCard>
 
         {!dashboard.dbConfigured ? (
-          <section className="mt-8 rounded-[2rem] border border-amber-200 bg-amber-50 p-8">
+          <PanelCard className="mt-8 border border-amber-200 bg-amber-50 p-8 shadow-none">
             <h2 className="font-display text-2xl font-bold text-charcoal">Banco de dados ainda não configurado</h2>
             <p className="mt-4 leading-8 text-charcoal/75">
               Configure `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_SESSION_SECRET` e `ADMIN_PASSWORD_HASH` ou `ADMIN_PASSWORD` para ativar o painel seguro, o fluxo de aprovação e a publicação instantânea no site público.
             </p>
-          </section>
+          </PanelCard>
         ) : null}
 
         {feedback ? (
-          <p className={`mt-8 rounded-3xl px-5 py-4 text-sm ${error ? "border border-red-200 bg-red-50 text-red-700" : "border border-charcoal/10 bg-white text-charcoal/75 shadow-soft"}`}>
+          <FeedbackBanner className="mt-8 rounded-3xl px-5 py-4" variant={error ? "error" : "default"}>
             {feedback}
-          </p>
+          </FeedbackBanner>
         ) : null}
 
         {dashboard.dbConfigured ? (
         <section className="mt-8 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
-          <section className="rounded-[2rem] bg-white p-8 shadow-soft">
+          <PanelCard className="p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convites</p>
             <h2 className="mt-3 font-display text-2xl font-bold">Enviar convite de candidatura</h2>
             <form className="mt-6 grid gap-4" onSubmit={handleSendInvite}>
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-charcoal/80">Nome</span>
-                <input
+              <div>
+                <FieldLabel htmlFor="invite-name" className="text-charcoal/80">Nome</FieldLabel>
+                <Input
+                  id="invite-name"
                   type="text"
                   value={inviteForm.name}
                   onChange={(event) => setInviteForm((current) => ({ ...current, name: event.target.value }))}
-                  className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal"
                   placeholder="Opcional"
                 />
-              </label>
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-charcoal/80">Email</span>
-                <input
+              </div>
+              <div>
+                <FieldLabel htmlFor="invite-email" className="text-charcoal/80">Email</FieldLabel>
+                <Input
+                  id="invite-email"
                   type="email"
                   required
                   value={inviteForm.email}
                   onChange={(event) => setInviteForm((current) => ({ ...current, email: event.target.value }))}
-                  className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal"
                   placeholder="nome@exemplo.com"
                 />
-              </label>
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-charcoal/80">Expiração</span>
-                <select
+              </div>
+              <div>
+                <FieldLabel htmlFor="invite-expiration" className="text-charcoal/80">Expiração</FieldLabel>
+                <Select
+                  id="invite-expiration"
                   value={inviteForm.expiresInDays}
                   onChange={(event) => setInviteForm((current) => ({ ...current, expiresInDays: event.target.value }))}
-                  className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal"
                 >
                   <option value="3">3 dias</option>
                   <option value="7">7 dias</option>
                   <option value="14">14 dias</option>
                   <option value="30">30 dias</option>
-                </select>
-              </label>
-              <button
-                type="submit"
-                disabled={sendingInvite}
-                className="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-clay/90 disabled:opacity-60"
-              >
+                </Select>
+              </div>
+              <Button type="submit" disabled={sendingInvite}>
                 {sendingInvite ? "Enviando..." : "Enviar convite"}
-              </button>
+              </Button>
             </form>
-          </section>
+          </PanelCard>
 
-          <section className="rounded-[2rem] bg-white p-8 shadow-soft">
+          <PanelCard className="p-8">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convites enviados</p>
@@ -459,7 +449,7 @@ export function AdminDashboard({ initialData }) {
             <div className="mt-6 space-y-4">
               {activeInvites.length ? (
                 activeInvites.map((invite) => (
-                  <article key={invite.id} className="rounded-3xl border border-charcoal/10 bg-ivory p-5">
+                  <SubtleCard key={invite.id} className="border border-charcoal/10 p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                       <div className="space-y-2">
                         <p className="font-semibold text-charcoal">{invite.name || "Sem nome"}</p>
@@ -470,40 +460,34 @@ export function AdminDashboard({ initialData }) {
                           <span>Expira em {formatDate(invite.expires_at)}</span>
                         </div>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => handleRevokeInvite(invite.id)}
-                        className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft"
-                      >
+                      <Button type="button" variant="destructive" size="md" onClick={() => handleRevokeInvite(invite.id)}>
                         Revogar
-                      </button>
+                      </Button>
                     </div>
-                  </article>
+                  </SubtleCard>
                 ))
               ) : (
-                <div className="rounded-2xl border border-dashed border-charcoal/15 bg-ivory px-4 py-6 text-sm text-charcoal/65">
+                <SubtleCard className="rounded-2xl border border-dashed border-charcoal/15 px-4 py-6 text-sm text-charcoal/65">
                   Nenhum convite enviado ainda.
-                </div>
+                </SubtleCard>
               )}
             </div>
-          </section>
+          </PanelCard>
         </section>
         ) : null}
 
         <section className="mt-8 flex flex-wrap gap-3">
           {Object.entries(STATUS_LABELS).map(([status, label]) => (
-            <button
+            <Button
               key={status}
               type="button"
               onClick={() => setActiveStatus(status)}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold shadow-soft transition-colors ${
-                activeStatus === status
-                  ? "border-teal bg-mist text-teal"
-                  : "border-charcoal/15 bg-white text-charcoal hover:border-teal hover:text-teal"
-              }`}
+              variant={activeStatus === status ? "chipActive" : "chip"}
+              size="sm"
+              className="rounded-full"
             >
               {label}
-            </button>
+            </Button>
           ))}
         </section>
 
@@ -527,7 +511,7 @@ export function AdminDashboard({ initialData }) {
             }}
           />
 
-          <section className="rounded-[2rem] bg-white p-6 shadow-soft lg:p-8">
+          <PanelCard className="p-6 lg:p-8">
             {editorState ? (
               <>
                 <div className="flex flex-col gap-5 border-b border-charcoal/10 pb-6 lg:flex-row lg:items-start lg:justify-between">
@@ -544,30 +528,15 @@ export function AdminDashboard({ initialData }) {
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <button
-                      type="button"
-                      disabled={saving}
-                      onClick={() => handleSave("pending")}
-                      className="rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm font-semibold text-charcoal shadow-soft hover:border-teal hover:text-teal disabled:opacity-60"
-                    >
+                    <Button type="button" variant="secondary" disabled={saving} onClick={() => handleSave("pending")}>
                       Salvar em pendências
-                    </button>
-                    <button
-                      type="button"
-                      disabled={saving}
-                      onClick={() => handleSave("rejected")}
-                      className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 shadow-soft disabled:opacity-60"
-                    >
+                    </Button>
+                    <Button type="button" variant="destructive" disabled={saving} onClick={() => handleSave("rejected")}>
                       Rejeitar
-                    </button>
-                    <button
-                      type="button"
-                      disabled={saving}
-                      onClick={() => handleSave("approved")}
-                      className="rounded-2xl bg-clay px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-clay/90 disabled:opacity-60"
-                    >
+                    </Button>
+                    <Button type="button" disabled={saving} onClick={() => handleSave("approved")}>
                       Aprovar e publicar
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -582,11 +551,11 @@ export function AdminDashboard({ initialData }) {
                 />
               </>
             ) : (
-              <div className="flex min-h-[24rem] items-center justify-center rounded-[2rem] border border-dashed border-charcoal/15 bg-ivory px-6 text-center text-charcoal/65">
+              <SubtleCard className="flex min-h-[24rem] items-center justify-center rounded-[2rem] border border-dashed border-charcoal/15 px-6 text-center text-charcoal/65">
                 Clique em Novo perfil para criar o primeiro registro, preencher os dados e publicar no diretório.
-              </div>
+              </SubtleCard>
             )}
-          </section>
+          </PanelCard>
         </div>
       </div>
     </main>

@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { CATEGORY_ORDER, getCategoryMeta, getLangConfig, matchesAvailabilityFilter, matchesDirectorySearch } from "../lib/nexa-data";
 import { ProfessionalCard } from "./cards";
+import { Button } from "./design-system/button";
+import { Input } from "./design-system/field";
 
 export function ProfessionalsDirectory({ profiles, lang }) {
   const ui = getLangConfig(lang);
@@ -36,19 +38,17 @@ export function ProfessionalsDirectory({ profiles, lang }) {
             ].map((option) => {
               const isActive = filter === option.id;
               return (
-                <button
+                <Button
                   key={option.id}
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setFilter(option.id)}
-                  className={`rounded-full border px-4 py-2 shadow-soft transition-colors ${
-                    isActive
-                      ? "border-teal bg-mist text-teal"
-                      : "border-charcoal/15 bg-white hover:border-teal hover:text-teal"
-                  }`}
+                  variant={isActive ? "chipActive" : "chip"}
+                  size="sm"
+                  className="rounded-full shadow-soft"
                 >
                   {option.label}
-                </button>
+                </Button>
               );
             })}
           </div>
@@ -57,13 +57,13 @@ export function ProfessionalsDirectory({ profiles, lang }) {
           <label htmlFor="directory-search" className="sr-only">
             {ui.professionalsPage.searchPlaceholder}
           </label>
-          <input
+          <Input
             id="directory-search"
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={ui.professionalsPage.searchPlaceholder}
-            className="w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm shadow-soft outline-none placeholder:text-charcoal/40 focus:border-teal"
+            className="bg-white shadow-soft placeholder:text-charcoal/40"
           />
         </div>
       </div>

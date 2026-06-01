@@ -4,10 +4,75 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-ivory: 247 246 244;
+  --color-charcoal: 43 43 43;
+  --color-clay: 132 48 136;
+  --color-teal: 228 126 74;
+  --color-mist: 249 225 207;
+
+  --surface-default: 255 255 255;
+  --surface-canvas: var(--color-ivory);
+  --surface-subtle: var(--color-mist);
+
+  --text-default: var(--color-charcoal);
+  --text-subtle: 43 43 43;
+
+  --font-body: "Inter";
+  --font-display: "DM Sans";
+
+  --radius-control: 1rem;
+  --radius-card: 1.5rem;
+  --radius-panel: 2rem;
+  --shadow-soft: 0 16px 40px rgba(43, 43, 43, 0.08);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   @apply bg-ivory font-sans text-charcoal antialiased;
+}
+
+@layer components {
+  .ds-page-shell {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .ds-page-section {
+    @apply py-16 lg:py-20;
+  }
+
+  .ds-panel {
+    @apply rounded-[2rem] bg-white p-8 shadow-soft lg:p-10;
+  }
+
+  .ds-card {
+    @apply rounded-3xl bg-white p-8 shadow-soft;
+  }
+
+  .ds-card-subtle {
+    @apply rounded-3xl bg-mist p-8 shadow-soft;
+  }
+
+  .ds-eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.24em] text-teal;
+  }
+
+  .ds-heading-hero {
+    @apply mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl;
+  }
+
+  .ds-heading-section {
+    @apply font-display text-2xl font-bold;
+  }
+
+  .ds-body {
+    @apply leading-8 text-charcoal/75;
+  }
+
+  .ds-body-lg {
+    @apply text-lg leading-8 text-charcoal/75;
+  }
 }

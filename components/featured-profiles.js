@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { getLangConfig, matchesAvailabilityFilter } from "../lib/nexa-data";
 import { ProfessionalCard } from "./cards";
+import { Button } from "./design-system/button";
 
 export function FeaturedProfiles({ profiles, lang, limit = 3 }) {
   const ui = getLangConfig(lang);
@@ -27,19 +28,17 @@ export function FeaturedProfiles({ profiles, lang, limit = 3 }) {
           ].map((option) => {
             const isActive = filter === option.id;
             return (
-              <button
+              <Button
                 key={option.id}
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => setFilter(option.id)}
-                className={`rounded-full border px-4 py-2 shadow-soft transition-colors ${
-                  isActive
-                    ? "border-teal bg-mist text-teal"
-                    : "border-charcoal/15 bg-white hover:border-teal hover:text-teal"
-                }`}
+                variant={isActive ? "chipActive" : "chip"}
+                size="sm"
+                className="rounded-full shadow-soft"
               >
                 {option.label}
-              </button>
+              </Button>
             );
           })}
         </div>
