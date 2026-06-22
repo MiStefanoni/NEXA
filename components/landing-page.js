@@ -74,7 +74,7 @@ export function LandingPage() {
                   A Nexa é uma plataforma criada para dar visibilidade a profissionais mulheres e facilitar conexões com pessoas e empresas que buscam serviços de qualidade.
                 </p>
                 <p className="mt-6 inline-flex rounded-full bg-mist px-4 py-2 text-sm font-semibold text-clay">
-                  Lançamento previsto para o final de maio.
+                  Lançamento previsto para julho.
                 </p>
                 <div className="mt-8">
                   <a
@@ -166,7 +166,7 @@ export function LandingPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Lançamento</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Estamos preparando a chegada da plataforma</h2>
             <p className="mt-5 max-w-3xl leading-8 text-charcoal/75">
-              Estamos preparando o lançamento da plataforma para o final de maio. Enquanto isso, você pode entrar na lista de espera para receber novidades e ser uma das primeiras pessoas a participar da Nexa.
+              Estamos preparando o lançamento da plataforma para julho. Enquanto isso, você pode entrar na lista de espera para receber novidades e ser uma das primeiras pessoas a participar da Nexa.
             </p>
           </div>
         </section>
