@@ -253,23 +253,6 @@ export function AdminDashboard({ initialData }) {
     }
   }
 
-  async function handleImportLegacy() {
-    setFeedback("");
-    setError(false);
-    try {
-      const response = await fetch("/api/admin/bootstrap", { method: "POST" });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(result.error || "Falha ao importar perfis atuais.");
-      }
-      await fetchDashboard();
-      setFeedback(`${result.imported} perfil(is) públicos importados para a base administrativa.`);
-    } catch (submissionError) {
-      setError(true);
-      setFeedback(submissionError.message || "Falha ao importar perfis atuais.");
-    }
-  }
-
   async function handleLogout() {
     await fetch("/api/admin/logout", { method: "POST" });
     window.location.href = "/admin/login";
@@ -398,24 +381,8 @@ export function AdminDashboard({ initialData }) {
           <PanelCard className="mt-8 border border-amber-200 bg-amber-50 p-8 shadow-none">
             <h2 className="font-display text-2xl font-bold text-charcoal">Banco de dados ainda não configurado</h2>
             <p className="mt-4 leading-8 text-charcoal/75">
-              Configure `DATABASE_URL`, `ADMIN_SESSION_SECRET` e `ADMIN_PASSWORD_HASH` ou `ADMIN_PASSWORD` para ativar o painel seguro, o fluxo de aprovação e a publicação instantânea no site público.
+              Configure `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `ADMIN_SESSION_SECRET` e `ADMIN_PASSWORD_HASH` ou `ADMIN_PASSWORD` para ativar o painel seguro, o fluxo de aprovação e a publicação instantânea no site público.
             </p>
-          </PanelCard>
-        ) : null}
-
-        {dashboard.dbConfigured && !dashboard.approved.length && dashboard.legacyProfilesCount > 0 ? (
-          <PanelCard className="mt-8 p-8">
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <h2 className="font-display text-2xl font-bold">Importar os perfis públicos atuais</h2>
-                <p className="mt-3 max-w-3xl leading-8 text-charcoal/75">
-                  A base administrativa ainda está vazia. Importe os perfis já publicados em `professionals.json` para começar a gerenciá-los dentro do novo fluxo em Next.js.
-                </p>
-              </div>
-              <Button type="button" onClick={handleImportLegacy} className="bg-teal hover:opacity-90">
-                Importar perfis atuais
-              </Button>
-            </div>
           </PanelCard>
         ) : null}
 
@@ -585,7 +552,7 @@ export function AdminDashboard({ initialData }) {
               </>
             ) : (
               <SubtleCard className="flex min-h-[24rem] items-center justify-center rounded-[2rem] border border-dashed border-charcoal/15 px-6 text-center text-charcoal/65">
-                Selecione um registro para revisar, editar ou publicar.
+                Clique em Novo perfil para criar o primeiro registro, preencher os dados e publicar no diretório.
               </SubtleCard>
             )}
           </PanelCard>
