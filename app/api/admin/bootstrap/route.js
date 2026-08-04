@@ -8,7 +8,7 @@ export async function POST(request) {
   }
 
   if (!isAdminDatabaseConfigured()) {
-    return jsonResponse({ success: false, error: "DATABASE_URL is not configured." }, { status: 400 });
+    return jsonResponse({ success: false, error: "Turso database is not configured." }, { status: 400 });
   }
 
   try {
