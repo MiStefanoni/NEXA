@@ -4,7 +4,7 @@ import emailUtils from "../../../lib/email.cjs";
 
 const APPLICATION_RECIPIENT =
   process.env.APPLICATION_RECIPIENT || "mifstefanoni@gmail.com";
-const { getEmailDebugInfo, sendEmail } = emailUtils;
+const { sendEmail } = emailUtils;
 
 export async function POST(request) {
   const rawBody = await request.json().catch(() => ({}));
@@ -29,6 +29,17 @@ export async function POST(request) {
 
   try {
     await createPendingApplicationRecord({ name, email, category, location, website, description, source });
+  } catch (error) {
+    return jsonResponse(
+      {
+        success: false,
+        error: error.message || "Failed to save application.",
+      },
+      { status: 500 },
+    );
+  }
+
+  try {
     await sendEmail({
       to: APPLICATION_RECIPIENT,
       subject: "Nova candidatura via Nexa",
@@ -47,16 +58,9 @@ export async function POST(request) {
         description,
       ].join("\n"),
     });
-
-    return jsonResponse({ success: true }, { status: 200 });
   } catch (error) {
-    return jsonResponse(
-      {
-        success: false,
-        error: error.message || "Failed to send application.",
-        debug: getEmailDebugInfo({ recipient: APPLICATION_RECIPIENT }),
-      },
-      { status: 500 },
-    );
+    console.error("Application notification email failed:", error);
   }
+
+  return jsonResponse({ success: true }, { status: 200 });
 }
