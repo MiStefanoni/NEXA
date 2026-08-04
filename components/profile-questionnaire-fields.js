@@ -222,7 +222,7 @@ export function ProfileQuestionnaireFields({
                 checked={Boolean(profile.founder_professional)}
                 onChange={(event) => onProfileFieldChange("founder_professional", event.target.checked)}
               />
-              Profissional fundadora
+              Profissional pioneira
             </label>
           </div>
         ) : null}

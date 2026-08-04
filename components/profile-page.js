@@ -108,7 +108,7 @@ export function ProfilePage({ profile, lang }) {
           ))}
         </nav>
       </div>
-      <section className="mb-8 rounded-3xl bg-white py-8 pl-8 pr-0 shadow-soft">
+      <section className="mb-8 rounded-3xl bg-white py-8 pl-8 pr-10 shadow-soft">
         <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr] xl:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-3">
@@ -118,7 +118,7 @@ export function ProfilePage({ profile, lang }) {
               ) : null}
               {profile.founder_professional ? (
                 <span className="inline-flex items-center rounded-full border border-nexa_purple bg-[#e6d6e7] px-3 py-1 text-sm font-semibold text-nexa_purple">
-                  Profissional Fundadora
+                  Profissional Pioneira
                 </span>
               ) : null}
             </div>
@@ -165,7 +165,7 @@ export function ProfilePage({ profile, lang }) {
             <div className="mt-6 space-y-5">
               {services.map((service) => (
                 <article key={service.title} className="rounded-3xl border border-charcoal/10 p-6">
-                  <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                       <h4 className="text-lg font-semibold">{service.title}</h4>
                       <p className="mt-3 leading-7 text-charcoal/75">{service.description}</p>

@@ -34,7 +34,7 @@ export function ProfessionalCard({ profile, lang }) {
           <div className="flex flex-wrap items-center gap-3">
             {profile.founder_professional ? (
               <Badge variant="founder" size="md">
-                Profissional Fundadora
+                Profissional Pioneira
               </Badge>
             ) : null}
             <Badge variant="warm" className="ml-auto">
@@ -47,7 +47,7 @@ export function ProfessionalCard({ profile, lang }) {
         <p className="mt-4 leading-7 text-charcoal/75">{shortBio}</p>
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
           {serviceTags.slice(0, 3).map((tag) => (
-            <Badge key={tag} variant="neutral" className="px-3 py-2">
+            <Badge key={tag} variant="neutral" className="!rounded-2xl px-3 py-2">
               {tag}
             </Badge>
           ))}
