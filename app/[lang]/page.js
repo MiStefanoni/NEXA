@@ -44,14 +44,14 @@ export default async function HomePage({ params }) {
       <section className="mx-auto flex min-h-[85vh] max-w-7xl items-center px-6 pb-16 pt-8 lg:px-8 lg:pb-24 lg:pt-12">
         <div className="grid w-full items-end gap-12 lg:grid-cols-[1fr_minmax(0,45vw)] lg:gap-16">
           <div className="max-w-2xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.eyebrow}</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.home.eyebrow}</p>
             <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">{ui.home.heading}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-charcoal/75">{ui.home.body}</p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href={ui.professionalsPath} className="rounded-2xl bg-clay px-6 py-4 text-center text-sm font-semibold text-white shadow-soft hover:bg-clay/90">
+              <a href={ui.professionalsPath} className="rounded-2xl bg-nexa_purple px-6 py-4 text-center text-sm font-semibold text-white shadow-soft hover:bg-nexa_purple/90">
                 {ui.home.primaryCta}
               </a>
-              <a href={ui.applyPath} className="rounded-2xl border border-charcoal/15 bg-white px-6 py-4 text-center text-sm font-semibold text-charcoal shadow-soft hover:border-teal hover:text-teal">
+              <a href={ui.applyPath} className="rounded-2xl border border-charcoal/15 bg-white px-6 py-4 text-center text-sm font-semibold text-charcoal shadow-soft hover:border-nexa_orange hover:text-nexa_orange">
                 {ui.home.secondaryCta}
               </a>
             </div>
@@ -64,13 +64,13 @@ export default async function HomePage({ params }) {
 
       <section id="how-it-works" className="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-12">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.howEyebrow}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.home.howEyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">{ui.home.howTitle}</h2>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {ui.home.howSteps.map((step) => (
             <article key={step.title} className="rounded-3xl bg-white p-8 shadow-soft">
-              <p className="text-sm font-semibold text-clay">{step.label}</p>
+              <p className="text-sm font-semibold text-nexa_purple">{step.label}</p>
               <h3 className="mt-4 font-display text-2xl font-bold">{step.title}</h3>
               <p className="mt-4 leading-7 text-charcoal/75">{step.body}</p>
             </article>
@@ -80,7 +80,7 @@ export default async function HomePage({ params }) {
 
       <section id="categories" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.categoriesEyebrow}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.home.categoriesEyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">{ui.home.categoriesTitle}</h2>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -92,7 +92,7 @@ export default async function HomePage({ params }) {
 
       <section id="professionals" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.featuredEyebrow}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.home.featuredEyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">{ui.home.featuredTitle}</h2>
         </div>
         <FeaturedProfiles profiles={profiles} lang={lang} />
@@ -101,7 +101,7 @@ export default async function HomePage({ params }) {
       <section id="join" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-3xl bg-white p-8 shadow-soft">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.home.joinEyebrow}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.home.joinEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">{ui.home.joinTitle}</h2>
             <p className="mt-5 leading-8 text-charcoal/75">{ui.home.joinBody}</p>
             {ui.home.joinBullets?.length ? (

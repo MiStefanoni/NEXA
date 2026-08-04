@@ -45,7 +45,7 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
             <div
               key={record.id}
               className={`rounded-2xl border p-4 transition-colors ${
-                activeId === record.id ? "border-teal bg-mist" : "border-charcoal/10 bg-ivory"
+                activeId === record.id ? "border-nexa_orange bg-nexa_nude" : "border-charcoal/10 bg-ivory"
               }`}
             >
               <div className="flex items-start gap-3">
@@ -360,7 +360,7 @@ export function AdminDashboard({ initialData }) {
         <PanelCard className="p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa Admin</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Nexa Admin</p>
               <h1 className="mt-3 font-display text-4xl font-bold">Gestão de candidaturas e perfis</h1>
               <p className="mt-4 max-w-3xl text-lg leading-8 text-charcoal/75">
                 Revise aplicações, publique perfis aprovados imediatamente e mantenha o diretório profissional da Nexa sempre atualizado.
@@ -395,7 +395,7 @@ export function AdminDashboard({ initialData }) {
         {dashboard.dbConfigured ? (
         <section className="mt-8 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
           <PanelCard className="p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convites</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Convites</p>
             <h2 className="mt-3 font-display text-2xl font-bold">Enviar convite de candidatura</h2>
             <form className="mt-6 grid gap-4" onSubmit={handleSendInvite}>
               <div>
@@ -441,7 +441,7 @@ export function AdminDashboard({ initialData }) {
           <PanelCard className="p-8">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convites enviados</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Convites enviados</p>
                 <h2 className="mt-3 font-display text-2xl font-bold">Links privados ativos</h2>
               </div>
               <p className="text-sm text-charcoal/60">{activeInvites.length} convite(s)</p>
@@ -516,7 +516,7 @@ export function AdminDashboard({ initialData }) {
               <>
                 <div className="flex flex-col gap-5 border-b border-charcoal/10 pb-6 lg:flex-row lg:items-start lg:justify-between">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">
+                    <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">
                       Registro #{editorState.id}
                     </p>
                     <h2 className="mt-3 font-display text-3xl font-bold">

@@ -90,7 +90,7 @@ export function FileField({ label, value, onChange }) {
   return (
     <div className="block">
       <span className="mb-2 block text-sm font-medium text-charcoal/80">{label}</span>
-      <label className="flex cursor-pointer items-center justify-center rounded-2xl border border-dashed border-charcoal/20 bg-white px-4 py-5 text-sm font-semibold text-charcoal transition-colors hover:border-teal hover:text-teal">
+      <label className="flex cursor-pointer items-center justify-center rounded-2xl border border-dashed border-charcoal/20 bg-white px-4 py-5 text-sm font-semibold text-charcoal transition-colors hover:border-nexa_orange hover:text-nexa_orange">
         <input type="file" accept="image/*" className="sr-only" onChange={handleFileChange} />
         Escolher imagem
       </label>

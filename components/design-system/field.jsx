@@ -10,7 +10,7 @@ export function FieldLabel({ htmlFor, children, className = "" }) {
 export function Input({ className = "", ...props }) {
   return React.createElement("input", {
     className: cn(
-      "w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none placeholder:text-charcoal/35 focus:border-teal read-only:cursor-not-allowed read-only:opacity-80",
+      "w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none placeholder:text-charcoal/35 focus:border-nexa_orange read-only:cursor-not-allowed read-only:opacity-80",
       className,
     ),
     ...props,
@@ -20,7 +20,7 @@ export function Input({ className = "", ...props }) {
 export function Textarea({ className = "", ...props }) {
   return React.createElement("textarea", {
     className: cn(
-      "w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none placeholder:text-charcoal/35 focus:border-teal",
+      "w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none placeholder:text-charcoal/35 focus:border-nexa_orange",
       className,
     ),
     ...props,
@@ -31,7 +31,7 @@ export function Select({ className = "", children, ...props }) {
   return React.createElement(
     "select",
     {
-      className: cn("w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-teal", className),
+      className: cn("w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 text-sm outline-none focus:border-nexa_orange", className),
       ...props,
     },
     children,
@@ -41,7 +41,7 @@ export function Select({ className = "", children, ...props }) {
 export function Checkbox({ className = "", ...props }) {
   return React.createElement("input", {
     type: "checkbox",
-    className: cn("h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal", className),
+    className: cn("h-4 w-4 rounded border-charcoal/20 text-nexa_orange focus:ring-nexa_orange", className),
     ...props,
   });
 }

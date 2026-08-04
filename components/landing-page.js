@@ -73,13 +73,13 @@ export function LandingPage() {
                 <p className="mt-6 text-lg leading-8 text-charcoal/75">
                   A Nexa é uma plataforma criada para dar visibilidade a profissionais mulheres e facilitar conexões com pessoas e empresas que buscam serviços de qualidade.
                 </p>
-                <p className="mt-6 inline-flex rounded-full bg-mist px-4 py-2 text-sm font-semibold text-clay">
+                <p className="mt-6 inline-flex rounded-full bg-nexa_nude px-4 py-2 text-sm font-semibold text-nexa_purple">
                   Lançamento previsto para julho.
                 </p>
                 <div className="mt-8">
                   <a
                     href="#lista-espera"
-                    className="inline-flex rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90"
+                    className="inline-flex rounded-2xl bg-nexa_purple px-6 py-4 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-nexa_purple/90"
                   >
                     Entrar na lista de espera
                   </a>
@@ -101,7 +101,7 @@ export function LandingPage() {
 
         <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">O que é a Nexa</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">O que é a Nexa</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Uma plataforma pensada para visibilidade, conexão e confiança</h2>
             <p className="mt-6 leading-8 text-charcoal/75">
               A Nexa é uma plataforma que reúne profissionais mulheres de diferentes áreas em um espaço organizado, acessível e confiável. Profissionais podem criar seus perfis, apresentar seus serviços e aumentar sua visibilidade. Clientes podem descobrir talentos, conhecer trabalhos e entrar em contato com profissionais qualificadas.
@@ -110,21 +110,21 @@ export function LandingPage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             <article className="rounded-3xl bg-white p-8 shadow-soft">
-              <p className="text-sm font-semibold text-clay">Passo 1</p>
+              <p className="text-sm font-semibold text-nexa_purple">Passo 1</p>
               <h3 className="mt-3 font-display text-2xl font-bold">Profissionais se cadastram</h3>
               <p className="mt-4 leading-7 text-charcoal/75">
                 Mulheres de diferentes áreas enviam suas informações para fazer parte da plataforma.
               </p>
             </article>
             <article className="rounded-3xl bg-white p-8 shadow-soft">
-              <p className="text-sm font-semibold text-clay">Passo 2</p>
+              <p className="text-sm font-semibold text-nexa_purple">Passo 2</p>
               <h3 className="mt-3 font-display text-2xl font-bold">A Nexa analisa e organiza os perfis</h3>
               <p className="mt-4 leading-7 text-charcoal/75">
                 Os perfis passam por curadoria para garantir apresentação clara, profissional e confiável.
               </p>
             </article>
             <article className="rounded-3xl bg-white p-8 shadow-soft">
-              <p className="text-sm font-semibold text-clay">Passo 3</p>
+              <p className="text-sm font-semibold text-nexa_purple">Passo 3</p>
               <h3 className="mt-3 font-display text-2xl font-bold">Clientes encontram e entram em contato com profissionais qualificadas</h3>
               <p className="mt-4 leading-7 text-charcoal/75">
                 Pessoas e empresas conseguem descobrir talentos com mais facilidade, segurança e contexto.
@@ -135,7 +135,7 @@ export function LandingPage() {
 
         <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Para quem é a Nexa</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Para quem é a Nexa</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Uma plataforma para quem quer ser vista e para quem quer contratar com mais confiança</h2>
           </div>
 
@@ -162,8 +162,8 @@ export function LandingPage() {
         </section>
 
         <section className="mx-auto max-w-5xl px-6 py-8 lg:px-8">
-          <div className="rounded-[2rem] bg-mist px-8 py-10 shadow-soft">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Lançamento</p>
+          <div className="rounded-[2rem] bg-nexa_nude px-8 py-10 shadow-soft">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Lançamento</p>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Estamos preparando a chegada da plataforma</h2>
             <p className="mt-5 max-w-3xl leading-8 text-charcoal/75">
               Estamos preparando o lançamento da plataforma para julho. Enquanto isso, você pode entrar na lista de espera para receber novidades e ser uma das primeiras pessoas a participar da Nexa.
@@ -174,7 +174,7 @@ export function LandingPage() {
         <section id="lista-espera" className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="rounded-3xl bg-white p-8 shadow-soft">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Lista de espera</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Lista de espera</p>
               <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Participe antes do lançamento</h2>
               <p className="mt-5 leading-8 text-charcoal/75">
                 Tem interesse em participar da Nexa? Preencha o formulário abaixo para entrar na lista de espera. Nossa equipe entrará em contato em breve.
@@ -191,7 +191,7 @@ export function LandingPage() {
                     name="nome"
                     type="text"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder="Seu nome completo"
                   />
                 </div>
@@ -202,7 +202,7 @@ export function LandingPage() {
                     name="email"
                     type="email"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder="voce@exemplo.com"
                   />
                 </div>
@@ -213,7 +213,7 @@ export function LandingPage() {
                     name="profissao"
                     type="text"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder="Como você atua hoje?"
                   />
                 </div>
@@ -223,7 +223,7 @@ export function LandingPage() {
                     id="rede-social"
                     name="redeSocial"
                     type="text"
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder="@seuperfil"
                   />
                 </div>
@@ -233,14 +233,14 @@ export function LandingPage() {
                     id="website"
                     name="website"
                     type="url"
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder="https://seusite.com"
                   />
                 </div>
                 {feedback ? (
                   <p
                     className={`rounded-2xl px-4 py-3 text-sm ${
-                      error ? "border border-red-200 bg-red-50 text-red-700" : "border border-clay/15 bg-mist text-charcoal/75"
+                      error ? "border border-red-200 bg-red-50 text-red-700" : "border border-nexa_purple/15 bg-nexa_nude text-charcoal/75"
                     }`}
                   >
                     {feedback}
@@ -249,7 +249,7 @@ export function LandingPage() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-clay/90 disabled:opacity-60"
+                  className="rounded-2xl bg-nexa_purple px-6 py-4 text-sm font-semibold text-white shadow-soft transition-colors hover:bg-nexa_purple/90 disabled:opacity-60"
                 >
                   {sending ? "Enviando..." : "Enviar"}
                 </button>

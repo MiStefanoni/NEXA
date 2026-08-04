@@ -10,9 +10,9 @@ module.exports = {
       colors: {
         ivory: "rgb(var(--color-ivory) / <alpha-value>)",
         charcoal: "rgb(var(--color-charcoal) / <alpha-value>)",
-        clay: "rgb(var(--color-clay) / <alpha-value>)",
-        teal: "rgb(var(--color-teal) / <alpha-value>)",
-        mist: "rgb(var(--color-mist) / <alpha-value>)",
+        nexa_purple: "rgb(var(--color-nexa-purple) / <alpha-value>)",
+        nexa_orange: "rgb(var(--color-nexa-orange) / <alpha-value>)",
+        nexa_nude: "rgb(var(--color-nexa-nude) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-body)", "Inter", "sans-serif"],

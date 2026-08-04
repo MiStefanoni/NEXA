@@ -2,10 +2,10 @@ import React from "react";
 import { cn } from "../../lib/cn";
 
 const VARIANTS = {
-  warm: "bg-mist text-teal",
+  warm: "bg-nexa_nude text-nexa_orange",
   neutral: "border border-charcoal/15 bg-ivory text-charcoal/75",
-  founder: "border border-[#843088] bg-[#e6d6e7] text-[#843088]",
-  verified: "bg-mist text-teal",
+  founder: "border border-nexa_purple bg-[#e6d6e7] text-nexa_purple",
+  verified: "bg-nexa_nude text-nexa_orange",
   destructive: "border border-red-200 bg-red-50 text-red-700",
 };
 

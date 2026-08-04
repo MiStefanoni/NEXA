@@ -12,7 +12,7 @@ export function CategoryCard({ slug, lang }) {
         <h3 className="font-display text-2xl font-bold">{meta.title}</h3>
         <p className="mt-3 leading-7 text-charcoal/75">{meta.description}</p>
       </div>
-      <Link href={getCategoryPath(slug, lang)} className="mt-6 inline-flex items-center text-sm font-semibold text-teal">
+      <Link href={getCategoryPath(slug, lang)} className="mt-6 inline-flex items-center text-sm font-semibold text-nexa_orange">
         {ui.categoriesPage.cta}
       </Link>
     </Card>

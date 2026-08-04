@@ -41,8 +41,8 @@ export function ProfessionalCard({ profile, lang }) {
               {badgeLabel}
             </Badge>
           </div>
-          <p className="text-sm font-medium text-teal">{category}</p>
-          <p className="text-sm font-semibold text-clay">{roleTitle}</p>
+          <p className="text-sm font-medium text-nexa_orange">{category}</p>
+          <p className="text-sm font-semibold text-nexa_purple">{roleTitle}</p>
         </div>
         <p className="mt-4 leading-7 text-charcoal/75">{shortBio}</p>
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-charcoal/75">
@@ -53,7 +53,7 @@ export function ProfessionalCard({ profile, lang }) {
           ))}
         </div>
       </div>
-      <Link href={getProfilePath(profile.slug, lang)} className="mt-6 inline-block text-sm font-semibold text-teal">
+      <Link href={getProfilePath(profile.slug, lang)} className="mt-6 inline-block text-sm font-semibold text-nexa_orange">
         {ui.cardProfileCta}
       </Link>
     </Card>

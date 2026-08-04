@@ -21,7 +21,6 @@ export function ProfilePage({ profile, lang }) {
   const roleTitle = getLocalizedField(profile, "role_title", lang, ui.profileFallback);
   const shortBio = getLocalizedField(profile, "short_bio", lang, ui.profileFallback);
   const fullAbout = getLocalizedField(profile, "full_about", lang, ui.profileFallback);
-  const clientFocus = getLocalizedField(profile, "client_focus", lang, ui.profileFallback);
   const websiteLabel = getLinkLabel(profile.website, profile.website_label, ui.labels.website);
   const socialLabel = getLinkLabel(profile.social_link, profile.social_label, ui.labels.social);
   const websiteHref = normalizeExternalUrl(profile.website);
@@ -90,7 +89,7 @@ export function ProfilePage({ profile, lang }) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 max-w-2xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.labels.profileDetail}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.labels.profileDetail}</p>
         <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">{profile.name}</h1>
         <p className="mt-4 text-lg leading-8 text-charcoal/75">{shortBio}</p>
       </div>
@@ -103,41 +102,41 @@ export function ProfilePage({ profile, lang }) {
             { href: "#profile-portfolio", label: ui.sections.portfolio },
             { href: "#profile-contact", label: ui.sections.contact },
           ].map((link) => (
-            <a key={link.href} href={link.href} className="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-mist hover:text-teal">
+            <a key={link.href} href={link.href} className="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-nexa_nude hover:text-nexa_orange">
               {link.label}
             </a>
           ))}
         </nav>
       </div>
-      <section className="mb-8 rounded-3xl bg-white p-8 shadow-soft">
+      <section className="mb-8 rounded-3xl bg-white py-8 pl-8 pr-0 shadow-soft">
         <div className="grid gap-8 xl:grid-cols-[1.2fr_0.8fr] xl:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-3">
               <h2 className="font-display text-3xl font-bold">{profile.name}</h2>
               {profile.verified ? (
-                <span className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-teal">{ui.verified}</span>
+                <span className="rounded-full bg-nexa_nude px-3 py-1 text-sm font-semibold text-nexa_orange">{ui.verified}</span>
               ) : null}
               {profile.founder_professional ? (
-                <span className="inline-flex items-center rounded-full border border-[#843088] bg-[#e6d6e7] px-3 py-1 text-sm font-semibold text-[#843088]">
+                <span className="inline-flex items-center rounded-full border border-nexa_purple bg-[#e6d6e7] px-3 py-1 text-sm font-semibold text-nexa_purple">
                   Profissional Fundadora
                 </span>
               ) : null}
             </div>
-            <p className="mt-3 text-lg font-medium text-clay">{category}</p>
+            <p className="mt-3 text-lg font-medium text-nexa_purple">{category}</p>
             <p className="mt-2 text-sm font-semibold text-charcoal/70">{roleTitle}</p>
             <dl className="mt-8 grid gap-4 text-sm sm:grid-cols-2">
-              <div className="rounded-2xl bg-mist px-4 py-4">
+              <div className="rounded-2xl bg-nexa_nude px-4 py-4">
                 <dt className="text-charcoal/55">{ui.labels.location}</dt>
                 <dd className="mt-1 font-semibold">{profile.location || ""}</dd>
               </div>
-              <div className="rounded-2xl bg-mist px-4 py-4">
+              <div className="rounded-2xl bg-nexa_nude px-4 py-4">
                 <dt className="text-charcoal/55">{ui.labels.languages}</dt>
                 <dd className="mt-1 font-semibold">{getLocalizedLanguages(profile.languages, lang)}</dd>
               </div>
             </dl>
           </div>
           <div className="xl:justify-self-end">
-            <div className="overflow-hidden rounded-[2rem] bg-mist shadow-soft">
+            <div className="overflow-hidden rounded-[2rem] bg-nexa_nude shadow-soft">
               {profileImage ? (
                 <img
                   src={profileImage}
@@ -185,16 +184,12 @@ export function ProfilePage({ profile, lang }) {
 
           <section id="profile-experience" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
             <h3 className="font-display text-2xl font-bold">{ui.sections.experience}</h3>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <article className="rounded-3xl bg-mist p-6">
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <article className="rounded-3xl bg-nexa_nude p-6">
                 <p className="text-sm text-charcoal/60">{ui.labels.experience}</p>
                 <p className="mt-2 font-display text-3xl font-bold">{profile.experience_years || ""}</p>
               </article>
-              <article className="rounded-3xl bg-mist p-6">
-                <p className="text-sm text-charcoal/60">{ui.labels.clientFocus}</p>
-                <p className="mt-2 font-display text-3xl font-bold">{clientFocus}</p>
-              </article>
-              <article className="rounded-3xl bg-mist p-6">
+              <article className="rounded-3xl bg-nexa_nude p-6">
                 <p className="text-sm text-charcoal/60">{ui.labels.projectsDelivered}</p>
                 <p className="mt-2 font-display text-3xl font-bold">{profile.projects_delivered || ""}</p>
               </article>
@@ -205,15 +200,15 @@ export function ProfilePage({ profile, lang }) {
             <h3 className="font-display text-2xl font-bold">{ui.sections.portfolio}</h3>
             <div className="mt-6 grid gap-5 md:grid-cols-3">
               {portfolio.map((item) => (
-                <article key={item.title} className="rounded-3xl bg-mist p-6">
-                  <p className="text-sm font-semibold text-clay">{item.title}</p>
+                <article key={item.title} className="rounded-3xl bg-nexa_nude p-6">
+                  <p className="text-sm font-semibold text-nexa_purple">{item.title}</p>
                   <p className="mt-3 text-sm leading-7 text-charcoal/75">{item.description}</p>
                   {item.url ? (
                     <a
                       href={normalizeExternalUrl(item.url)}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="mt-5 inline-flex items-center text-sm font-semibold text-teal hover:underline"
+                      className="mt-5 inline-flex items-center text-sm font-semibold text-nexa_orange hover:underline"
                     >
                       Veja o projeto
                     </a>
@@ -230,7 +225,7 @@ export function ProfilePage({ profile, lang }) {
             <ul className="mt-6 space-y-4 text-sm">
               <li>
                 <span className="block text-charcoal/55">{ui.labels.email}</span>
-                <a href={`mailto:${profile.email || ""}`} className="mt-1 inline-block font-semibold text-teal">
+                <a href={`mailto:${profile.email || ""}`} className="mt-1 inline-block font-semibold text-nexa_orange">
                   {profile.email || ""}
                 </a>
               </li>
@@ -240,7 +235,7 @@ export function ProfilePage({ profile, lang }) {
                   href={websiteHref || "#"}
                   target={websiteHref ? "_blank" : undefined}
                   rel={websiteHref ? "noreferrer noopener" : undefined}
-                  className="mt-1 inline-block font-semibold text-teal"
+                  className="mt-1 inline-block font-semibold text-nexa_orange"
                 >
                   {websiteLabel}
                 </a>
@@ -251,7 +246,7 @@ export function ProfilePage({ profile, lang }) {
                   href={socialHref || "#"}
                   target={socialHref ? "_blank" : undefined}
                   rel={socialHref ? "noreferrer noopener" : undefined}
-                  className="mt-1 inline-block font-semibold text-teal"
+                  className="mt-1 inline-block font-semibold text-nexa_orange"
                 >
                   {socialLabel}
                 </a>
@@ -259,7 +254,7 @@ export function ProfilePage({ profile, lang }) {
             </ul>
             <button
               type="button"
-              className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-clay px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-2xl bg-nexa_purple px-5 py-4 text-sm font-semibold text-white shadow-soft hover:bg-nexa_purple/90"
               onClick={() => {
                 setFeedback("");
                 setSuccess(false);
@@ -280,7 +275,7 @@ export function ProfilePage({ profile, lang }) {
             <button
               type="button"
               aria-label={ui.contactModal.close}
-              className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-teal"
+              className="rounded-full bg-nexa_nude px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-nexa_orange"
               onClick={() => setSuccess(false)}
             >
               X
@@ -306,7 +301,7 @@ export function ProfilePage({ profile, lang }) {
                 <button
                   type="button"
                   aria-label={ui.contactModal.close}
-                  className="rounded-full bg-mist px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-teal"
+                  className="rounded-full bg-nexa_nude px-3 py-1 text-sm font-semibold text-charcoal transition-colors hover:text-nexa_orange"
                   onClick={() => setIsModalOpen(false)}
                 >
                   X
@@ -322,7 +317,7 @@ export function ProfilePage({ profile, lang }) {
                     name="name"
                     type="text"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder={ui.contactModal.namePlaceholder}
                   />
                 </div>
@@ -335,7 +330,7 @@ export function ProfilePage({ profile, lang }) {
                     name="email"
                     type="email"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder={ui.contactModal.emailPlaceholder}
                   />
                 </div>
@@ -347,7 +342,7 @@ export function ProfilePage({ profile, lang }) {
                     id="contact-phone"
                     name="phone"
                     type="text"
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder={ui.contactModal.phonePlaceholder}
                   />
                 </div>
@@ -360,14 +355,14 @@ export function ProfilePage({ profile, lang }) {
                     name="message"
                     rows="6"
                     required
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-teal"
+                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory px-4 py-3 outline-none placeholder:text-charcoal/35 focus:border-nexa_orange"
                     placeholder={ui.contactModal.messagePlaceholder}
                   />
                 </div>
                 {feedback ? (
-                  <p className="rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75">{feedback}</p>
+                  <p className="rounded-2xl border border-nexa_purple/15 bg-nexa_nude px-4 py-3 text-sm text-charcoal/75">{feedback}</p>
                 ) : null}
-                <button type="submit" disabled={sending} className="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90 disabled:opacity-60">
+                <button type="submit" disabled={sending} className="rounded-2xl bg-nexa_purple px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-nexa_purple/90 disabled:opacity-60">
                   {sending ? "..." : ui.contactModal.send}
                 </button>
               </form>
@@ -377,7 +372,7 @@ export function ProfilePage({ profile, lang }) {
       ) : null}
 
       <div className="mt-8">
-        <Link href={`/${lang}/professionals`} className="text-sm font-semibold text-teal">
+        <Link href={`/${lang}/professionals`} className="text-sm font-semibold text-nexa_orange">
           {ui.backToProfessionals}
         </Link>
       </div>

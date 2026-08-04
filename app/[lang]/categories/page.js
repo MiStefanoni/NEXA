@@ -20,7 +20,7 @@ export default function CategoriesPage({ params }) {
     <main>
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{ui.categoriesPage.eyebrow}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{ui.categoriesPage.eyebrow}</p>
           <h1 className="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">{ui.categoriesPage.heading}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-charcoal/75">{ui.categoriesPage.body}</p>
         </div>

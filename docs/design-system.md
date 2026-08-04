@@ -3,9 +3,9 @@
 ## Foundations
 - Canvas: `ivory`
 - Primary text: `charcoal`
-- Primary action: `clay`
-- Warm accent: `teal`
-- Subtle accent surface: `mist`
+- Primary action: `nexa_purple`
+- Warm accent: `nexa_orange`
+- Subtle accent surface: `nexa_nude`
 
 ## Typography
 - `DM Sans` for display text, page headings, section titles, and card titles

@@ -126,7 +126,7 @@ export function InviteApplicationPage() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-3xl bg-white p-8 shadow-soft">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Convite privado</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Convite privado</p>
             <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Preencha seu perfil na Nexa</h1>
             <p className="mt-5 leading-8 text-charcoal/75">
               Este formulário é pessoal e vinculado ao convite enviado para o seu email. Depois do envio, a equipe da Nexa irá revisar sua candidatura antes de qualquer publicação.
@@ -135,7 +135,7 @@ export function InviteApplicationPage() {
               Preencha seu perfil da forma mais completa possível. Campos não obrigatórios podem ficar em branco, e, nesse caso, essas informações simplesmente não aparecerão no seu perfil público.
             </p>
             {invite?.expires_at ? (
-              <p className="mt-5 rounded-2xl bg-mist px-4 py-3 text-sm font-semibold text-charcoal/75">
+              <p className="mt-5 rounded-2xl bg-nexa_nude px-4 py-3 text-sm font-semibold text-charcoal/75">
                 Link válido até {new Date(invite.expires_at).toLocaleString("pt-BR")}.
               </p>
             ) : null}
@@ -153,7 +153,7 @@ export function InviteApplicationPage() {
                 Este link não está mais disponível.
               </p>
             ) : submitted ? (
-              <p className="mt-6 rounded-2xl border border-clay/15 bg-mist px-4 py-3 text-sm text-charcoal/75">
+              <p className="mt-6 rounded-2xl border border-nexa_purple/15 bg-nexa_nude px-4 py-3 text-sm text-charcoal/75">
                 Candidatura enviada com sucesso. A equipe da Nexa irá revisar suas informações antes da publicação.
               </p>
             ) : record ? (
@@ -175,7 +175,7 @@ export function InviteApplicationPage() {
                 {feedback ? (
                   <p
                     className={`rounded-2xl px-4 py-3 text-sm ${
-                      error ? "border border-red-200 bg-red-50 text-red-700" : "border border-clay/15 bg-mist text-charcoal/75"
+                      error ? "border border-red-200 bg-red-50 text-red-700" : "border border-nexa_purple/15 bg-nexa_nude text-charcoal/75"
                     }`}
                   >
                     {feedback}
@@ -184,7 +184,7 @@ export function InviteApplicationPage() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="rounded-2xl bg-clay px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-clay/90 disabled:opacity-60"
+                  className="rounded-2xl bg-nexa_purple px-6 py-4 text-sm font-semibold text-white shadow-soft hover:bg-nexa_purple/90 disabled:opacity-60"
                 >
                   {sending ? "Enviando..." : "Enviar candidatura"}
                 </button>
