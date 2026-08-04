@@ -32,7 +32,7 @@ export default async function CategoryPage({ params }) {
     <main>
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{meta.title}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{meta.title}</p>
           <h1 className="mt-3 font-display text-4xl font-bold leading-tight sm:text-5xl">{meta.title}</h1>
           <p className="mt-6 text-lg leading-8 text-charcoal/75">{meta.pageDescription}</p>
         </div>

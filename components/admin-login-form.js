@@ -44,7 +44,7 @@ export function AdminLoginForm() {
     <main className="min-h-screen bg-ivory px-6 py-10">
       <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <PanelCard className="lg:p-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">Nexa Admin</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Nexa Admin</p>
           <h1 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
             Acesso seguro para revisar, publicar e atualizar perfis
           </h1>

@@ -7,13 +7,13 @@
 :root {
   --color-ivory: 247 246 244;
   --color-charcoal: 43 43 43;
-  --color-clay: 132 48 136;
-  --color-teal: 228 126 74;
-  --color-mist: 249 225 207;
+  --color-nexa-purple: 132 48 136;
+  --color-nexa-orange: 228 126 74;
+  --color-nexa-nude: 249 225 207;
 
   --surface-default: 255 255 255;
   --surface-canvas: var(--color-ivory);
-  --surface-subtle: var(--color-mist);
+  --surface-subtle: var(--color-nexa-nude);
 
   --text-default: var(--color-charcoal);
   --text-subtle: 43 43 43;
@@ -53,11 +53,11 @@ body {
   }
 
   .ds-card-subtle {
-    @apply rounded-3xl bg-mist p-8 shadow-soft;
+    @apply rounded-3xl bg-nexa_nude p-8 shadow-soft;
   }
 
   .ds-eyebrow {
-    @apply text-sm font-semibold uppercase tracking-[0.24em] text-teal;
+    @apply text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange;
   }
 
   .ds-heading-hero {

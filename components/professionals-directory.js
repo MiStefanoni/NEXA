@@ -72,7 +72,7 @@ export function ProfessionalsDirectory({ profiles, lang }) {
           sections.map((section) => (
             <section key={section.slug} id={section.slug}>
               <div className="mb-6 max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-teal">{section.meta.title}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">{section.meta.title}</p>
               </div>
               <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
                 {section.profiles.map((profile) => (

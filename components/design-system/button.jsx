@@ -3,12 +3,12 @@ import Link from "next/link";
 import { cn } from "../../lib/cn";
 
 const VARIANTS = {
-  primary: "bg-clay text-white hover:bg-clay/90",
-  secondary: "border border-charcoal/15 bg-white text-charcoal hover:border-teal hover:text-teal",
-  ghost: "bg-transparent text-charcoal hover:bg-mist hover:text-teal",
+  primary: "bg-nexa_purple text-white hover:bg-nexa_purple/90",
+  secondary: "border border-charcoal/15 bg-white text-charcoal hover:border-nexa_orange hover:text-nexa_orange",
+  ghost: "bg-transparent text-charcoal hover:bg-nexa_nude hover:text-nexa_orange",
   destructive: "border border-red-200 bg-red-50 text-red-700 hover:bg-red-100",
-  chip: "border border-charcoal/15 bg-white text-charcoal hover:border-teal hover:text-teal",
-  chipActive: "border-teal bg-mist text-teal",
+  chip: "border border-charcoal/15 bg-white text-charcoal hover:border-nexa_orange hover:text-nexa_orange",
+  chipActive: "border-nexa_orange bg-nexa_nude text-nexa_orange",
 };
 
 const SIZES = {

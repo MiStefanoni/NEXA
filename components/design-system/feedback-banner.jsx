@@ -3,7 +3,7 @@ import { cn } from "../../lib/cn";
 
 const VARIANTS = {
   default: "border border-charcoal/10 bg-white text-charcoal/75 shadow-soft",
-  success: "border border-clay/15 bg-mist text-charcoal/75",
+  success: "border border-nexa_purple/15 bg-nexa_nude text-charcoal/75",
   error: "border border-red-200 bg-red-50 text-red-700",
 };
 

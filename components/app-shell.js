@@ -35,7 +35,7 @@ export function AppShell({ lang, ui, children }) {
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium md:flex">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="relative pb-1 transition-colors hover:text-teal">
+              <Link key={link.href} href={link.href} className="relative pb-1 transition-colors hover:text-nexa_orange">
                 {link.label}
               </Link>
             ))}
@@ -64,7 +64,7 @@ export function AppShell({ lang, ui, children }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-2xl px-4 py-3 transition-colors hover:bg-mist hover:text-teal"
+                className="rounded-2xl px-4 py-3 transition-colors hover:bg-nexa_nude hover:text-nexa_orange"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -84,7 +84,7 @@ export function AppShell({ lang, ui, children }) {
           </Link>
           <nav aria-label="Footer" className="flex flex-wrap gap-5 text-sm text-charcoal/75">
             {footerLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-teal">
+              <Link key={link.href} href={link.href} className="hover:text-nexa_orange">
                 {link.label}
               </Link>
             ))}
