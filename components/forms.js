@@ -20,6 +20,7 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
       category: String(formData.get("category") || "").trim(),
       location: String(formData.get("location") || "").trim(),
       website: String(formData.get("website") || "").trim(),
+      referralCode: String(formData.get("referralCode") || "").trim(),
       description: String(formData.get("description") || "").trim(),
       source,
     };
@@ -136,6 +137,21 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
           <Input id={`website-${source}`} name="website" type="url" placeholder="https://seusite.com" />
         </div>
       ) : null}
+      <div>
+        <FieldLabel htmlFor={`referral-code-${source}`}>
+          {lang === "en" ? "Enter Code" : "Insira o Código"}
+        </FieldLabel>
+        <Input
+          id={`referral-code-${source}`}
+          name="referralCode"
+          type="text"
+          placeholder={
+            lang === "en"
+              ? "Enter the code of who introduced you to Nexa"
+              : "Insira o código de quem te apresentou a Nexa"
+          }
+        />
+      </div>
       <div>
         <FieldLabel htmlFor={`description-${source}`}>{lang === "en" ? "Description" : "Descrição"}</FieldLabel>
         <Textarea

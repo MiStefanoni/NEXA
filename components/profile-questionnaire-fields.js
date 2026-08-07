@@ -118,6 +118,7 @@ export function ProfileQuestionnaireFields({
   applicantEmailLabel = "Email enviado",
   applicantCategoryLabel = "Categoria enviada",
   applicantLocationLabel = "Localização enviada",
+  applicantReferralCodeLabel = "Insira o Código",
   applicantDescriptionLabel = "Descrição enviada",
   showApplicantSection = true,
 }) {
@@ -144,6 +145,12 @@ export function ProfileQuestionnaireFields({
             />
             <TextField label={applicantCategoryLabel} value={applicant.category} onChange={(value) => onApplicantFieldChange("category", value)} />
             <TextField label={applicantLocationLabel} value={applicant.location} onChange={(value) => onApplicantFieldChange("location", value)} />
+            <TextField
+              label={applicantReferralCodeLabel}
+              value={applicant.referralCode}
+              onChange={(value) => onApplicantFieldChange("referralCode", value)}
+              placeholder="Insira o código de quem te apresentou a Nexa"
+            />
           </div>
           <div className="mt-4">
             <TextareaField label={applicantDescriptionLabel} value={applicant.description} onChange={(value) => onApplicantFieldChange("description", value)} rows={4} />

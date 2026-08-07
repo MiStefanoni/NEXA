@@ -13,6 +13,7 @@ export async function POST(request) {
   const category = sanitizeText(rawBody.category, 200);
   const location = sanitizeText(rawBody.location, 200);
   const website = sanitizeText(rawBody.website, 500);
+  const referralCode = sanitizeText(rawBody.referralCode, 120);
   const description = sanitizeText(rawBody.description, 5000);
   const source = sanitizeText(rawBody.source, 120);
 
@@ -28,7 +29,7 @@ export async function POST(request) {
   }
 
   try {
-    await createPendingApplicationRecord({ name, email, category, location, website, description, source });
+    await createPendingApplicationRecord({ name, email, category, location, website, referralCode, description, source });
   } catch (error) {
     return jsonResponse(
       {
@@ -52,6 +53,7 @@ export async function POST(request) {
         `Categoria: ${category}`,
         `Localização: ${location || "-"}`,
         `Website: ${website || "-"}`,
+        `Código: ${referralCode || "-"}`,
         `Origem: ${source || "-"}`,
         "",
         "Descrição:",
