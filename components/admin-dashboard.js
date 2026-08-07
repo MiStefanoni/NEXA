@@ -88,6 +88,124 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
   );
 }
 
+function getReferralUrl(referral) {
+  if (referral.applicationUrl) return referral.applicationUrl;
+  if (typeof window === "undefined") return `/pt/apply?ref=${encodeURIComponent(referral.code)}`;
+  return `${window.location.origin}/pt/apply?ref=${encodeURIComponent(referral.code)}`;
+}
+
+function ReferralLinksSection({
+  referrals,
+  form,
+  onFormChange,
+  onSubmit,
+  creating,
+  onCopy,
+  copiedId,
+  onToggleStatus,
+}) {
+  return (
+    <section className="mt-8 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
+      <PanelCard className="p-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Links de indicação</p>
+        <h2 className="mt-3 font-display text-2xl font-bold">Gerar link personalizado</h2>
+        <form className="mt-6 grid gap-4" onSubmit={onSubmit}>
+          <div>
+            <FieldLabel htmlFor="referral-name" className="text-charcoal/80">Nome</FieldLabel>
+            <Input
+              id="referral-name"
+              type="text"
+              required
+              value={form.name}
+              onChange={(event) => onFormChange("name", event.target.value)}
+              placeholder="Ana Silva"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="referral-email" className="text-charcoal/80">Email</FieldLabel>
+            <Input
+              id="referral-email"
+              type="email"
+              required
+              value={form.email}
+              onChange={(event) => onFormChange("email", event.target.value)}
+              placeholder="ana@email.com"
+            />
+          </div>
+          <div>
+            <FieldLabel htmlFor="referral-code" className="text-charcoal/80">Código</FieldLabel>
+            <Input
+              id="referral-code"
+              type="text"
+              required
+              value={form.code}
+              onChange={(event) => onFormChange("code", event.target.value)}
+              placeholder="ANASILVA"
+            />
+          </div>
+          <Button type="submit" disabled={creating}>
+            {creating ? "Gerando..." : "Gerar link"}
+          </Button>
+        </form>
+      </PanelCard>
+
+      <PanelCard className="p-8">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Parceiros</p>
+            <h2 className="mt-3 font-display text-2xl font-bold">Links cadastrados</h2>
+          </div>
+          <p className="text-sm text-charcoal/60">{referrals.length} link(s)</p>
+        </div>
+        <div className="mt-6 space-y-4">
+          {referrals.length ? (
+            referrals.map((referral) => {
+              const link = getReferralUrl(referral);
+              return (
+                <SubtleCard key={referral.id} className="border border-charcoal/10 p-5">
+                  <div className="grid gap-4">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="space-y-2">
+                        <p className="font-semibold text-charcoal">{referral.name}</p>
+                        <p className="text-sm text-charcoal/70">{referral.email}</p>
+                        <div className="flex flex-wrap gap-4 text-xs text-charcoal/65">
+                          <span>Código: {referral.code}</span>
+                          <span>Status: {referral.active ? "Ativo" : "Inativo"}</span>
+                          <span>Criado em {formatDate(referral.created_at)}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        <Button type="button" variant="secondary" size="md" onClick={() => onCopy(referral.id, link)}>
+                          {copiedId === referral.id ? "Link copiado" : "Copiar link"}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant={referral.active ? "destructive" : "secondary"}
+                          size="md"
+                          onClick={() => onToggleStatus(referral.id, !referral.active)}
+                        >
+                          {referral.active ? "Desativar" : "Reativar"}
+                        </Button>
+                      </div>
+                    </div>
+                    <p className="break-all rounded-2xl bg-white px-4 py-3 text-sm text-charcoal/75">
+                      {link}
+                    </p>
+                  </div>
+                </SubtleCard>
+              );
+            })
+          ) : (
+            <SubtleCard className="rounded-2xl border border-dashed border-charcoal/15 px-4 py-6 text-sm text-charcoal/65">
+              Nenhum link de indicação cadastrado ainda.
+            </SubtleCard>
+          )}
+        </div>
+      </PanelCard>
+    </section>
+  );
+}
+
 export function AdminDashboard({ initialData }) {
   const [dashboard, setDashboard] = useState(initialData);
   const [activeStatus, setActiveStatus] = useState("pending");
@@ -97,12 +215,19 @@ export function AdminDashboard({ initialData }) {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [sendingInvite, setSendingInvite] = useState(false);
+  const [creatingReferral, setCreatingReferral] = useState(false);
+  const [copiedReferralId, setCopiedReferralId] = useState("");
   const [editorState, setEditorState] = useState(null);
   const [selectedRejectedIds, setSelectedRejectedIds] = useState([]);
   const [inviteForm, setInviteForm] = useState({
     name: "",
     email: "",
     expiresInDays: "7",
+  });
+  const [referralForm, setReferralForm] = useState({
+    name: "",
+    email: "",
+    code: "",
   });
 
   const lists = {
@@ -353,6 +478,87 @@ export function AdminDashboard({ initialData }) {
 
   const currentList = lists[activeStatus] || [];
   const activeInvites = (dashboard.invites || []).filter((invite) => invite.status === "pending");
+  const referrals = dashboard.referrals || [];
+
+  function updateReferralFormField(key, value) {
+    const nextValue =
+      key === "code"
+        ? value
+            .toUpperCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^A-Z0-9_-]/g, "")
+        : value;
+
+    setReferralForm((current) => ({ ...current, [key]: nextValue }));
+  }
+
+  async function handleCreateReferral(event) {
+    event.preventDefault();
+
+    setFeedback("");
+    setError(false);
+    setCreatingReferral(true);
+
+    try {
+      const response = await fetch("/api/admin/referrals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(referralForm),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "Não foi possível gerar o link.");
+      }
+
+      setReferralForm({ name: "", email: "", code: "" });
+      await fetchDashboard();
+      setFeedback("Link de indicação gerado com sucesso.");
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível gerar o link.");
+    } finally {
+      setCreatingReferral(false);
+    }
+  }
+
+  async function handleToggleReferralStatus(id, active) {
+    setFeedback("");
+    setError(false);
+
+    try {
+      const response = await fetch(`/api/admin/referrals/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ active }),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "Não foi possível atualizar o link.");
+      }
+
+      await fetchDashboard();
+      setFeedback(active ? "Link reativado." : "Link desativado.");
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível atualizar o link.");
+    }
+  }
+
+  async function handleCopyReferralLink(id, link) {
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopiedReferralId(id);
+      window.setTimeout(() => {
+        setCopiedReferralId((current) => (current === id ? "" : current));
+      }, 1800);
+    } catch (_error) {
+      setError(true);
+      setFeedback("Não foi possível copiar o link automaticamente.");
+    }
+  }
 
   return (
     <main className="min-h-screen bg-ivory px-6 py-8">
@@ -474,6 +680,19 @@ export function AdminDashboard({ initialData }) {
             </div>
           </PanelCard>
         </section>
+        ) : null}
+
+        {dashboard.dbConfigured ? (
+          <ReferralLinksSection
+            referrals={referrals}
+            form={referralForm}
+            onFormChange={updateReferralFormField}
+            onSubmit={handleCreateReferral}
+            creating={creatingReferral}
+            onCopy={handleCopyReferralLink}
+            copiedId={copiedReferralId}
+            onToggleStatus={handleToggleReferralStatus}
+          />
         ) : null}
 
         <section className="mt-8 flex flex-wrap gap-3">

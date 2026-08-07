@@ -1,14 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./design-system/button";
 import { FeedbackBanner } from "./design-system/feedback-banner";
-import { FieldLabel, Input, Select, Textarea } from "./design-system/field";
+import { FieldLabel, FieldMessage, Input, Select, Textarea } from "./design-system/field";
 
 export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(false);
   const [sending, setSending] = useState(false);
+  const [referralCode, setReferralCode] = useState("");
+  const [referralLookup, setReferralLookup] = useState({
+    checked: false,
+    valid: false,
+    name: "",
+    code: "",
+    locked: false,
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const rawRef = params.get("ref");
+    if (!rawRef) return;
+
+    let cancelled = false;
+    const normalizedRef = rawRef.trim();
+    setReferralCode(normalizedRef);
+    setReferralLookup({ checked: false, valid: false, name: "", code: "", locked: false });
+
+    fetch(`/api/referrals/${encodeURIComponent(normalizedRef)}`, { cache: "no-store" })
+      .then((response) => response.json())
+      .then((result) => {
+        if (cancelled) return;
+
+        if (result?.valid) {
+          setReferralCode(result.code || normalizedRef);
+          setReferralLookup({
+            checked: true,
+            valid: true,
+            name: result.name || "",
+            code: result.code || normalizedRef,
+            locked: true,
+          });
+          return;
+        }
+
+        setReferralLookup({ checked: true, valid: false, name: "", code: "", locked: false });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setReferralLookup({ checked: true, valid: false, name: "", code: "", locked: false });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -20,7 +68,7 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
       category: String(formData.get("category") || "").trim(),
       location: String(formData.get("location") || "").trim(),
       website: String(formData.get("website") || "").trim(),
-      referralCode: String(formData.get("referralCode") || "").trim(),
+      referralCode: referralCode.trim(),
       description: String(formData.get("description") || "").trim(),
       source,
     };
@@ -48,6 +96,7 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
       }
 
       form.reset();
+      setReferralCode(referralLookup.locked ? referralLookup.code : "");
       setFeedback(ui.applicationForm.success);
       setError(false);
     } catch (submissionError) {
@@ -145,12 +194,26 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
           id={`referral-code-${source}`}
           name="referralCode"
           type="text"
+          value={referralCode}
+          readOnly={referralLookup.locked}
+          onChange={(event) => {
+            setReferralCode(event.target.value);
+            setReferralLookup({ checked: false, valid: false, name: "", code: "", locked: false });
+          }}
           placeholder={
             lang === "en"
               ? "Enter the code of who introduced you to Nexa"
               : "Insira o código de quem te apresentou a Nexa"
           }
         />
+        {referralLookup.valid ? (
+          <FieldMessage>
+            {lang === "en" ? "Referral" : "Indicação"}: {referralLookup.name}
+            {referralLookup.code ? ` · Código: ${referralLookup.code}` : ""}
+          </FieldMessage>
+        ) : referralLookup.checked && referralCode ? (
+          <FieldMessage>{lang === "en" ? "Code not found." : "Código não encontrado."}</FieldMessage>
+        ) : null}
       </div>
       <div>
         <FieldLabel htmlFor={`description-${source}`}>{lang === "en" ? "Description" : "Descrição"}</FieldLabel>
