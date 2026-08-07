@@ -123,6 +123,7 @@ export function ProfileQuestionnaireFields({
   showApplicantSection = true,
 }) {
   const applicant = record?.applicant || {};
+  const referral = record?.referral || {};
   const profile = record?.profile || {};
   const handleProfileNameChange = (value) => {
     onProfileFieldChange("name", value);
@@ -152,6 +153,17 @@ export function ProfileQuestionnaireFields({
               placeholder="Insira o código de quem te apresentou a Nexa"
             />
           </div>
+          {referral.name || referral.code ? (
+            <div className="mt-4 rounded-2xl border border-charcoal/10 bg-white p-4 text-sm text-charcoal/75">
+              <p className="font-semibold text-charcoal">Indicação</p>
+              {referral.name ? <p className="mt-1">{referral.name}</p> : null}
+              {referral.code ? (
+                <p className="mt-1">
+                  <span className="font-semibold">Código:</span> {referral.code}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
           <div className="mt-4">
             <TextareaField label={applicantDescriptionLabel} value={applicant.description} onChange={(value) => onApplicantFieldChange("description", value)} rows={4} />
           </div>
