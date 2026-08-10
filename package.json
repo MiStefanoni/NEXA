@@ -28,5 +28,9 @@
     "postcss": "8.4.49",
     "storybook": "8.6.18",
     "tailwindcss": "3.4.17"
+  },
+  "optionalDependencies": {
+    "@libsql/linux-x64-gnu": "^0.5.29",
+    "@libsql/linux-x64-musl": "^0.5.29"
   }
 }
