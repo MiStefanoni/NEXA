@@ -88,10 +88,10 @@ function StatusList({ title, records, activeId, onSelect, selectable = false, se
   );
 }
 
-function getReferralUrl(referral) {
+function getReferralUrl(referral, browserOrigin = "") {
   if (referral.applicationUrl) return referral.applicationUrl;
-  if (typeof window === "undefined") return `/pt/apply?ref=${encodeURIComponent(referral.code)}`;
-  return `${window.location.origin}/pt/apply?ref=${encodeURIComponent(referral.code)}`;
+  const path = `/pt/apply?ref=${encodeURIComponent(referral.code)}`;
+  return browserOrigin ? `${browserOrigin}${path}` : path;
 }
 
 function ReferralLinksSection({
@@ -103,6 +103,7 @@ function ReferralLinksSection({
   onCopy,
   copiedId,
   onToggleStatus,
+  browserOrigin = "",
 }) {
   return (
     <section className="mt-8 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
@@ -160,7 +161,7 @@ function ReferralLinksSection({
         <div className="mt-6 space-y-4">
           {referrals.length ? (
             referrals.map((referral) => {
-              const link = getReferralUrl(referral);
+              const link = getReferralUrl(referral, browserOrigin);
               return (
                 <SubtleCard key={referral.id} className="border border-charcoal/10 p-5">
                   <div className="grid gap-4">
@@ -219,6 +220,7 @@ export function AdminDashboard({ initialData }) {
   const [copiedReferralId, setCopiedReferralId] = useState("");
   const [editorState, setEditorState] = useState(null);
   const [selectedRejectedIds, setSelectedRejectedIds] = useState([]);
+  const [browserOrigin, setBrowserOrigin] = useState("");
   const [inviteForm, setInviteForm] = useState({
     name: "",
     email: "",
@@ -235,6 +237,10 @@ export function AdminDashboard({ initialData }) {
     approved: dashboard.approved || [],
     rejected: dashboard.rejected || [],
   };
+
+  useEffect(() => {
+    setBrowserOrigin(window.location.origin);
+  }, []);
 
   useEffect(() => {
     if (!selectedRecord) {
@@ -692,6 +698,7 @@ export function AdminDashboard({ initialData }) {
             onCopy={handleCopyReferralLink}
             copiedId={copiedReferralId}
             onToggleStatus={handleToggleReferralStatus}
+            browserOrigin={browserOrigin}
           />
         ) : null}
 
@@ -744,6 +751,12 @@ export function AdminDashboard({ initialData }) {
                     <p className="mt-3 text-sm leading-7 text-charcoal/70">
                       Enviado em {formatDate(editorState.submitted_at)} • Status atual:{" "}
                       <span className="font-semibold">{STATUS_LABELS[editorState.status]}</span>
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-charcoal/70">
+                      Preenchimento:{" "}
+                      <span className="font-semibold">
+                        {editorState.ai?.assisted ? "Assistido por IA" : "Manual"}
+                      </span>
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3">
