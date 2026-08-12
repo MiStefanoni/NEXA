@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { CATEGORY_META, CATEGORY_ORDER } from "../lib/nexa-data";
 import { buildProfileSlugFromName } from "../lib/admin-profile";
 import { Checkbox, FieldLabel, Input, Select, Textarea } from "./design-system/field";
@@ -25,6 +26,53 @@ export const SOCIAL_LABEL_OPTIONS = [
   { value: "Instagram", label: "Instagram" },
   { value: "TikTok", label: "TikTok" },
 ];
+
+const MAX_DYNAMIC_ITEMS = 3;
+
+const SERVICE_FIELDS = [
+  "title_pt",
+  "title_en",
+  "description_pt",
+  "description_en",
+  "delivery",
+  "engagement_pt",
+  "engagement_en",
+];
+
+const PORTFOLIO_FIELDS = ["title_pt", "title_en", "description_pt", "description_en", "url"];
+
+function hasAnyValue(profile, prefix, index, fields) {
+  return fields.some((field) => {
+    if (prefix === "service" && field === "delivery") return false;
+    return Boolean(String(profile?.[`${prefix}_${index}_${field}`] || "").trim());
+  });
+}
+
+function getVisibleCount(profile, prefix, fields, minimum = 0) {
+  let count = minimum;
+  for (let index = 1; index <= MAX_DYNAMIC_ITEMS; index += 1) {
+    if (hasAnyValue(profile, prefix, index, fields)) {
+      count = index;
+    }
+  }
+  return count;
+}
+
+function moveDynamicItem({ profile, prefix, fields, from, to, onProfileFieldChange }) {
+  fields.forEach((field) => {
+    const nextValue =
+      field === "delivery"
+        ? profile?.[`${prefix}_${from}_${field}`] || "Local"
+        : profile?.[`${prefix}_${from}_${field}`] || "";
+    onProfileFieldChange(`${prefix}_${to}_${field}`, nextValue);
+  });
+}
+
+function clearDynamicItem({ prefix, fields, index, onProfileFieldChange }) {
+  fields.forEach((field) => {
+    onProfileFieldChange(`${prefix}_${index}_${field}`, field === "delivery" ? "Local" : "");
+  });
+}
 
 export function TextField({ label, value, onChange, placeholder = "", type = "text", readOnly = false }) {
   return (
@@ -125,9 +173,49 @@ export function ProfileQuestionnaireFields({
   const applicant = record?.applicant || {};
   const referral = record?.referral || {};
   const profile = record?.profile || {};
+  const serviceSignature = useMemo(
+    () => SERVICE_FIELDS.map((field) => [1, 2, 3].map((index) => profile?.[`service_${index}_${field}`] || "").join("|")).join("::"),
+    [profile],
+  );
+  const portfolioSignature = useMemo(
+    () => PORTFOLIO_FIELDS.map((field) => [1, 2, 3].map((index) => profile?.[`portfolio_${index}_${field}`] || "").join("|")).join("::"),
+    [profile],
+  );
+  const [visibleServices, setVisibleServices] = useState(() => getVisibleCount(profile, "service", SERVICE_FIELDS, 1));
+  const [visiblePortfolio, setVisiblePortfolio] = useState(() => getVisibleCount(profile, "portfolio", PORTFOLIO_FIELDS, 0));
+
+  useEffect(() => {
+    setVisibleServices(getVisibleCount(profile, "service", SERVICE_FIELDS, 1));
+  }, [record?.id, serviceSignature]);
+
+  useEffect(() => {
+    setVisiblePortfolio(getVisibleCount(profile, "portfolio", PORTFOLIO_FIELDS, 0));
+  }, [record?.id, portfolioSignature]);
+
   const handleProfileNameChange = (value) => {
     onProfileFieldChange("name", value);
     onProfileFieldChange("slug", buildProfileSlugFromName(value));
+  };
+  const addService = () => {
+    setVisibleServices((current) => Math.min(MAX_DYNAMIC_ITEMS, current + 1));
+  };
+  const addPortfolio = () => {
+    setVisiblePortfolio((current) => Math.min(MAX_DYNAMIC_ITEMS, current + 1));
+  };
+  const removeService = (indexToRemove) => {
+    if (indexToRemove <= 1) return;
+    for (let index = indexToRemove; index < MAX_DYNAMIC_ITEMS; index += 1) {
+      moveDynamicItem({ profile, prefix: "service", fields: SERVICE_FIELDS, from: index + 1, to: index, onProfileFieldChange });
+    }
+    clearDynamicItem({ prefix: "service", fields: SERVICE_FIELDS, index: MAX_DYNAMIC_ITEMS, onProfileFieldChange });
+    setVisibleServices((current) => Math.max(1, current - 1));
+  };
+  const removePortfolio = (indexToRemove) => {
+    for (let index = indexToRemove; index < MAX_DYNAMIC_ITEMS; index += 1) {
+      moveDynamicItem({ profile, prefix: "portfolio", fields: PORTFOLIO_FIELDS, from: index + 1, to: index, onProfileFieldChange });
+    }
+    clearDynamicItem({ prefix: "portfolio", fields: PORTFOLIO_FIELDS, index: MAX_DYNAMIC_ITEMS, onProfileFieldChange });
+    setVisiblePortfolio((current) => Math.max(0, current - 1));
   };
 
   return (
@@ -261,9 +349,22 @@ export function ProfileQuestionnaireFields({
         </div>
       </section>
 
-      {[1, 2, 3].map((index) => (
+      <section className="grid gap-4">
+        {Array.from({ length: visibleServices }, (_, offset) => offset + 1).map((index) => (
         <section key={index} className="rounded-3xl bg-ivory p-6">
-          <h3 className="font-display text-2xl font-bold">Serviço {index}</h3>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <h3 className="font-display text-2xl font-bold">Serviço {index}</h3>
+            {index > 1 ? (
+              <button
+                type="button"
+                onClick={() => removeService(index)}
+                className="self-start text-sm font-semibold text-charcoal/60 transition-colors hover:text-nexa_orange"
+                aria-label={`Remover serviço ${index}`}
+              >
+                Remover serviço
+              </button>
+            ) : null}
+          </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <TextField label="Título" value={profile[`service_${index}_title_pt`]} onChange={(value) => onProfileFieldChange(`service_${index}_title_pt`, value)} />
             <SelectField
@@ -277,11 +378,37 @@ export function ProfileQuestionnaireFields({
             <TextareaField label="Descrição PT" value={profile[`service_${index}_description_pt`]} onChange={(value) => onProfileFieldChange(`service_${index}_description_pt`, value)} rows={4} />
           </div>
         </section>
-      ))}
+        ))}
+        {visibleServices < MAX_DYNAMIC_ITEMS ? (
+          <button
+            type="button"
+            onClick={addService}
+            className="justify-self-start rounded-2xl border border-charcoal/10 bg-white px-5 py-3 text-sm font-semibold text-charcoal transition-colors hover:border-nexa_orange hover:text-nexa_orange"
+          >
+            + Adicionar outro serviço
+          </button>
+        ) : null}
+      </section>
 
-      {[1, 2, 3].map((index) => (
-        <section key={`portfolio-${index}`} className="rounded-3xl bg-ivory p-6">
-          <h3 className="font-display text-2xl font-bold">Portfólio {index}</h3>
+      <section className="rounded-3xl bg-ivory p-6">
+        <h3 className="font-display text-2xl font-bold">Portfólio</h3>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-charcoal/70">
+          Adicione projetos, trabalhos ou experiências que ajudem clientes a conhecer melhor o seu trabalho. Esta seção é opcional.
+        </p>
+        <div className="mt-5 grid gap-4">
+          {Array.from({ length: visiblePortfolio }, (_, offset) => offset + 1).map((index) => (
+          <section key={`portfolio-${index}`} className="rounded-3xl border border-charcoal/10 bg-white p-5">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <h4 className="font-display text-xl font-bold">Portfólio {index}</h4>
+            <button
+              type="button"
+              onClick={() => removePortfolio(index)}
+              className="self-start text-sm font-semibold text-charcoal/60 transition-colors hover:text-nexa_orange"
+              aria-label={`Remover portfólio ${index}`}
+            >
+              Remover portfólio
+            </button>
+          </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <TextField label="Título" value={profile[`portfolio_${index}_title_pt`]} onChange={(value) => onProfileFieldChange(`portfolio_${index}_title_pt`, value)} />
             <TextField
@@ -296,7 +423,18 @@ export function ProfileQuestionnaireFields({
             <TextareaField label="Descrição PT" value={profile[`portfolio_${index}_description_pt`]} onChange={(value) => onProfileFieldChange(`portfolio_${index}_description_pt`, value)} rows={4} />
           </div>
         </section>
-      ))}
+          ))}
+          {visiblePortfolio < MAX_DYNAMIC_ITEMS ? (
+            <button
+              type="button"
+              onClick={addPortfolio}
+              className="justify-self-start rounded-2xl border border-charcoal/10 bg-white px-5 py-3 text-sm font-semibold text-charcoal transition-colors hover:border-nexa_orange hover:text-nexa_orange"
+            >
+              {visiblePortfolio ? "+ Adicionar outro portfólio" : "+ Adicionar portfólio"}
+            </button>
+          ) : null}
+        </div>
+      </section>
     </div>
   );
 }

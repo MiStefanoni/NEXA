@@ -82,9 +82,22 @@ export function ProfilePage({ profile, lang }) {
     }))
     .filter((service) => service.title);
 
+  const hasPortfolioContent = (index) =>
+    [
+      `portfolio_${index}_title_pt`,
+      `portfolio_${index}_title_en`,
+      `portfolio_${index}_description_pt`,
+      `portfolio_${index}_description_en`,
+      `portfolio_${index}_url`,
+    ].some((key) => Boolean(String(profile[key] || "").trim()));
+
   const portfolio = [1, 2, 3]
-    .map((index) => getPortfolioItem(profile, index, lang))
-    .filter((item) => item.title);
+    .filter(hasPortfolioContent)
+    .map((index) => ({
+      ...getPortfolioItem(profile, index, lang),
+      description: getLocalizedField(profile, `portfolio_${index}_description`, lang, ""),
+    }))
+    .filter((item) => item.title || item.description || item.url);
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
@@ -99,9 +112,9 @@ export function ProfilePage({ profile, lang }) {
             { href: "#profile-about", label: ui.sections.about },
             { href: "#profile-services", label: ui.sections.services },
             { href: "#profile-experience", label: ui.sections.experience },
-            { href: "#profile-portfolio", label: ui.sections.portfolio },
+            portfolio.length ? { href: "#profile-portfolio", label: ui.sections.portfolio } : null,
             { href: "#profile-contact", label: ui.sections.contact },
-          ].map((link) => (
+          ].filter(Boolean).map((link) => (
             <a key={link.href} href={link.href} className="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-nexa_nude hover:text-nexa_orange">
               {link.label}
             </a>
@@ -196,27 +209,29 @@ export function ProfilePage({ profile, lang }) {
             </div>
           </section>
 
-          <section id="profile-portfolio" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
-            <h3 className="font-display text-2xl font-bold">{ui.sections.portfolio}</h3>
-            <div className="mt-6 grid gap-5 md:grid-cols-3">
-              {portfolio.map((item) => (
-                <article key={item.title} className="rounded-3xl bg-nexa_nude p-6">
-                  <p className="text-sm font-semibold text-nexa_purple">{item.title}</p>
-                  <p className="mt-3 text-sm leading-7 text-charcoal/75">{item.description}</p>
-                  {item.url ? (
-                    <a
-                      href={normalizeExternalUrl(item.url)}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="mt-5 inline-flex items-center text-sm font-semibold text-nexa_orange hover:underline"
-                    >
-                      Veja o projeto
-                    </a>
-                  ) : null}
-                </article>
-              ))}
-            </div>
-          </section>
+          {portfolio.length ? (
+            <section id="profile-portfolio" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
+              <h3 className="font-display text-2xl font-bold">{ui.sections.portfolio}</h3>
+              <div className="mt-6 grid gap-5 md:grid-cols-3">
+                {portfolio.map((item, index) => (
+                  <article key={`${item.title || item.url || "portfolio"}-${index}`} className="rounded-3xl bg-nexa_nude p-6">
+                    {item.title ? <p className="text-sm font-semibold text-nexa_purple">{item.title}</p> : null}
+                    {item.description ? <p className="mt-3 text-sm leading-7 text-charcoal/75">{item.description}</p> : null}
+                    {item.url ? (
+                      <a
+                        href={normalizeExternalUrl(item.url)}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="mt-5 inline-flex items-center text-sm font-semibold text-nexa_orange hover:underline"
+                      >
+                        Veja o projeto
+                      </a>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </div>
 
         <aside className="space-y-6">
