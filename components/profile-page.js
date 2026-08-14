@@ -149,15 +149,15 @@ export function ProfilePage({ profile, lang }) {
             </dl>
           </div>
           <div className="xl:justify-self-end">
-            <div className="overflow-hidden rounded-[2rem] bg-nexa_nude shadow-soft">
+            <div className="h-[18rem] w-[14rem] overflow-hidden rounded-[2rem] bg-nexa_nude shadow-soft">
               {profileImage ? (
                 <img
                   src={profileImage}
                   alt={`Foto de ${profile.name}`}
-                  className="h-[18rem] w-[14rem] object-cover object-center"
+                  className="h-full w-full object-cover object-center"
                 />
               ) : (
-                <div className="flex h-[18rem] w-[14rem] items-center justify-center px-6 text-center text-sm font-semibold text-charcoal/55">
+                <div className="flex h-full w-full items-center justify-center px-6 text-center text-sm font-semibold text-charcoal/55">
                   Imagem de perfil indisponível
                 </div>
               )}
