@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./design-system/button";
 import { PanelCard, SubtleCard } from "./design-system/card";
 import { FeedbackBanner } from "./design-system/feedback-banner";
@@ -215,12 +215,15 @@ export function AdminDashboard({ initialData }) {
   const [error, setError] = useState(false);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [sendingInvite, setSendingInvite] = useState(false);
+  const [inviteAction, setInviteAction] = useState("");
+  const [generatedInviteLink, setGeneratedInviteLink] = useState("");
+  const [inviteLinkCopied, setInviteLinkCopied] = useState(false);
   const [creatingReferral, setCreatingReferral] = useState(false);
   const [copiedReferralId, setCopiedReferralId] = useState("");
   const [editorState, setEditorState] = useState(null);
   const [selectedRejectedIds, setSelectedRejectedIds] = useState([]);
   const [browserOrigin, setBrowserOrigin] = useState("");
+  const inviteRequestInFlightRef = useRef(false);
   const [inviteForm, setInviteForm] = useState({
     name: "",
     email: "",
@@ -389,33 +392,68 @@ export function AdminDashboard({ initialData }) {
     window.location.href = "/admin/login";
   }
 
-  async function handleSendInvite(event) {
+  function updateInviteFormField(key, value) {
+    setInviteForm((current) => ({ ...current, [key]: value }));
+    setGeneratedInviteLink("");
+    setInviteLinkCopied(false);
+  }
+
+  async function handleInviteSubmission(event) {
     event.preventDefault();
+    if (inviteRequestInFlightRef.current) return;
+
+    const action = event.nativeEvent.submitter?.value === "link" ? "link" : "email";
+    inviteRequestInFlightRef.current = true;
 
     setFeedback("");
     setError(false);
-    setSendingInvite(true);
+    setGeneratedInviteLink("");
+    setInviteLinkCopied(false);
+    setInviteAction(action);
 
     try {
       const response = await fetch("/api/admin/invites", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(inviteForm),
+        body: JSON.stringify({ ...inviteForm, delivery: action }),
       });
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.error || "Não foi possível enviar o convite.");
+        throw new Error(result.error || (action === "link" ? "Não foi possível gerar o link." : "Não foi possível enviar o convite."));
       }
 
-      setInviteForm({ name: "", email: "", expiresInDays: "7" });
+      if (action === "link") {
+        if (!result.inviteLink) {
+          throw new Error("O link de candidatura não foi retornado.");
+        }
+        setGeneratedInviteLink(result.inviteLink);
+        setFeedback("Link de candidatura gerado com sucesso.");
+      } else {
+        setInviteForm({ name: "", email: "", expiresInDays: "7" });
+        setFeedback("Convite enviado com sucesso.");
+      }
       await fetchDashboard();
-      setFeedback("Convite enviado com sucesso.");
     } catch (submissionError) {
       setError(true);
-      setFeedback(submissionError.message || "Não foi possível enviar o convite.");
+      setGeneratedInviteLink("");
+      setFeedback(submissionError.message || (action === "link" ? "Não foi possível gerar o link." : "Não foi possível enviar o convite."));
     } finally {
-      setSendingInvite(false);
+      inviteRequestInFlightRef.current = false;
+      setInviteAction("");
+    }
+  }
+
+  async function handleCopyInviteLink() {
+    if (!generatedInviteLink) return;
+
+    try {
+      await navigator.clipboard.writeText(generatedInviteLink);
+      setInviteLinkCopied(true);
+      window.setTimeout(() => setInviteLinkCopied(false), 1800);
+    } catch (_error) {
+      setError(true);
+      setFeedback("Não foi possível copiar o link automaticamente.");
     }
   }
 
@@ -609,14 +647,14 @@ export function AdminDashboard({ initialData }) {
           <PanelCard className="p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-nexa_orange">Convites</p>
             <h2 className="mt-3 font-display text-2xl font-bold">Enviar convite de candidatura</h2>
-            <form className="mt-6 grid gap-4" onSubmit={handleSendInvite}>
+            <form className="mt-6 grid gap-4" onSubmit={handleInviteSubmission}>
               <div>
                 <FieldLabel htmlFor="invite-name" className="text-charcoal/80">Nome</FieldLabel>
                 <Input
                   id="invite-name"
                   type="text"
                   value={inviteForm.name}
-                  onChange={(event) => setInviteForm((current) => ({ ...current, name: event.target.value }))}
+                  onChange={(event) => updateInviteFormField("name", event.target.value)}
                   placeholder="Opcional"
                 />
               </div>
@@ -627,7 +665,7 @@ export function AdminDashboard({ initialData }) {
                   type="email"
                   required
                   value={inviteForm.email}
-                  onChange={(event) => setInviteForm((current) => ({ ...current, email: event.target.value }))}
+                  onChange={(event) => updateInviteFormField("email", event.target.value)}
                   placeholder="nome@exemplo.com"
                 />
               </div>
@@ -636,7 +674,7 @@ export function AdminDashboard({ initialData }) {
                 <Select
                   id="invite-expiration"
                   value={inviteForm.expiresInDays}
-                  onChange={(event) => setInviteForm((current) => ({ ...current, expiresInDays: event.target.value }))}
+                  onChange={(event) => updateInviteFormField("expiresInDays", event.target.value)}
                 >
                   <option value="3">3 dias</option>
                   <option value="7">7 dias</option>
@@ -644,9 +682,38 @@ export function AdminDashboard({ initialData }) {
                   <option value="30">30 dias</option>
                 </Select>
               </div>
-              <Button type="submit" disabled={sendingInvite}>
-                {sendingInvite ? "Enviando..." : "Enviar convite"}
-              </Button>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button type="submit" name="invite-action" value="email" disabled={Boolean(inviteAction)}>
+                  {inviteAction === "email" ? "Enviando..." : "Enviar Convite"}
+                </Button>
+                <Button type="submit" name="invite-action" value="link" variant="secondary" disabled={Boolean(inviteAction)}>
+                  {inviteAction === "link" ? "Gerando..." : "Gerar Link"}
+                </Button>
+              </div>
+              <p className="text-sm text-charcoal/60">Gera o link de candidatura sem enviar o convite por email.</p>
+              {generatedInviteLink ? (
+                <SubtleCard className="border border-charcoal/10 p-5">
+                  <FieldLabel htmlFor="generated-invite-link" className="text-charcoal/80">Link de candidatura</FieldLabel>
+                  <Input
+                    id="generated-invite-link"
+                    type="text"
+                    readOnly
+                    value={generatedInviteLink}
+                    onFocus={(event) => event.currentTarget.select()}
+                    className="break-all bg-white"
+                  />
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    size="md"
+                    className="mt-3"
+                    onClick={handleCopyInviteLink}
+                    aria-label="Copiar link de candidatura"
+                  >
+                    {inviteLinkCopied ? "Link copiado!" : "Copiar link"}
+                  </Button>
+                </SubtleCard>
+              ) : null}
             </form>
           </PanelCard>
 

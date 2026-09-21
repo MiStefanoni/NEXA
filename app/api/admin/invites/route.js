@@ -16,6 +16,41 @@ function parseExpiresInDays(value) {
   return Math.min(Math.max(parsed, 1), 30);
 }
 
+async function createInvitation({ email, name, expiresInDays, createdBy, request }) {
+  const token = generateInviteToken();
+  const expiresAt = new Date(Date.now() + expiresInDays * 24 * 60 * 60 * 1000);
+  const invite = await createApplicationInvite({
+    email,
+    name,
+    token,
+    expiresAt,
+    createdBy,
+  });
+  const siteUrl = getSiteUrl(request);
+
+  return {
+    invite,
+    inviteLink: `${siteUrl}/pt/apply/invite?token=${encodeURIComponent(token)}`,
+  };
+}
+
+async function sendInvitationEmail({ email, name, invite, inviteLink }) {
+  await sendEmail({
+    to: email,
+    subject: "Convite para preencher seu perfil na Nexa",
+    text: [
+      `Olá${name ? `, ${name}` : ""}.`,
+      "",
+      "Você recebeu um convite para preencher seu perfil profissional na Nexa.",
+      "Use o link abaixo para completar sua candidatura:",
+      inviteLink,
+      "",
+      `Este link expira em ${new Date(invite.expires_at).toLocaleString("pt-BR")}.`,
+      "O link é pessoal e pode ser usado apenas uma vez.",
+    ].join("\n"),
+  });
+}
+
 export async function POST(request) {
   const session = requireAdminApiSession(request);
   if (!session) {
@@ -26,6 +61,7 @@ export async function POST(request) {
   const email = sanitizeText(rawBody.email, 320).toLowerCase();
   const name = sanitizeText(rawBody.name, 200);
   const expiresInDays = parseExpiresInDays(rawBody.expiresInDays);
+  const delivery = rawBody.delivery === undefined ? "email" : rawBody.delivery;
 
   if (!email) {
     return jsonResponse({ success: false, error: "Email é obrigatório." }, { status: 400 });
@@ -35,36 +71,25 @@ export async function POST(request) {
     return jsonResponse({ success: false, error: "Email inválido." }, { status: 400 });
   }
 
-  const token = generateInviteToken();
-  const expiresAt = new Date(Date.now() + expiresInDays * 24 * 60 * 60 * 1000);
+  if (delivery !== "email" && delivery !== "link") {
+    return jsonResponse({ success: false, error: "Forma de entrega inválida." }, { status: 400 });
+  }
 
   try {
-    const invite = await createApplicationInvite({
+    const { invite, inviteLink } = await createInvitation({
       email,
       name,
-      token,
-      expiresAt,
+      expiresInDays,
       createdBy: session.role || "admin",
+      request,
     });
 
-    const siteUrl = getSiteUrl(request);
-    const inviteLink = `${siteUrl}/pt/apply/invite?token=${encodeURIComponent(token)}`;
+    if (delivery === "link") {
+      return jsonResponse({ success: true, inviteId: invite.id, inviteLink }, { status: 200 });
+    }
 
     try {
-      await sendEmail({
-        to: email,
-        subject: "Convite para preencher seu perfil na Nexa",
-        text: [
-          `Olá${name ? `, ${name}` : ""}.`,
-          "",
-          "Você recebeu um convite para preencher seu perfil profissional na Nexa.",
-          "Use o link abaixo para completar sua candidatura:",
-          inviteLink,
-          "",
-          `Este link expira em ${new Date(invite.expires_at).toLocaleString("pt-BR")}.`,
-          "O link é pessoal e pode ser usado apenas uma vez.",
-        ].join("\n"),
-      });
+      await sendInvitationEmail({ email, name, invite, inviteLink });
     } catch (emailError) {
       await revokeApplicationInvite(invite.id);
       throw new Error(emailError.message || "Não foi possível enviar o email de convite.");
