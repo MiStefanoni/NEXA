@@ -1,6 +1,7 @@
-import { createInviteApplicationDraft, getCategoryFieldsFromSlug, hydrateProfileDraft, sanitizeProfileDraft } from "../../../../lib/admin-profile";
+import { createInviteApplicationDraftFromRecord, getCategoryFieldsFromSlug, hydrateProfileDraft, mergeGeneratedFields, sanitizeProfileDraft } from "../../../../lib/admin-profile";
 import {
   getAiProfileSessionForInvite,
+  getApplicationRecordForInvite,
   getValidPendingInviteForAi,
   updateAiProfileSession,
 } from "../../../../lib/admin-store";
@@ -8,11 +9,11 @@ import { generateProfileDraft, getGeminiFriendlyError } from "../../../../lib/ai
 import { FOLLOW_UP_LIMITS } from "../../../../lib/ai/profile-schemas";
 import { jsonResponse, sanitizeText } from "../../../../lib/server-utils";
 
-function buildSafeProfile(invite, generated) {
-  const base = createInviteApplicationDraft({ name: invite.name || "", email: invite.email || "" });
+function buildSafeProfile(invite, generated, existingRecord = null) {
+  const base = createInviteApplicationDraftFromRecord(existingRecord, invite);
   const profile = sanitizeProfileDraft({
     ...base.profile,
-    ...(generated?.profile || {}),
+    ...mergeGeneratedFields(base.profile, generated?.profile),
     email: invite.email,
     verified: false,
     featured: false,
@@ -22,7 +23,7 @@ function buildSafeProfile(invite, generated) {
   return {
     applicant: {
       ...base.applicant,
-      ...(generated?.applicant || {}),
+      ...mergeGeneratedFields(base.applicant, generated?.applicant),
       name: sanitizeText(generated?.applicant?.name || base.applicant.name, 200),
       email: invite.email,
       category: category.category_pt || sanitizeText(generated?.applicant?.category, 200),
@@ -47,6 +48,7 @@ export async function POST(request) {
 
   try {
     const invite = await getValidPendingInviteForAi(token);
+    const existingRecord = await getApplicationRecordForInvite(invite);
     const session = await getAiProfileSessionForInvite({ sessionId, invite });
     if (session.generation_count >= FOLLOW_UP_LIMITS.maxGenerations) {
       return jsonResponse({ success: false, error: "Limite de versões atingido." }, { status: 400 });
@@ -59,7 +61,7 @@ export async function POST(request) {
       currentDraft: session.generated_profile,
       locale,
     });
-    const record = buildSafeProfile(invite, generated);
+    const record = buildSafeProfile(invite, generated, existingRecord);
     const updated = await updateAiProfileSession(session.id, {
       generatedProfile: record,
       status: "ready_for_review",

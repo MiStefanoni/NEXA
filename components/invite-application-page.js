@@ -36,6 +36,7 @@ export function InviteApplicationPage() {
   const [aiQuestions, setAiQuestions] = useState([]);
   const [aiAnswers, setAiAnswers] = useState({});
   const [aiAccuracyConfirmed, setAiAccuracyConfirmed] = useState(false);
+  const [publicationConsent, setPublicationConsent] = useState(false);
 
   useEffect(() => {
     const search = new URLSearchParams(window.location.search);
@@ -56,7 +57,9 @@ export function InviteApplicationPage() {
         }
 
         setInvite(result);
-        setRecord(buildInviteDraft(result));
+        setRecord(result.record || buildInviteDraft(result));
+        setAiDescription(result.record?.applicant?.description || "");
+        setPublicationConsent(Boolean(result.record?.publicationConsent));
       })
       .catch(() => {
         setInvalid(true);
@@ -251,6 +254,11 @@ export function InviteApplicationPage() {
       return;
     }
 
+    if (!publicationConsent) {
+      setMessage("Autorize a publicação das informações profissionais para continuar.", true);
+      return;
+    }
+
     const validationErrors = getInviteApplicationValidationErrors({
       applicant: record.applicant,
       profile: record.profile,
@@ -276,6 +284,7 @@ export function InviteApplicationPage() {
           source: aiAssisted ? "ai-assisted" : undefined,
           aiSessionId: aiAssisted ? aiSession?.id : undefined,
           aiAccuracyConfirmed: aiAssisted ? aiAccuracyConfirmed : undefined,
+          publicationConsent,
         }),
       });
 
@@ -525,6 +534,15 @@ export function InviteApplicationPage() {
             </p>
           </div>
         ) : null}
+        <label className="flex items-start gap-3 rounded-2xl border border-charcoal/10 bg-white p-5 text-sm leading-6 text-charcoal/75">
+          <input
+            type="checkbox"
+            checked={publicationConsent}
+            onChange={(event) => setPublicationConsent(event.target.checked)}
+            className="mt-1"
+          />
+          <span>Autorizo a Nexa a publicar as informações profissionais enviadas após análise e aprovação.</span>
+        </label>
         {renderFeedback()}
         <div className="flex flex-wrap gap-3">
           {aiAssisted ? (
@@ -591,7 +609,9 @@ export function InviteApplicationPage() {
               </p>
             ) : submitted ? (
               <p className="mt-6 rounded-2xl border border-nexa_purple/15 bg-nexa_nude px-4 py-3 text-sm text-charcoal/75">
-                Candidatura enviada com sucesso. A equipe da Nexa irá revisar suas informações antes da publicação.
+                {invite?.purpose === "profile-completion"
+                  ? "Atualização enviada com sucesso. A equipe da Nexa irá revisar as informações antes de atualizar o perfil publicado."
+                  : "Candidatura enviada com sucesso. A equipe da Nexa irá revisar suas informações antes da publicação."}
               </p>
             ) : record ? (
               <>

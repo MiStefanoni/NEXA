@@ -1,5 +1,5 @@
 import { requireAdminApiSession } from "../../../../../lib/admin-auth";
-import { getApplicationRecord, updateApplicationRecord } from "../../../../../lib/admin-store";
+import { getApplicationRecord, reviewPendingProfileUpdate, updateApplicationRecord } from "../../../../../lib/admin-store";
 import { jsonResponse } from "../../../../../lib/server-utils";
 
 function parseId(value) {
@@ -38,11 +38,22 @@ export async function PATCH(request, { params }) {
   const rawBody = await request.json().catch(() => ({}));
 
   try {
+    if (rawBody.profileUpdateAction) {
+      const record = await reviewPendingProfileUpdate(id, {
+        action: rawBody.profileUpdateAction,
+        profile: rawBody.profile,
+        applicant: rawBody.applicant,
+      });
+      return jsonResponse({ success: true, record }, { status: 200 });
+    }
+
     const record = await updateApplicationRecord(id, {
       adminNotes: rawBody.admin_notes,
       profile: rawBody.profile,
       applicant: rawBody.applicant,
       status: rawBody.status,
+      publicationConsent: rawBody.publication_consent,
+      publish: rawBody.publish === true,
     });
     return jsonResponse({ success: true, record }, { status: 200 });
   } catch (error) {

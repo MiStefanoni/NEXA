@@ -70,10 +70,11 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
       website: String(formData.get("website") || "").trim(),
       referralCode: referralCode.trim(),
       description: String(formData.get("description") || "").trim(),
+      publicationConsent: formData.get("publicationConsent") === "on",
       source,
     };
 
-    if (!payload.name || !payload.email || !payload.category || !payload.description) {
+    if (!payload.name || !payload.email || !payload.category || !payload.description || !payload.publicationConsent) {
       setFeedback(ui.applicationForm.validation);
       setError(true);
       return;
@@ -229,6 +230,14 @@ export function ApplicationForm({ lang, ui, source, withExtraFields = false }) {
           }
         />
       </div>
+      <label className="flex items-start gap-3 rounded-2xl border border-charcoal/10 bg-ivory p-4 text-sm leading-6 text-charcoal/75">
+        <input name="publicationConsent" type="checkbox" required className="mt-1" />
+        <span>
+          {lang === "en"
+            ? "I authorize Nexa to publish the professional information I provide after review and approval."
+            : "Autorizo a Nexa a publicar as informações profissionais que forneci após análise e aprovação."}
+        </span>
+      </label>
       {feedback ? <FeedbackBanner variant={error ? "error" : "success"}>{feedback}</FeedbackBanner> : null}
       <Button type="submit" disabled={sending} size="lg">
         {sending ? ui.applicationForm.sending : lang === "en" ? "Submit application" : "Enviar candidatura"}

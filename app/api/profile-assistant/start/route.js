@@ -1,6 +1,7 @@
-import { createInviteApplicationDraft, getCategoryFieldsFromSlug, hydrateProfileDraft, sanitizeProfileDraft } from "../../../../lib/admin-profile";
+import { createInviteApplicationDraftFromRecord, getCategoryFieldsFromSlug, hydrateProfileDraft, mergeGeneratedFields, sanitizeProfileDraft } from "../../../../lib/admin-profile";
 import {
   createAiProfileSession,
+  getApplicationRecordForInvite,
   getValidPendingInviteForAi,
   updateAiProfileSession,
 } from "../../../../lib/admin-store";
@@ -25,11 +26,11 @@ async function validateTurnstileIfConfigured(token) {
   return Boolean(result.success);
 }
 
-function buildSafeProfile(invite, generated) {
-  const base = createInviteApplicationDraft({ name: invite.name || "", email: invite.email || "" });
+function buildSafeProfile(invite, generated, existingRecord = null) {
+  const base = createInviteApplicationDraftFromRecord(existingRecord, invite);
   const profile = sanitizeProfileDraft({
     ...base.profile,
-    ...(generated?.profile || {}),
+    ...mergeGeneratedFields(base.profile, generated?.profile),
     name: sanitizeText(generated?.profile?.name || base.profile.name, 200),
     email: invite.email,
     verified: false,
@@ -41,7 +42,7 @@ function buildSafeProfile(invite, generated) {
   return {
     applicant: {
       ...base.applicant,
-      ...(generated?.applicant || {}),
+      ...mergeGeneratedFields(base.applicant, generated?.applicant),
       name: sanitizeText(generated?.applicant?.name || base.applicant.name, 200),
       email: invite.email,
       category: category.category_pt || sanitizeText(generated?.applicant?.category, 200),
@@ -74,6 +75,7 @@ export async function POST(request) {
   let session;
   try {
     const invite = await getValidPendingInviteForAi(token);
+    const existingRecord = await getApplicationRecordForInvite(invite);
     const turnstileValid = await validateTurnstileIfConfigured(turnstileToken);
     if (!turnstileValid) {
       return jsonResponse({ success: false, error: "Não foi possível validar a proteção de segurança." }, { status: 400 });
@@ -96,10 +98,10 @@ export async function POST(request) {
       invite,
       facts,
       conversation: [],
-      currentDraft: {},
+      currentDraft: existingRecord?.profile || {},
       locale,
     });
-    const record = buildSafeProfile(invite, generated);
+    const record = buildSafeProfile(invite, generated, existingRecord);
     const updated = await updateAiProfileSession(session.id, {
       extractedFacts: facts,
       generatedProfile: record,

@@ -1,4 +1,4 @@
-import { getApplicationInviteByToken } from "../../../../../lib/admin-store";
+import { getApplicationInviteByToken, getApplicationRecordForInvite } from "../../../../../lib/admin-store";
 import { jsonResponse, sanitizeText } from "../../../../../lib/server-utils";
 
 export async function GET(request) {
@@ -14,12 +14,16 @@ export async function GET(request) {
     return jsonResponse({ valid: false }, { status: 200 });
   }
 
+  const record = await getApplicationRecordForInvite(invite);
+
   return jsonResponse(
     {
       valid: true,
       email: invite.email,
       name: invite.name,
       expires_at: invite.expires_at,
+      purpose: record ? "profile-completion" : "application",
+      record,
     },
     { status: 200 },
   );

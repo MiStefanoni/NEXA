@@ -26,6 +26,9 @@ export function ProfilePage({ profile, lang }) {
   const websiteHref = normalizeExternalUrl(profile.website);
   const socialHref = normalizeExternalUrl(profile.social_link);
   const profileImage = String(profile.profile_image || "").trim();
+  const languages = getLocalizedLanguages(profile.languages, lang);
+  const hasExperience = Boolean(String(profile.experience_years || "").trim() || String(profile.projects_delivered || "").trim());
+  const hasContactDetails = Boolean(profile.email || websiteHref || socialHref);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
@@ -109,11 +112,11 @@ export function ProfilePage({ profile, lang }) {
       <div className="mb-8 rounded-3xl border border-charcoal/10 bg-white/80 p-3 shadow-soft backdrop-blur">
         <nav aria-label="Profile sections" className="flex flex-wrap gap-2 text-sm font-semibold">
           {[
-            { href: "#profile-about", label: ui.sections.about },
-            { href: "#profile-services", label: ui.sections.services },
-            { href: "#profile-experience", label: ui.sections.experience },
+            fullAbout ? { href: "#profile-about", label: ui.sections.about } : null,
+            services.length ? { href: "#profile-services", label: ui.sections.services } : null,
+            hasExperience ? { href: "#profile-experience", label: ui.sections.experience } : null,
             portfolio.length ? { href: "#profile-portfolio", label: ui.sections.portfolio } : null,
-            { href: "#profile-contact", label: ui.sections.contact },
+            hasContactDetails ? { href: "#profile-contact", label: ui.sections.contact } : null,
           ].filter(Boolean).map((link) => (
             <a key={link.href} href={link.href} className="rounded-2xl px-4 py-2 text-charcoal/75 transition-colors hover:bg-nexa_nude hover:text-nexa_orange">
               {link.label}
@@ -137,16 +140,16 @@ export function ProfilePage({ profile, lang }) {
             </div>
             <p className="mt-3 text-lg font-medium text-nexa_purple">{category}</p>
             <p className="mt-2 text-sm font-semibold text-charcoal/70">{roleTitle}</p>
-            <dl className="mt-8 grid gap-4 text-sm sm:grid-cols-2">
-              <div className="rounded-2xl bg-nexa_nude px-4 py-4">
+            {profile.location || languages ? <dl className="mt-8 grid gap-4 text-sm sm:grid-cols-2">
+              {profile.location ? <div className="rounded-2xl bg-nexa_nude px-4 py-4">
                 <dt className="text-charcoal/55">{ui.labels.location}</dt>
-                <dd className="mt-1 font-semibold">{profile.location || ""}</dd>
-              </div>
-              <div className="rounded-2xl bg-nexa_nude px-4 py-4">
+                <dd className="mt-1 font-semibold">{profile.location}</dd>
+              </div> : null}
+              {languages ? <div className="rounded-2xl bg-nexa_nude px-4 py-4">
                 <dt className="text-charcoal/55">{ui.labels.languages}</dt>
-                <dd className="mt-1 font-semibold">{getLocalizedLanguages(profile.languages, lang)}</dd>
-              </div>
-            </dl>
+                <dd className="mt-1 font-semibold">{languages}</dd>
+              </div> : null}
+            </dl> : null}
           </div>
           <div className="xl:justify-self-end">
             <div className="h-[18rem] w-[14rem] overflow-hidden rounded-[2rem] bg-nexa_nude shadow-soft">
@@ -168,12 +171,12 @@ export function ProfilePage({ profile, lang }) {
 
       <div className="grid gap-8 xl:grid-cols-[1.35fr_0.65fr]">
         <div className="space-y-8">
-          <section id="profile-about" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
+          {fullAbout ? <section id="profile-about" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
             <h3 className="font-display text-2xl font-bold">{ui.sections.about}</h3>
             <p className="mt-5 leading-8 text-charcoal/75">{fullAbout}</p>
-          </section>
+          </section> : null}
 
-          <section id="profile-services" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
+          {services.length ? <section id="profile-services" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
             <h3 className="font-display text-2xl font-bold">{ui.sections.services}</h3>
             <div className="mt-6 space-y-5">
               {services.map((service) => (
@@ -193,21 +196,21 @@ export function ProfilePage({ profile, lang }) {
                 </article>
               ))}
             </div>
-          </section>
+          </section> : null}
 
-          <section id="profile-experience" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
+          {hasExperience ? <section id="profile-experience" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
             <h3 className="font-display text-2xl font-bold">{ui.sections.experience}</h3>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <article className="rounded-3xl bg-nexa_nude p-6">
+              {profile.experience_years ? <article className="rounded-3xl bg-nexa_nude p-6">
                 <p className="text-sm text-charcoal/60">{ui.labels.experience}</p>
                 <p className="mt-2 font-display text-3xl font-bold">{profile.experience_years || ""}</p>
-              </article>
-              <article className="rounded-3xl bg-nexa_nude p-6">
+              </article> : null}
+              {profile.projects_delivered ? <article className="rounded-3xl bg-nexa_nude p-6">
                 <p className="text-sm text-charcoal/60">{ui.labels.projectsDelivered}</p>
                 <p className="mt-2 font-display text-3xl font-bold">{profile.projects_delivered || ""}</p>
-              </article>
+              </article> : null}
             </div>
-          </section>
+          </section> : null}
 
           {portfolio.length ? (
             <section id="profile-portfolio" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft">
@@ -234,17 +237,17 @@ export function ProfilePage({ profile, lang }) {
           ) : null}
         </div>
 
-        <aside className="space-y-6">
+        {hasContactDetails ? <aside className="space-y-6">
           <section id="profile-contact" className="scroll-mt-28 rounded-3xl bg-white p-8 shadow-soft xl:sticky xl:top-28">
             <h3 className="font-display text-2xl font-bold">{ui.sections.contact}</h3>
             <ul className="mt-6 space-y-4 text-sm">
-              <li>
+              {profile.email ? <li>
                 <span className="block text-charcoal/55">{ui.labels.email}</span>
                 <a href={`mailto:${profile.email || ""}`} className="mt-1 inline-block font-semibold text-nexa_orange">
                   {profile.email || ""}
                 </a>
-              </li>
-              <li>
+              </li> : null}
+              {websiteHref ? <li>
                 <span className="block text-charcoal/55">{ui.labels.website}</span>
                 <a
                   href={websiteHref || "#"}
@@ -254,8 +257,8 @@ export function ProfilePage({ profile, lang }) {
                 >
                   {websiteLabel}
                 </a>
-              </li>
-              <li>
+              </li> : null}
+              {socialHref ? <li>
                 <span className="block text-charcoal/55">{ui.labels.social}</span>
                 <a
                   href={socialHref || "#"}
@@ -265,7 +268,7 @@ export function ProfilePage({ profile, lang }) {
                 >
                   {socialLabel}
                 </a>
-              </li>
+              </li> : null}
             </ul>
             <button
               type="button"
@@ -280,7 +283,7 @@ export function ProfilePage({ profile, lang }) {
             </button>
           </section>
 
-        </aside>
+        </aside> : null}
       </div>
 
       {success ? (

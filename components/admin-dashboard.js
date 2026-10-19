@@ -10,6 +10,7 @@ import { ProfileQuestionnaireFields } from "./profile-questionnaire-fields";
 const STATUS_LABELS = {
   pending: "Pendências",
   approved: "Aprovadas",
+  updates: "Atualizações",
   rejected: "Rejeitadas",
 };
 
@@ -214,6 +215,10 @@ export function AdminDashboard({ initialData }) {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [generatingProfile, setGeneratingProfile] = useState(false);
+  const [generatingCompletionLink, setGeneratingCompletionLink] = useState(false);
+  const [completionLink, setCompletionLink] = useState("");
+  const [completionLinkCopied, setCompletionLinkCopied] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [inviteAction, setInviteAction] = useState("");
   const [generatedInviteLink, setGeneratedInviteLink] = useState("");
@@ -224,6 +229,7 @@ export function AdminDashboard({ initialData }) {
   const [selectedRejectedIds, setSelectedRejectedIds] = useState([]);
   const [browserOrigin, setBrowserOrigin] = useState("");
   const inviteRequestInFlightRef = useRef(false);
+  const completionRequestInFlightRef = useRef(false);
   const [inviteForm, setInviteForm] = useState({
     name: "",
     email: "",
@@ -239,6 +245,7 @@ export function AdminDashboard({ initialData }) {
     pending: dashboard.pending || [],
     approved: dashboard.approved || [],
     rejected: dashboard.rejected || [],
+    updates: dashboard.updates || [],
   };
 
   useEffect(() => {
@@ -247,7 +254,7 @@ export function AdminDashboard({ initialData }) {
 
   useEffect(() => {
     if (!selectedRecord) {
-      const first = lists[activeStatus]?.[0] || lists.pending?.[0] || lists.approved?.[0] || lists.rejected?.[0];
+      const first = lists[activeStatus]?.[0] || lists.pending?.[0] || lists.updates?.[0] || lists.approved?.[0] || lists.rejected?.[0];
       if (first) {
         setSelectedRecord(first);
         setEditorState(first);
@@ -259,6 +266,7 @@ export function AdminDashboard({ initialData }) {
 
     const fresh =
       lists.pending.find((item) => item.id === selectedRecord.id) ||
+      lists.updates.find((item) => item.id === selectedRecord.id) ||
       lists.approved.find((item) => item.id === selectedRecord.id) ||
       lists.rejected.find((item) => item.id === selectedRecord.id);
 
@@ -268,7 +276,7 @@ export function AdminDashboard({ initialData }) {
       return;
     }
 
-    const fallback = lists[activeStatus]?.[0] || lists.pending?.[0] || lists.approved?.[0] || lists.rejected?.[0] || null;
+    const fallback = lists[activeStatus]?.[0] || lists.pending?.[0] || lists.updates?.[0] || lists.approved?.[0] || lists.rejected?.[0] || null;
     setSelectedRecord(fallback);
     setEditorState(fallback);
   }, [dashboard, activeStatus, selectedRecord]);
@@ -341,6 +349,10 @@ export function AdminDashboard({ initialData }) {
           admin_notes: editorState.admin_notes,
           applicant: editorState.applicant,
           profile: editorState.profile,
+          publication_consent: editorState.publicationConsent,
+          ...(editorState.isProfileUpdate
+            ? { profileUpdateAction: status === "approved" ? "approve" : status === "rejected" ? "reject" : "save" }
+            : {}),
         }),
       });
       const result = await response.json().catch(() => ({}));
@@ -352,10 +364,14 @@ export function AdminDashboard({ initialData }) {
       await fetchDashboard();
       setSelectedRecord(result.record);
       setEditorState(result.record);
-      setActiveStatus(result.record.status);
+      setActiveStatus(editorState.isProfileUpdate && status === "pending" ? "updates" : result.record.status);
       setFeedback(
-        status === "approved"
-          ? "Perfil aprovado e publicado imediatamente na Nexa."
+        editorState.isProfileUpdate && status === "approved"
+          ? "Atualização aprovada e aplicada ao perfil publicado."
+          : editorState.isProfileUpdate && status === "rejected"
+            ? "Atualização rejeitada. O perfil publicado não foi alterado."
+        : status === "approved"
+          ? "Candidatura aprovada. O perfil ainda não foi publicado."
           : status === "rejected"
             ? "Registro movido para a área de rejeitadas."
             : "Registro salvo em pendências.",
@@ -365,6 +381,95 @@ export function AdminDashboard({ initialData }) {
       setFeedback(submissionError.message || "Não foi possível salvar.");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function handleGenerateProfile() {
+    if (!editorState?.id || generatingProfile) return;
+    setFeedback("");
+    setError(false);
+    setGeneratingProfile(true);
+    try {
+      const response = await fetch(`/api/admin/applications/${editorState.id}/generate-profile`, { method: "POST" });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Não foi possível gerar o perfil.");
+      await fetchDashboard();
+      setSelectedRecord(result.record);
+      setEditorState(result.record);
+      setFeedback("Perfil básico gerado. Revise e edite antes de publicar.");
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível gerar o perfil.");
+    } finally {
+      setGeneratingProfile(false);
+    }
+  }
+
+  async function handlePublishProfile() {
+    if (!editorState?.id || saving) return;
+    setFeedback("");
+    setError(false);
+    setSaving(true);
+    try {
+      const response = await fetch(`/api/admin/applications/${editorState.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          status: "approved",
+          publish: true,
+          admin_notes: editorState.admin_notes,
+          applicant: editorState.applicant,
+          profile: editorState.profile,
+          publication_consent: editorState.publicationConsent,
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Não foi possível publicar o perfil.");
+      await fetchDashboard();
+      setSelectedRecord(result.record);
+      setEditorState(result.record);
+      setFeedback("Perfil publicado com sucesso.");
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível publicar o perfil.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleGenerateCompletionLink() {
+    if (!editorState?.id || completionRequestInFlightRef.current) return;
+    completionRequestInFlightRef.current = true;
+    setFeedback("");
+    setError(false);
+    setCompletionLink("");
+    setCompletionLinkCopied(false);
+    setGeneratingCompletionLink(true);
+    try {
+      const response = await fetch(`/api/admin/applications/${editorState.id}/completion-invite`, { method: "POST" });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Não foi possível gerar o link.");
+      setCompletionLink(result.inviteLink || "");
+      setFeedback("Link para completar o perfil gerado com sucesso.");
+      await fetchDashboard();
+    } catch (submissionError) {
+      setError(true);
+      setFeedback(submissionError.message || "Não foi possível gerar o link.");
+    } finally {
+      completionRequestInFlightRef.current = false;
+      setGeneratingCompletionLink(false);
+    }
+  }
+
+  async function handleCopyCompletionLink() {
+    if (!completionLink) return;
+    try {
+      await navigator.clipboard.writeText(completionLink);
+      setCompletionLinkCopied(true);
+      window.setTimeout(() => setCompletionLinkCopied(false), 1800);
+    } catch (_error) {
+      setError(true);
+      setFeedback("Não foi possível copiar o link automaticamente.");
     }
   }
 
@@ -523,6 +628,25 @@ export function AdminDashboard({ initialData }) {
   const currentList = lists[activeStatus] || [];
   const activeInvites = (dashboard.invites || []).filter((invite) => invite.status === "pending");
   const referrals = dashboard.referrals || [];
+  const canGenerateBasicProfile = Boolean(
+    editorState &&
+      !editorState.isProfileUpdate &&
+      (editorState.status === "pending" || editorState.status === "approved") &&
+      editorState.profile.verified &&
+      selectedRecord?.profile?.verified &&
+      !editorState.isPublished,
+  );
+  const aiGenerationHint = !editorState
+    ? ""
+    : editorState.isProfileUpdate
+      ? "Esta é uma atualização de perfil em análise."
+      : editorState.isPublished
+        ? "Este perfil já está publicado. Use o link de conclusão para solicitar uma atualização."
+        : editorState.status === "rejected"
+          ? "Candidaturas rejeitadas não podem gerar um perfil com IA."
+          : !editorState.profile.verified || !selectedRecord?.profile?.verified
+            ? "Marque a profissional como verificada e salve para liberar a geração com IA."
+            : "A IA usará apenas a descrição e os dados fornecidos pela candidata. A geração não aprova nem publica o perfil.";
 
   function updateReferralFormField(key, value) {
     const nextValue =
@@ -795,6 +919,14 @@ export function AdminDashboard({ initialData }) {
             onDeleteSelected={handleDeleteRejected}
             deleting={deleting}
             onSelect={(id) => {
+              setCompletionLink("");
+              setCompletionLinkCopied(false);
+              if (activeStatus === "updates") {
+                const updateRecord = currentList.find((record) => record.id === id);
+                setSelectedRecord(updateRecord || null);
+                setEditorState(updateRecord || null);
+                return;
+              }
               setSelectedRecord(null);
               setEditorState(null);
               fetchRecord(id).catch((submissionError) => {
@@ -825,19 +957,71 @@ export function AdminDashboard({ initialData }) {
                         {editorState.ai?.assisted ? "Assistido por IA" : "Manual"}
                       </span>
                     </p>
+                    <p className="mt-2 text-sm leading-7 text-charcoal/70">
+                      Perfil: <span className="font-semibold">{editorState.completenessStatus === "complete" ? "Completo" : "Básico"}</span>
+                      {editorState.isPublished ? " • Publicado" : " • Não publicado"}
+                    </p>
                   </div>
                   <div className="flex flex-wrap gap-3">
-                    <Button type="button" variant="secondary" disabled={saving} onClick={() => handleSave("pending")}>
-                      Salvar em pendências
-                    </Button>
-                    <Button type="button" variant="destructive" disabled={saving} onClick={() => handleSave("rejected")}>
-                      Rejeitar
-                    </Button>
-                    <Button type="button" disabled={saving} onClick={() => handleSave("approved")}>
-                      Aprovar e publicar
-                    </Button>
+                    {editorState.isProfileUpdate ? (
+                      <>
+                        <Button type="button" variant="secondary" disabled={saving} onClick={() => handleSave("pending")}>Salvar atualização</Button>
+                        <Button type="button" variant="destructive" disabled={saving} onClick={() => handleSave("rejected")}>Rejeitar atualização</Button>
+                        <Button type="button" disabled={saving} onClick={() => handleSave("approved")}>Aprovar atualização</Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button type="button" variant="secondary" disabled={saving} onClick={() => handleSave(editorState.status)}>
+                          Salvar alterações
+                        </Button>
+                        {editorState.status === "pending" ? (
+                          <>
+                            <Button type="button" variant="destructive" disabled={saving} onClick={() => handleSave("rejected")}>Rejeitar</Button>
+                            <Button type="button" disabled={saving} onClick={() => handleSave("approved")}>Aprovar candidatura</Button>
+                          </>
+                        ) : null}
+                        {!editorState.isProfileUpdate ? (
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            disabled={generatingProfile || !canGenerateBasicProfile}
+                            onClick={handleGenerateProfile}
+                            aria-describedby="admin-ai-generation-hint"
+                          >
+                            {generatingProfile ? "Gerando..." : "Gerar perfil com IA"}
+                          </Button>
+                        ) : null}
+                        {editorState.status === "approved" && !editorState.isPublished ? (
+                          <Button type="button" disabled={saving} onClick={handlePublishProfile}>Publicar perfil</Button>
+                        ) : null}
+                        {editorState.profile.slug ? (
+                          <Button type="button" variant="secondary" href={`/admin/preview/${editorState.id}${editorState.isProfileUpdate ? "?update=1" : ""}`} target="_blank">Pré-visualizar</Button>
+                        ) : null}
+                        {editorState.isPublished ? (
+                          <Button type="button" variant="secondary" disabled={generatingCompletionLink} onClick={handleGenerateCompletionLink}>
+                            {generatingCompletionLink ? "Gerando..." : "Gerar link para completar perfil"}
+                          </Button>
+                        ) : null}
+                      </>
+                    )}
                   </div>
                 </div>
+
+                {!editorState.isProfileUpdate ? (
+                  <p id="admin-ai-generation-hint" className="mt-4 rounded-2xl border border-nexa_purple/15 bg-nexa_nude px-4 py-3 text-sm text-charcoal/75">
+                    <span className="font-semibold">Gerar perfil com IA:</span> {aiGenerationHint}
+                  </p>
+                ) : null}
+
+                {completionLink ? (
+                  <SubtleCard className="mt-6 border border-charcoal/10 p-5">
+                    <FieldLabel htmlFor="completion-profile-link" className="text-charcoal/80">Link para completar perfil</FieldLabel>
+                    <Input id="completion-profile-link" readOnly value={completionLink} onFocus={(event) => event.currentTarget.select()} className="bg-white" />
+                    <Button type="button" variant="secondary" className="mt-3" onClick={handleCopyCompletionLink} aria-label="Copiar link para completar perfil">
+                      {completionLinkCopied ? "Link copiado!" : "Copiar link"}
+                    </Button>
+                  </SubtleCard>
+                ) : null}
 
                 <ProfileQuestionnaireFields
                   record={editorState}

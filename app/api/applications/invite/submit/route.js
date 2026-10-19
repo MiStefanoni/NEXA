@@ -10,9 +10,14 @@ export async function POST(request) {
   const source = sanitizeText(rawBody.source, 120);
   const aiSessionId = sanitizeText(rawBody.aiSessionId, 120);
   const aiAccuracyConfirmed = Boolean(rawBody.aiAccuracyConfirmed);
+  const publicationConsent = rawBody.publicationConsent === true;
 
   if (!token) {
     return jsonResponse({ success: false, error: "Token inválido." }, { status: 400 });
+  }
+
+  if (!publicationConsent) {
+    return jsonResponse({ success: false, error: "A autorização para publicação é obrigatória." }, { status: 400 });
   }
 
   const validationErrors = getInviteApplicationValidationErrors({
@@ -41,6 +46,7 @@ export async function POST(request) {
       profile,
       source: source === "ai-assisted" ? "ai-assisted" : "invite",
       aiSessionId: source === "ai-assisted" ? aiSessionId : "",
+      publicationConsent,
     });
     return jsonResponse({ success: true, record }, { status: 200 });
   } catch (error) {

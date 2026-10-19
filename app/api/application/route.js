@@ -16,6 +16,7 @@ export async function POST(request) {
   const referralCode = sanitizeText(rawBody.referralCode, 120);
   const description = sanitizeText(rawBody.description, 5000);
   const source = sanitizeText(rawBody.source, 120);
+  const publicationConsent = rawBody.publicationConsent === true;
 
   if (!name || !email || !category || !description) {
     return jsonResponse(
@@ -28,8 +29,12 @@ export async function POST(request) {
     return jsonResponse({ success: false, error: "Invalid email." }, { status: 400 });
   }
 
+  if (!publicationConsent) {
+    return jsonResponse({ success: false, error: "É necessário autorizar a publicação do perfil." }, { status: 400 });
+  }
+
   try {
-    await createPendingApplicationRecord({ name, email, category, location, website, referralCode, description, source });
+    await createPendingApplicationRecord({ name, email, category, location, website, referralCode, description, source, publicationConsent });
   } catch (error) {
     return jsonResponse(
       {
